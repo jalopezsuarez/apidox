@@ -3,7 +3,11 @@
 #APIDox
  Interactive Documentation for RESTful web APIs
 
-## SYPNOSYS
+MAJOR CHANGE LOG
+================
+
+### 2015-01-15 - APIDox First release for the PHP web application.
+* First Version 
 
 SYNOPSIS
 --------
