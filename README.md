@@ -48,6 +48,7 @@ CREDITS
 =======
 
 Jose Antonio Lopez Suarez (https://github.com/jalopezsuarez)
+
 Sebastian Garcia Rodriguez
 
 SUPPORT
