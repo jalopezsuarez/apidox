@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<method type="GET" uri="user/logout" description="Cierra sesión en la plataforma"
-	status="En desarrollo">
-	<param name="userid" type="string" location="query"
-		description="Identificador de usuario" required="Y" />
-	<param name="token" type="string" location="query" description="Token de seguridad"
-		required="Y" />
-</method>

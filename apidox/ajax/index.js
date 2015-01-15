@@ -75,8 +75,9 @@ function onClickTryIt()
 	$("[data-name='tryit-loading']").removeClass("tryit-oculto");
 
 	var context = $(this).parent().parent();
-	var uriQuery = $.trim(context.parent().find("[data-name='uri']").text().toLowerCase());
+	var uriQuery = $.trim(context.parent().find("[data-name='uri']").text());
 	var uriServer = $("[data-name='uri']").val();
+	var uriProtocol = $("[data-name='protocol']").val();	
 
 	var dataQuery = '';
 	context.find("[data-name='item']").each(function(index, element)
@@ -88,13 +89,13 @@ function onClickTryIt()
 		if (value != undefined && value != null && value.length > 0)
 		{
 			var separator = (dataQuery.length > 0) ? "&" : "";
-			dataQuery += separator + $.trim(param).toLowerCase() + '=' + $.trim(value);
+			dataQuery += separator + $.trim(param) + '=' + $.trim(value);
 		}
 	});
 	if (dataQuery.length > 0)
 		dataQuery = '?' + dataQuery;
 
-	var url = "http://" + uriServer + "/" + $.trim(uriQuery) + $.trim(dataQuery);
+	var url = uriProtocol + uriServer + "/" + $.trim(uriQuery) + $.trim(dataQuery);
 	jQuery.ajax(
 	{
 		url : "request.php",

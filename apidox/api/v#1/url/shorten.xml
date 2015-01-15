@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<method type="GET" uri="urlshortener/v1/url" description="Inicia sesión en la plataforma"
+	status="DESARROLLO">
+
+	<param name="longUrl" type="string"
+		description="Is the long URL
+		to which it expands. In most cases , this will be the same as the URL
+		you provided. In some cases , the server may canonicalize the URL. For
+		instance , if you pass http: / www.google.com , the server will add a
+		trailing slash."
+		required="Y" defaultValue="http://www.google.com" />
+
+	<response>
+		<success>
+<![CDATA[
+{
+ "kind": "urlshortener#url",
+ "id": "http://goo.gl/fbsS",
+ "longUrl": "http://www.google.com/"
+}
+]]></success>
+		<error>
+<![CDATA[
+{
+ "error": {
+  "errors": [
+   {
+    "domain": "global",
+    "reason": "required",
+    "message": "Required parameter: shortUrl",
+    "locationType": "parameter",
+    "location": "shortUrl"
+   }
+  ],
+  "code": 400,
+  "message": "Required parameter: shortUrl"
+ }
+}
+
+]]>
+		</error>
+	</response>
+
+</method>
+

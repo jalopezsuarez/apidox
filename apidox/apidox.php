@@ -82,6 +82,10 @@ if (file_exists('api/api_config.xml'))
 	// Título.
 	$apiTitle = $apiConfig->attributes()['title'];
 	$apiUri = $apiConfig->attributes()['uri'];
+	
+	$apiProtocol = "http://";
+	if (isset($apiConfig->attributes()['secure']))
+		$apiProtocol = "https://";
 }
 else
 {
@@ -102,6 +106,7 @@ else
 	</h1>
 	
 	<input type="hidden" data-name="uri" value="<?php echo $apiUri ?>">
+	<input type="hidden" data-name="protocol" value="<?php echo $apiProtocol ?>">
 
 	<?php
 	// Búsqueda de endpoints. Cada endpoint es una carpeta en el sistema de archivos bajo la subcarpeta "api".
