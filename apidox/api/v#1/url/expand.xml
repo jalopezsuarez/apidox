@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<method type="POST" uri="urlshortener/v1/url" description="Inicia sesión en la plataforma"
+	status="DESARROLLO">
+
+	<param name="shortUrl" type="string" description="Is the short URL to expand."
+		required="N" defaultValue="http://goo.gl/fbsS" />
+
+	<response>
+		<success>
+<![CDATA[
+{
+ "kind": "urlshortener#url",
+ "id": "http://goo.gl/fbsS",
+ "longUrl": "http://www.google.com/",
+ "status": "OK"
+}
+]]></success>
+	</response>
+
+</method>
+

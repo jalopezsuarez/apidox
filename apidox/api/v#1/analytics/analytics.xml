@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<method type="GET" uri="urlshortener/v1/url" description="Inicia sesión en la plataforma"
+	status="DESARROLLO">
+
+	<param name="shortUrl" type="string" description="Is the short URL
+		to expand."
+		required="Y" defaultValue="http://goo.gl/fbsS" />
+
+	<param name="projection" type="enumerated"
+		description="Additional information to return (using the projection query parameter)"
+		required="N">
+		<option value="ANALYTICS_CLICKS" description="Analytics clicks projection." />
+		<option value="ANALYTICS_TOP_STRINGS" description="Analytics top strings projection." />
+		<option defaultValue="Y" value="FULL" description="Full projection." />
+	</param>
+
+	<response>
+		<success>
+<![CDATA[
+{
+ "kind": "urlshortener#url",
+ "id": "http://goo.gl/fbsS",
+ "longUrl": "http://www.google.com/",
+ "status": "OK",
+ "created": "2009-12-13T07:22:55.000+00:00",
+ "analytics": {
+  "allTime": {
+   "shortUrlClicks": "3227",
+   "longUrlClicks": "9358",
+   "referrers": [ { "count": "2160", "id": "Unknown/empty" } /* , ... */ ],
+   "countries": [ { "count": "1022", "id": "US" } /* , ... */ ],
+   "browsers": [ { "count": "1025", "id": "Firefox" } /* , ... */ ],
+   "platforms": [ { "count": "2278", "id": "Windows" } /* , ... */ ]
+  },
+  "month": { /* ... */ },
+  "week": { /* ... */ },
+  "day": { /* ... */ },
+  "twoHours": { /* ... */ }
+ }
+}
+]]></success>
+	</response>
+
+</method>
+
