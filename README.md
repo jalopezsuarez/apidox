@@ -6,8 +6,8 @@
 MAJOR CHANGE LOG
 ================
 
-### 2015-01-15 - APIDox First release for the PHP web application.
-* First Version 
+### 2015-01-15 - APIDox first release.
+* First version PHP Web application.
 
 SYNOPSIS
 --------
