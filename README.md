@@ -15,12 +15,11 @@ APIDox is a WebApplication wrotten in PHP to help creating APIs Documentations t
 
 APIDox gives you:
 
-    Fast, easy docs layout
-    No more worrying about how to format docs. Our clean, functional layout is a favorite for developers.
+- Fast, easy docs layout: No more worrying about how to format docs. Our clean, functional layout is a favorite for developers.
 
-    One place for docs and testing
-    Developers execute calls right from the docs, so there's no need to jump back and forth to a separate console.
+- One place for docs and testing: Developers execute calls right from the docs, so there's no need to jump back and forth to a separate console.
 
+APIDox support online testing APIs as well as static samples definitions including Errors Codes and Success JSON.
 
 INSTALLATION INSTRUCTIONS FOR PHP
 ---------------------------------
@@ -28,12 +27,20 @@ INSTALLATION INSTRUCTIONS FOR PHP
 
 CONFIGURING API DEFINITION LOCATION
 -----------------------------------
-aa
+
+The API definition is automatically generated using a tree on /api/ directory. Each subdirectory on api/ folder is a ENDPOINT and each XML file in ENDPOINT directories is a METHOD of this ENDPOINT.
+
 
 QUICK API CONFIGURATION EXAMPLE
 -------------------------------
 
-APIDox is a WebApplication wrotten in PHP to help creating APIs Documentations to test using XMLs to define endpoints and methods.
+
+
+CREDITS
+=======
+
+Jose Antonio Lopez Suarez (https://github.com/jalopezsuarez)
+Sebastian Garcia Rodriguez
 
 SUPPORT
 =======
