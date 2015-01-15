@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<method type="GET" uri="urlshortener/v1/url"
+<method type="POST" uri="urlshortener/v1/url"
 	description="The Google URL Shortener API allows you to shorten URLs just as you would on goo.gl."
 	status="PRODUCTION">
 

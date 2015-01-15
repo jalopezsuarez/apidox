@@ -315,7 +315,7 @@ else
 				?>
 						">
 							<div class="title clickable">
-								<span class="http-method">
+								<span class="http-method" data-name="http-method">
 									<?php echo $methodConfig->attributes()['type']; ?>
 								</span>
 								<span class="name">

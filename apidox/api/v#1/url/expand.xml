@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<method type="POST" uri="urlshortener/v1/url"
+<method type="GET" uri="urlshortener/v1/url"
 	description="You can call this method to expand any goo.gl short URL."
 	status="PRODUCTION">
 

@@ -77,9 +77,11 @@ function onClickTryIt()
 	var context = $(this).parent().parent();
 	var uriQuery = $.trim(context.parent().find("[data-name='uri']").text());
 	var uriServer = $("[data-name='uri']").val();
-	var uriProtocol = $("[data-name='protocol']").val();	
+	var uriProtocol = $("[data-name='protocol']").val();
+	var uriType = $.trim(context.parent().find("[data-name='http-method']").text());
 
 	var dataQuery = '';
+	var dataJSON = {};
 	context.find("[data-name='item']").each(function(index, element)
 	{
 		var param = $(element).find("[data-name='param']").html();
@@ -91,11 +93,19 @@ function onClickTryIt()
 			var separator = (dataQuery.length > 0) ? "&" : "";
 			dataQuery += separator + $.trim(param) + '=' + $.trim(value);
 		}
+		dataJSON[$.trim(param)] = $.trim(value);
 	});
-	if (dataQuery.length > 0)
-		dataQuery = '?' + dataQuery;
 
-	var url = uriProtocol + uriServer + "/" + $.trim(uriQuery) + $.trim(dataQuery);
+	var separatorQuery = '';
+	if (dataQuery.length > 0)
+		separatorQuery = '?';
+
+	var url = uriProtocol + uriServer + "/" + $.trim(uriQuery) + separatorQuery + $.trim(dataQuery);
+	var uri = uriProtocol + uriServer + "/" + $.trim(uriQuery);
+
+	var params = $.trim(dataQuery)
+	params = JSON.stringify(dataJSON);
+
 	jQuery.ajax(
 	{
 		url : "request.php",
@@ -103,7 +113,10 @@ function onClickTryIt()
 		timeout : 10000,
 		data :
 		{
-			rq : url
+			url : url,
+			uri : uri,
+			type : uriType,
+			params : params
 		}
 	}).always(function(response)
 	{
@@ -124,7 +137,7 @@ function onClickTryIt()
 
 	}).fail(function(response)
 	{
-		context.find('.response').html("Request Timeout Error: server response timeout");
+		context.find('.response').html("Request Timeout Error: server response timeout" + "\n\n" + $.trim(response));
 	});
 }
 
