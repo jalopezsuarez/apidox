@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<method type="POST" uri="api-v1/data-lists/sports"
+	description="Inicia sesión en la plataforma" status="DESARROLLO">
+
+	<param name="market" type="string" location="query" description="market"
+		required="Y" defaultValue="ES" />
+	<param name="album_type" type="string" location="query"
+		description="album_type" required="N" defaultValue="single" />
+	<param name="limit" type="string" location="query" description="limit"
+		required="N" defaultValue="2" />
+
+	<param name="aceptar" type="enumerated" location="query"
+		description="limit" required="N" defaultValue="2">
+		<option value="SI" description="Decir que si" />
+		<option defaultValue="Y" value="NO" description="Decir que no" />
+	</param>
+
+	<response>
+		<success>
+<![CDATA[{
+    "glossary": {
+        "title": "example glossary",
+        "GlossDiv": {
+            "title": "S",
+            "GlossList": {
+                "GlossEntry": {
+                    "ID": "SGML",
+                    "SortAs": "SGML",
+                    "GlossTerm": "Standard Generalized Markup Language",
+                    "Acronym": "SGML",
+                    "Abbrev": "ISO 8879:1986",
+                    "GlossDef": {
+                        "para": "A meta-markup language, used to create markup languages such as DocBook.",
+                        "GlossSeeAlso": [
+                            "GML",
+                            "XML"
+                        ]
+                    },
+                    "GlossSee": "markup"
+                }
+            }
+        }
+    }
+}
+]]></success>
+		<error>
+<![CDATA[
+]]>
+		</error>
+	</response>
+
+</method>
+
