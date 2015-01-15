@@ -442,11 +442,11 @@ else
 	<div id="io-footer">
 		<div class="f-left">
 			&copy;
-			<a href="http://apidox.io">APIDox</a>
+			<a href="https://github.com/jalopezsuarez/apidox">APIDox on GitHub!</a>
 		</div>
 		<div class="f-right">
 			Powered by
-			<a href="http://apidox.io">APIDox</a>
+			<a href="https://github.com/jalopezsuarez/apidox">APIDox</a>
 		</div>
 	</div>
 
