@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<method type="GET" uri="urlshortener/v1/url" description="Inicia sesión en la plataforma"
-	status="DESARROLLO">
+<method type="GET" uri="urlshortener/v1/url"
+	description="To look up a short URLs analytics, issue an expand request, adding a parameter to ask for additional details."
+	status="PRODUCTION">
 
 	<param name="shortUrl" type="string" description="Is the short URL
 		to expand."
@@ -40,6 +41,15 @@
  }
 }
 ]]></success>
+
+		<information>
+<![CDATA[
+<p>To look up a short URL's analytics, issue an expand request, adding a parameter to ask for additional details. Add &projection=FULL to the API URL, like this:<br></p>
+If successful, the response will look like:<br><br>
+    + <strong>created</strong> is the time at which this short URL was created. It is specified in ISO 8601.<br>
+    + <strong>analytics</strong> contains all the click statistics, broken down into the various time slices. That is, month will contain click statistics for the past month, and so on. For each time slice, shortUrlClicks and longUrlClicks should be present, but the rest may not be (e.g. if there were no clicks).<br>
+
+]]></information>
 	</response>
 
 </method>

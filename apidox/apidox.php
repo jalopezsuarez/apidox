@@ -399,7 +399,10 @@ else
 											<?php endif; ?>
 											<?php if (isset($methodConfig->response->error) && strlen(trim($methodConfig->response->error)) > 0) : ?>											
 												<li class="tab-link" data-tab="tab-3">Error Sample:</li>
-											<?php endif; ?>											
+											<?php endif; ?>		
+											<?php if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0) : ?>
+												<li class="tab-link" data-tab="tab-4">Information:</li>
+											<?php endif; ?>																				
 										</ul>
 										<div id="tab-1" class="tab-content current">
 											<h4>Request</h4>
@@ -423,6 +426,14 @@ else
 											</pre>
 										</div>
 										<?php endif; ?>
+										<?php if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0) : ?>
+										<div id="tab-4" class="tab-content">
+											<h4>Information</h4>
+											<div class="information" data-name="information">
+											<?php echo $methodConfig->response->information; ?>
+											</div>
+										</div>
+										<?php endif; ?>										
 									</div>
 									<!-- container -->
 
