@@ -25,6 +25,8 @@ INSTALLATION INSTRUCTIONS FOR PHP
 ---------------------------------
 1. PHP 5.4 or greater.
 
+Just copy the apidox folder on any PHP server (even MAMP, LAMP, WAMP or similar) an point your browser to {server}/apidox/apidox.php
+
 CONFIGURING API DEFINITION LOCATION
 -----------------------------------
 
@@ -34,7 +36,13 @@ The API definition is automatically generated using a tree on /api/ directory. E
 QUICK API CONFIGURATION EXAMPLE
 -------------------------------
 
-
+/apidox/api/
++ endpoint1/
+   + method1.xml
+   + method2.xml
++ endpoint2/
+   + method3.xml
+   + method4.xml
 
 CREDITS
 =======
