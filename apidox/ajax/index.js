@@ -108,7 +108,7 @@ function onClickTryIt()
 
 	jQuery.ajax(
 	{
-		url : "request.php",
+		url : "lib/request.php",
 		type : "POST",
 		timeout : 10000,
 		data :
