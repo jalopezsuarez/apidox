@@ -1,17 +1,19 @@
 ![IPv6](apidox.png)
 
-# APIDox
- Interactive Documentation for RESTful web APIs
+# [APIDox](https://github.com/jalopezsuarez/apidox)
+
+Interactive Documentation for RESTful web APIs
  
 [![APIDox](http://img.youtube.com/vi/uP9oTPn8umI/0.jpg)](http://www.youtube.com/watch?v=uP9oTPn8umI)
 
-## MAJOR CHANGE LOG
+## Major Changelog
 
 ### 2015-01-15 - APIDox first release.
+
 * First version PHP Web application.
 
 ## Synnosis
---------
+
 APIDox is a WebApplication wrotten in PHP to help creating APIs Documentations to test using XMLs to define endpoints and methods.
 
 APIDox gives you:
@@ -54,28 +56,22 @@ apidox/api
         ├── method_h.xml
         ├── method_i.xml
         └── index.xml
-    
-/apidox/api/
-+ endpoint1/
-   + method1.xml
-   + method2.xml
-+ endpoint2/
-   + method3.xml
-   + method4.xml
 
 ## Creators
 
 **Jose Antonio Lopez**
-- github.com/jalopezsuarez
+- [github.com/jalopezsuarez](https://github.com/jalopezsuarez)
 
 **Sebastian Garcia Rodriguez**
-- github.com/segarci
+- [github.com/segarci](https://github.com/segarci)
+
+## Support & Contributing
+
+If you need any help with APIDox, you can reach out to us via the GitHub Issues page at:
+<code>[https://github.com/jalopezsuarez/apidox/issues](https://github.com/jalopezsuarez/apidox/issues)</code>
+
+Keep track of development and community updates. Pull requests are welcome!
 
 ## Copyright and license
 
 Code and documentation copyright 2011-2015 APIDox. Code released under [the MIT license](https://https://github.com/jalopezsuarez/apidox/blob/master/LICENSE).
-
-## Support
-
-If you need any help with APIDox, you can reach out to us via the GitHub Issues page at:
-<code>[https://github.com/jalopezsuarez/apidox/issues](https://github.com/jalopezsuarez/apidox/issues)</code>
