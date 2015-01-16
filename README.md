@@ -32,7 +32,7 @@ Just copy the APIDOX folder on any Apache/PHP server (MAMP, LAMP, WAMP or native
 
 ## Definition API
 
-The API definition is automatically generated using a tree on /api/ directory. Each subdirectory on api/ folder is a ENDPOINT and each XML file in ENDPOINT directories is a METHOD of this ENDPOINT.
+The API definition is automatically generated using a tree on /api/ directory. Each subdirectory on api/ folder is a ENDPOINT and each XML file in ENDPOINT directories is a METHOD of this ENDPOINT. The server supports full API versioning.
 
 ### Quick API Configuration Structure
 
