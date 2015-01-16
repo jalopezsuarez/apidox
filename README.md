@@ -26,7 +26,7 @@ APIDox support online testing APIs as well as static samples definitions includi
 ### APIDox Requirements & Installation
 
 - Apache/PHP 5.4+ server is needed in oder to run the webapp. No BBDD needed.
-- Web Browser ;)
+- A Updated Web Browser ;)
 
 Just copy the APIDOX folder on any Apache/PHP server (MAMP, LAMP, WAMP or native installed server) and point your browser to {server}/apidox/apidox.php
 
