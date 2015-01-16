@@ -3,7 +3,7 @@
 #APIDox
  Interactive Documentation for RESTful web APIs
  
- <iframe width="420" height="315" src="//www.youtube.com/embed/uP9oTPn8umI" frameborder="0" allowfullscreen></iframe>
+[![APIDox](http://img.youtube.com/vi/uP9oTPn8umI/0.jpg)](http://www.youtube.com/watch?v=uP9oTPn8umI)
 
 MAJOR CHANGE LOG
 ================
