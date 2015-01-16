@@ -8,8 +8,7 @@ Interactive Documentation for RESTful web APIs
 
 ## Major Changelog
 
-### 2015-01-15 - APIDox first release.
-
+#### 2015-01-15 - APIDox first release.
 * First version PHP Web application.
 
 ## Synnosis
@@ -38,6 +37,7 @@ The API definition is automatically generated using a tree on /api/ directory. E
 
 APIDox definition structure starts from API folder in apidox homefolder.
 
+```
 apidox/api
 ├── api_config.xml
 ├── v#1
@@ -56,6 +56,7 @@ apidox/api
         ├── method_h.xml
         ├── method_i.xml
         └── index.xml
+```
 
 ## Creators
 
