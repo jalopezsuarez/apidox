@@ -8,7 +8,7 @@ Interactive Documentation for RESTful web APIs
 
 ## Major Changelog
 
-#### 2015-01-15 - APIDox first release.
+#### 2015-01-15: APIDox first release.
 * First version PHP Web application.
 
 ## Sypnosys
@@ -76,4 +76,4 @@ Keep track of development and community updates. Pull requests are welcome!
 
 ## Copyright and license
 
-Code and documentation copyright 2011-2015 APIDox. Code released under [the MIT license](https://github.com/jalopezsuarez/apidox/blob/master/apidox/LICENSE).
+Code and documentation copyright 2015 APIDox. Code released under [the MIT license](https://github.com/jalopezsuarez/apidox/blob/master/apidox/LICENSE).
