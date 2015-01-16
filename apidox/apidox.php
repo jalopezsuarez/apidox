@@ -84,7 +84,7 @@ if (file_exists('api/api_config.xml'))
 	$apiUri = $apiConfig->attributes()['uri'];
 	
 	$apiProtocol = "http://";
-	if (isset($apiConfig->attributes()['secure']))
+	if (isset($apiConfig->attributes()['secure']) && $apiConfig->attributes()['secure'] == "Y")
 		$apiProtocol = "https://";
 }
 else
