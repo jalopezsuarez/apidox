@@ -11,7 +11,7 @@ Interactive Documentation for RESTful web APIs
 #### 2015-01-15 - APIDox first release.
 * First version PHP Web application.
 
-## Synnosis
+## Sypnosys
 
 APIDox is a WebApplication wrotten in PHP to help creating APIs Documentations to test using XMLs to define endpoints and methods.
 
@@ -25,9 +25,9 @@ APIDox support online testing APIs as well as static samples definitions includi
 
 ### APIDox Installation Instructions
 
-- PHP 5.4 or greater version.
+- A PHP 5.4+ server is needed ir oder to run the webapp. No BBDD needed.
 
-Just copy the apidox folder on any PHP server (even MAMP, LAMP, WAMP or similar) an point your browser to {server}/apidox/apidox.php
+Just copy the APIDOX folder on any Apache/PHP server (MAMP, LAMP, WAMP or native installed server) and point your browser to {server}/apidox/apidox.php
 
 ## Definition API
 
@@ -58,7 +58,7 @@ apidox/api
         └── index.xml
 ```
 
-## Creators
+## Creators & Product Development
 
 **Jose Antonio Lopez**
 - [github.com/jalopezsuarez](https://github.com/jalopezsuarez)
@@ -75,4 +75,4 @@ Keep track of development and community updates. Pull requests are welcome!
 
 ## Copyright and license
 
-Code and documentation copyright 2011-2015 APIDox. Code released under [the MIT license](https://https://github.com/jalopezsuarez/apidox/blob/master/LICENSE).
+Code and documentation copyright 2011-2015 APIDox. Code released under [the MIT license](https://github.com/jalopezsuarez/apidox/blob/master/apidox/LICENSE).
