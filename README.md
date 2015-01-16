@@ -1,17 +1,16 @@
 ![IPv6](apidox.png)
 
-#APIDox
+# APIDox
  Interactive Documentation for RESTful web APIs
  
 [![APIDox](http://img.youtube.com/vi/uP9oTPn8umI/0.jpg)](http://www.youtube.com/watch?v=uP9oTPn8umI)
 
-MAJOR CHANGE LOG
-================
+## MAJOR CHANGE LOG
 
 ### 2015-01-15 - APIDox first release.
 * First version PHP Web application.
 
-SYNOPSIS
+## Synnosis
 --------
 APIDox is a WebApplication wrotten in PHP to help creating APIs Documentations to test using XMLs to define endpoints and methods.
 
@@ -23,21 +22,39 @@ APIDox gives you:
 
 APIDox support online testing APIs as well as static samples definitions including Errors Codes and Success JSON.
 
-INSTALLATION INSTRUCTIONS FOR PHP
----------------------------------
-1. PHP 5.4 or greater.
+### APIDox Installation Instructions
+
+- PHP 5.4 or greater version.
 
 Just copy the apidox folder on any PHP server (even MAMP, LAMP, WAMP or similar) an point your browser to {server}/apidox/apidox.php
 
-CONFIGURING API DEFINITION LOCATION
------------------------------------
+## Definition API
 
 The API definition is automatically generated using a tree on /api/ directory. Each subdirectory on api/ folder is a ENDPOINT and each XML file in ENDPOINT directories is a METHOD of this ENDPOINT.
 
+### Quick API Configuration Structure
 
-QUICK API CONFIGURATION EXAMPLE
--------------------------------
+APIDox definition structure starts from API folder in apidox homefolder.
 
+apidox/api
+├── api_config.xml
+├── v#1
+└── ├── index.xml
+    ├── endpoint1/
+    │   ├── method_a.xml
+    │   ├── method_b.xml
+    │   ├── method_c.xml
+    │   └── index.xml
+    ├── endpoint2/
+    │   ├── method_d.xml
+    │   └── method_e.xml
+    └── endpoint...n/
+        ├── method_f.xml
+        ├── method_g.xml
+        ├── method_h.xml
+        ├── method_i.xml
+        └── index.xml
+    
 /apidox/api/
 + endpoint1/
    + method1.xml
@@ -46,14 +63,19 @@ QUICK API CONFIGURATION EXAMPLE
    + method3.xml
    + method4.xml
 
-CREDITS
-=======
+## Creators
 
-Jose Antonio Lopez Suarez (https://github.com/jalopezsuarez)
+**Jose Antonio Lopez**
+- github.com/jalopezsuarez
 
-Sebastian Garcia Rodriguez
+**Sebastian Garcia Rodriguez**
+- github.com/segarci
 
-SUPPORT
-=======
+## Copyright and license
+
+Code and documentation copyright 2011-2015 APIDox. Code released under [the MIT license](https://https://github.com/jalopezsuarez/apidox/blob/master/LICENSE).
+
+## Support
+
 If you need any help with APIDox, you can reach out to us via the GitHub Issues page at:
 <code>[https://github.com/jalopezsuarez/apidox/issues](https://github.com/jalopezsuarez/apidox/issues)</code>
