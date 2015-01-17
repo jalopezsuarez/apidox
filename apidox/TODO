@@ -1,0 +1,6 @@
+TODO 2015-01-17:
+- support connections PUT/DEL/.../POST type: server/api/endpoint/method/23 -> server/api/endpoint/method/{id_element}
+- support uploading files POST
+- support choose select request "Content-Type: application/json"... (with a select on form and XML predefined) for POST to change from JSON POST Body and X-FORM post Body.
+- support choose select response JSON/PLAIN formatted text (from select)
+
