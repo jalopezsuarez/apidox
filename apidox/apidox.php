@@ -331,6 +331,8 @@ else
 								<span class="description">
 									<?php echo $methodConfig->attributes()['description']; ?>
 								</span>
+								
+								<?php if (count($methodConfig->param) > 0) : ?>
 								<h4>Parameters</h4>
 								<table class="parameters">
 									<thead>
@@ -385,6 +387,10 @@ else
 										<?php endforeach; ?>
 									</tbody>
 								</table>
+								<?php else: ?>
+								<br>
+								<?php endif; ?>
+								
 								<div class="tryit-wrapper">
 									<input class="tryit-button" data-name="tryit" type="submit" id="tryit" value="Run Method" />
 									<div class="tryit-loading tryit-oculto" data-name="tryit-loading"></div>
