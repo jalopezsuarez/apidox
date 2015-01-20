@@ -59,6 +59,21 @@ apidox/api
         └── index.xml
 ```
 
+#### api_config.xml
+
+```api_config.xml``` defines basic API's information:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<config title="Google  URL Shortener API" uri="www.googleapis.com" secure="Y"/>
+```
+
+```config``` node may contain the following attributes:
+
+- ```title``` (required): main title for the API.
+- ```uri``` (required): URI to test the API.
+- ```secure``` (optional): specifies the use of https (```secure="Y"```) or http (```secure="N"```).
+
 ## Creators & Product Development
 
 **Jose Antonio Lopez**
