@@ -155,6 +155,19 @@ If successful, the response will look like:<br><br>
 
 ```method``` node also may contain a ```response``` node. This node may contain other nodes: ```success```, ```error``` and ```information```. These nodes contains a ```CDATA``` with the info to show, e.g. a JSON for ```success``` and ```error``` and HTML for ```information```.
 
+#### index.xml
+
+The ```index.xml``` files defines the listing order of endpoints and methods. The root folder (of each version) may contain an ```index.xml``` file for endpoints, whereas each endpoint may contain (in its folder) an ```index.xml``` file for methods. The ```xml``` syntax is:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<order name="shorten" />	
+</index>
+```
+
+The ```xml``` may contain a set of ```order``` nodes indicating the name of the endpoint or method. The first to appear is the first on the listing.
+
 ## Creators & Product Development
 
 **Jose Antonio Lopez**
