@@ -74,6 +74,87 @@ apidox/api
 - ```uri``` (required): URI to test the API.
 - ```secure``` (optional): specifies the use of https (```secure="Y"```) or http (```secure="N"```).
 
+#### method.xml
+
+The method's info is defined by a ```xml``` file with the following structure:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<method type="GET" uri="urlshortener/v1/url"
+	description="To look up a short URLs analytics, issue an expand request, adding a parameter to ask for additional details."
+	status="PRODUCTION">
+
+	<param name="shortUrl" type="string" description="Is the short URL
+		to expand."
+		required="Y" defaultValue="http://goo.gl/fbsS" />
+
+	<param name="projection" type="enumerated"
+		description="Additional information to return (using the projection query parameter)"
+		required="N">
+		<option value="ANALYTICS_CLICKS" description="Analytics clicks projection." />
+		<option value="ANALYTICS_TOP_STRINGS" description="Analytics top strings projection." />
+		<option defaultValue="Y" value="FULL" description="Full projection." />
+	</param>
+
+	<response>
+		<success>
+<![CDATA[
+{
+ "kind": "urlshortener#url",
+ "id": "http://goo.gl/fbsS",
+ "longUrl": "http://www.google.com/",
+ "status": "OK",
+ "created": "2009-12-13T07:22:55.000+00:00",
+ "analytics": {
+  "allTime": {
+   "shortUrlClicks": "3227",
+   "longUrlClicks": "9358",
+   "referrers": [ { "count": "2160", "id": "Unknown/empty" } /* , ... */ ],
+   "countries": [ { "count": "1022", "id": "US" } /* , ... */ ],
+   "browsers": [ { "count": "1025", "id": "Firefox" } /* , ... */ ],
+   "platforms": [ { "count": "2278", "id": "Windows" } /* , ... */ ]
+  },
+  "month": { /* ... */ },
+  "week": { /* ... */ },
+  "day": { /* ... */ },
+  "twoHours": { /* ... */ }
+ }
+}
+]]></success>
+
+		<information>
+<![CDATA[
+<p>To look up a short URL's analytics, issue an expand request, adding a parameter to ask for additional details. Add &projection=FULL to the API URL, like this:<br></p>
+If successful, the response will look like:<br><br>
+    + <strong>created</strong> is the time at which this short URL was created. It is specified in ISO 8601.<br>
+    + <strong>analytics</strong> contains all the click statistics, broken down into the various time slices. That is, month will contain click statistics for the past month, and so on. For each time slice, shortUrlClicks and longUrlClicks should be present, but the rest may not be (e.g. if there were no clicks).<br>
+]]></information>
+	</response>
+
+</method>
+```
+
+```method``` node may contain the following attributes:
+
+- ```type``` (required): http method (```type="GET"``` or ```type="POST"```).
+- ```status``` (required): string indicating the status of the method, e.g. ```DEVELOPMENT```.
+- ```uri``` (required): URI to test the method.
+- ```description``` (required): synopsis.
+- ```deprecated``` (optional): mark the method as deprecated (```deprecated="Y"```).
+
+```method``` node may contain a set of ```param``` nodes. Each ```param``` node may contain the following attributes:
+
+- ```name``` (required): the parameter's name.
+- ```required``` (required): indicates if the parameter is required (```required="Y"```) for the method.
+- ```defaultValue``` (optional): indicates the default value for the parameter.
+- ```type``` (required): parameter data type represented as a string, e.g. ```"int"```. If ```type="enumerated"```, you can define a set of ```option``` nodes inside ```param``` node specifying the available options for the param. Each ```option``` may contain the following attributes:
+  - ```value``` (required): the parameter's value.
+  - ```description``` (required): description of the value for the parameter.
+  - ```defaultValue``` (optional): indicates that option is the default value for the param (```defaultValue="Y"```).
+
+```method``` node also may contain a ```response``` node. This node may contain other nodes: ```success```, ```error``` and ```information```. These nodes contains a ```CDATA``` with the info to show, e.g. a JSON for ```success``` and ```error``` and HTML for ```information```.
+
 ## Creators & Product Development
 
 **Jose Antonio Lopez**
