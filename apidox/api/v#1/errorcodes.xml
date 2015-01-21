@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<errorcodes>
+	<error code="100" description="Example of description for errorcode 100." />
+	<error code="200" description="Example of description for errorcode 200." />
+	
+	<sample>
+<![CDATA[
+{
+	"code": "100",
+	"description": "Example of description for errorcode 100."
+}
+]]></sample>	
+</errorcodes>
+

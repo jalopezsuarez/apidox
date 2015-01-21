@@ -1089,3 +1089,75 @@ ul.tabs li.current {
 .json-string {
 	color: #49D700;
 }
+
+.errorcodes {
+	margin-top: 20px;
+}
+
+.errorcodes .methods {
+	padding: 15px;
+}
+
+.errortable {
+	margin-bottom: 15px;
+	margin-top: 10px;
+	width: 100%;
+	border: 1px solid #e0e0e0;
+}
+
+.errortable th {
+	background-color: #f5f5f5;
+	border: 1px solid #e0e0e0;
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 16px;
+	font-weight: 700;
+	padding: 4px 8px;
+	text-align: left;
+}
+
+.errortable th,.errortable td {
+	padding: 5px;
+	vertical-align: middle;
+}
+
+.errortable tr {
+	border: 1px solid #e0e0e0;
+}
+
+.errortable td {
+	border: 1px solid #e0e0e0;
+}
+
+.errortable td.code {
+	font-family: "Source Code Pro", Monaco, "Courier New", monospace;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.errortable td.description {
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 16px;
+	color: #707070;
+}
+
+.errorcodes pre {
+	font-size: 12px;
+	padding: 10px;
+	overflow: auto;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.errorcodes pre.error {
+	color: #FFF;
+	background-color: #292B36;
+}
+
+.errorcodes h4 {
+	font-family: "Source Sans Pro", sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 24px;
+	margin: 10px 0 5px;
+}
