@@ -141,7 +141,7 @@ else
 			$orderConfig = simplexml_load_file($path);
 			foreach ($orderConfig->order as $orderEndpoint)
 			{
-				$orderEndpoints[] = sprintf("%s", $orderEndpoint->attributes()['name']);
+				$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
 			}
 		}
 	}
@@ -183,9 +183,10 @@ else
 						<?php echo substr($versions[$i]['name'], 2); ?>
 					</option>
 					<?php endfor; ?>
-			</select> <?php 
-						  else : ?> <?php echo substr($versions[0]['name'], 2); ?> <?php endif; ?>
-			</li>
+			</select> <?php
+						  else :
+					  ?> <?php echo substr($versions[0]['name'], 2); ?>
+				<?php endif; ?></li>
 
 			<?php endif; ?>
 		</ul>
@@ -221,7 +222,7 @@ else
 						$orderConfig = simplexml_load_file($path);
 						foreach ($orderConfig->order as $orderEndpoint)
 						{
-							$orderEndpoints[] = sprintf("%s", $orderEndpoint->attributes()['name']);
+							$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
 						}
 					}
 				}
@@ -278,7 +279,7 @@ else
 											  $orderConfig = simplexml_load_file($filename);
 											  foreach ($orderConfig->order as $orderMethod)
 											  {
-												  $orderMethods[] = sprintf("%s/%s.xml", $endpoint['path'], $orderMethod->attributes()['name']);
+												  $orderMethods[] = $endpoint['path'] . '/' . (string) $orderMethod->attributes()['name'];
 											  }
 										  }
 									  }
@@ -347,8 +348,10 @@ else
 												placeholder="<?php if ($paramConfig->attributes()['required'] == "Y")
 																						 echo 'required';
 															 ?>">
-												<?php 
-																	else : ?> <select data-name="select">
+												<?php
+																	else :
+												?> <select
+												data-name="select">
 													<?php foreach ($paramConfig->option as $option) :
 													?>
 													<option
@@ -388,8 +391,9 @@ else
 										<?php endforeach; ?>
 									</tbody>
 								</table>
-								<?php 
-											else : ?>
+								<?php
+											else :
+								?>
 								<br>
 								<?php endif; ?>
 
@@ -476,7 +480,42 @@ else
 			if (file_exists($errorFile))
 			{
 				$errorsConfig = simplexml_load_file($errorFile);
+
+				$errors = array();
 				if (count($errorsConfig->error) > 0)
+				{
+					$uncategorized = array();
+
+					foreach ($errorsConfig->error as $error)
+					{
+						$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
+						$uncategorized[] = $error;
+					}
+
+					$errors['Uncategorized'] = $uncategorized;
+				}
+
+				if (count($errorsConfig->category) > 0)
+				{
+					foreach ($errorsConfig->category as $category)
+					{
+						if (count($category->error) > 0)
+						{
+							$categorized = array();
+
+							foreach ($category->error as $error)
+							{
+								$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
+								$categorized[] = $error;
+							}
+
+							$categoryName = (string) $category->attributes()['name'];
+							$errors[$categoryName] = $categorized;
+						}
+					}
+				}
+
+				if (count($errors) > 0)
 				{
 		?>
 
@@ -500,7 +539,10 @@ else
 								<?php endif; ?>
 							</ul>
 							<div id="tab-error-table" class="tab-content current">
-								<h4>Information</h4>
+								<?php foreach ($errors as $key => $value) : ?>
+								<h4>
+									<?php echo $key; ?>
+								</h4>
 								<table class="errortable">
 									<thead>
 										<tr>
@@ -509,15 +551,16 @@ else
 										</tr>
 									</thead>
 									<tbody>
-										<?php foreach ($errorsConfig->error as $error) : ?>
+										<?php foreach ($value as $error) : ?>
 										<tr>
-											<td class="code"><?php echo $error->attributes()['code']; ?></td>
-											<td class="description"><?php echo $error->attributes()['description'];
+											<td class="code"><?php echo $error['code']; ?></td>
+											<td class="description"><?php echo $error['description'];
 																	?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
 								</table>
+								<?php endforeach; ?>
 							</div>
 
 							<div id="tab-error-sample" class="tab-content">
