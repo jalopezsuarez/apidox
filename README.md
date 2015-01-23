@@ -157,7 +157,7 @@ If successful, the response will look like:<br><br>
 
 #### index.xml
 
-The ```index.xml``` files defines the listing order of endpoints and methods. The root folder (of each version) may contain an ```index.xml``` file for endpoints, whereas each endpoint may contain (in its folder) an ```index.xml``` file for methods. The ```xml``` syntax is:
+The ```index.xml``` files define the listing order of endpoints and methods. The root folder (of each version) may contain an ```index.xml``` file for endpoints, whereas each endpoint may contain (in its folder) an ```index.xml``` file for methods. The ```xml``` syntax is:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -167,6 +167,30 @@ The ```index.xml``` files defines the listing order of endpoints and methods. Th
 ```
 
 The ```xml``` may contain a set of ```order``` nodes indicating the name of the endpoint or method. The first to appear is the first on the listing.
+
+#### errorcodes.xml
+
+An ```errorcodes.xml``` file can be placed on each version root folder to define different error codes returned by API calls. These error codes can be categorized according to this file structure:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<errorcodes>
+  <error code="100" description="Example of description for errorcode 100." />
+  <error code="200" description="Example of description for errorcode 200." />
+  <category name="General">
+    <error code="300" description="Example of description for errorcode 300." />
+  </category>
+  <sample>
+<![CDATA[
+{
+  "code": "100",
+  "description": "Example of description for errorcode 100."
+}
+]]></sample>  
+</errorcodes>
+```
+
+A ```sample``` node can be included to show an generic example error.
 
 ## Creators & Product Development
 
