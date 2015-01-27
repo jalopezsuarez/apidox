@@ -190,6 +190,10 @@ else
 
 			<?php endif; ?>
 		</ul>
+		<br><br>
+		<?php if ($numVersions > 0 && !empty($versions[0]['name'])) : ?>
+		API source: <a href="source.php?v=<?php echo urlencode($versions[0]['path']); ?>&l=php">PHP</a>
+		<?php endif; ?>
 	</div>
 
 	<?php foreach ($versions as $version) : ?>
@@ -536,7 +540,7 @@ else
 								?>
 								<li class="tab-link current" data-tab="tab-error-sample">Error
 									Sample</li>
-								<?php endif; ?>
+								<?php endif; ?>				
 							</ul>
 							<div id="tab-error-table" class="tab-content current">
 								<?php foreach ($errors as $key => $value) : ?>
@@ -546,7 +550,7 @@ else
 								<table class="errortable">
 									<thead>
 										<tr>
-											<th>Code</th>
+											<th class="code">Code</th>
 											<th>Description</th>
 										</tr>
 									</thead>

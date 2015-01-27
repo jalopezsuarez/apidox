@@ -1141,6 +1141,10 @@ ul.tabs li.current {
 	color: #707070;
 }
 
+.errortable .code {
+	width: 10%;
+}
+
 .errorcodes pre {
 	font-size: 12px;
 	padding: 10px;
