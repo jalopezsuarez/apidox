@@ -2,7 +2,7 @@
 
 <method type="GET" uri="urlshortener/v1/url"
 	description="To look up a short URLs analytics, issue an expand request, adding a parameter to ask for additional details."
-	status="PRODUCTION">
+	status="PRODUCTION" hidden="N">
 
 	<param name="shortUrl" type="string" description="Is the short URL
 		to expand."

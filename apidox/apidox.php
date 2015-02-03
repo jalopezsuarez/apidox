@@ -90,6 +90,200 @@ else
 {
 	echo 'Configuration file not found.';
 }
+
+// Endpoints search. Each endpoint is a folder on filesystem under subfolder "api".
+$showDivVersion = true;
+$scan = scandir('api');
+$endpoints = array();
+$versions = array();
+foreach ($scan as $result)
+{
+	if ($result === '.' or $result === '..')
+	{
+		continue;
+	}
+
+	$path = 'api/' . $result;
+	if (is_dir($path))
+	{
+		// Version folder name: "v#VERSION_NUMBER"
+		if (strlen($result) < 2 || $result[0] !== 'v' || $result[1] !== '#')
+		{
+			$newEndpoint = array('name' => $result, 'path' => $path);
+			$endpoints[] = $newEndpoint;
+		}
+		else
+		{
+			$newVersion = array('name' => $result, 'path' => $path);
+			$versions[] = $newVersion;
+		}
+	}
+	else if (is_file($path) && strcmp($result, 'index.xml') == 0)
+	{
+		// Process "index.xml" to order endpoints.
+		$orderConfig = simplexml_load_file($path);
+		foreach ($orderConfig->order as $orderEndpoint)
+		{
+			$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
+		}
+	}
+}
+
+// Version ordering.
+if (count($versions) > 0)
+{
+	usort($versions, "cmpVersion");
+	$showDivVersion = true;
+
+	// If exists api versions, clean endpoints in this folder.
+	$endpoints = array();
+	$orderEndpoints = array();
+}
+else
+{
+	$fakeVersion = array('name' => '', 'path' => 'api/');
+	$versions[] = $fakeVersion;
+}
+
+foreach ($versions as &$version)
+{
+	if (!empty($version['name']))
+	{
+		$endpoints = array();
+		$scan = scandir($version['path']);
+		foreach ($scan as $result)
+		{
+			if ($result === '.' or $result === '..')
+			{
+				continue;
+			}
+
+			$path = $version['path'] . '/' . $result;
+			if (is_dir($path))
+			{
+				$newEndpoint = array('name' => $result, 'path' => $path);
+				$endpoints[] = $newEndpoint;
+			}
+			else if (is_file($path) && strcmp($result, 'index.xml') == 0)
+			{
+				// Process "index.xml" to order endpoints.
+				$orderConfig = simplexml_load_file($path);
+				foreach ($orderConfig->order as $orderEndpoint)
+				{
+					$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
+				}
+			}
+		}
+	}
+
+	// Endpoints ordering.
+	if (count($orderEndpoints) > 0)
+	{
+		$endpoints = reorderArrayEndpoints($endpoints, $orderEndpoints);
+	}
+
+	foreach ($endpoints as &$endpoint)
+	{
+		// Search endpoint methods.
+		$scanMethods = scandir($endpoint['path']);
+		$methods = array();
+		$orderMethods = array();
+		foreach ($scanMethods as $result)
+		{
+			if ($result === '.' or $result === '..')
+			{
+				continue;
+			}
+			$filename = $endpoint['path'] . '/' . $result;
+			if (is_file($filename) && pathinfo($filename, PATHINFO_EXTENSION) == "xml")
+			{
+				if (pathinfo($filename, PATHINFO_FILENAME) != "index")
+				{
+					$methodConfig = simplexml_load_file($filename);
+
+					if (!isset($methodConfig->attributes()['hidden']) || $methodConfig->attributes()['hidden'] == "N")
+					{
+						$methods[$filename] = $methodConfig;
+					}
+				}
+				else
+				{
+					// Process "index.xml" to order methods.
+					$orderConfig = simplexml_load_file($filename);
+					foreach ($orderConfig->order as $orderMethod)
+					{
+						$orderMethods[] = $endpoint['path'] . '/' . (string) $orderMethod->attributes()['name'];
+					}
+				}
+			}
+		}
+		// Methods ordering.
+		if (count($orderMethods) > 0)
+		{
+			$methods = reorderArrayMethods($methods, $orderMethods);
+		}
+
+		$endpoint['methods'] = $methods;
+	}
+
+	$version['endpoints'] = $endpoints;
+
+	// Errors configuration.
+	$errorFile = $version['path'];
+	if (!empty($version['name']))
+	{
+		$errorFile .= '/';
+	}
+	$errorFile .= 'errorcodes.xml';
+
+	$errors = array();
+	$errorSample = null;
+	if (file_exists($errorFile))
+	{
+		$errorsConfig = simplexml_load_file($errorFile);
+
+		if (count($errorsConfig->error) > 0)
+		{
+			$uncategorized = array();
+
+			foreach ($errorsConfig->error as $error)
+			{
+				$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
+				$uncategorized[] = $error;
+			}
+
+			$errors['Uncategorized'] = $uncategorized;
+		}
+
+		if (count($errorsConfig->category) > 0)
+		{
+			foreach ($errorsConfig->category as $category)
+			{
+				if (count($category->error) > 0)
+				{
+					$categorized = array();
+
+					foreach ($category->error as $error)
+					{
+						$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
+						$categorized[] = $error;
+					}
+
+					$categoryName = (string) $category->attributes()['name'];
+					$errors[$categoryName] = $categorized;
+				}
+			}
+		}
+
+		if (isset($errorsConfig->sample))
+		{
+			$errorSample = $errorsConfig->sample;
+		}
+	}
+
+	$version['errors'] = $errors;
+	$version['errorSample'] = $errorSample;
+}
 ?>
 
 <title><?php echo $apiTitle; ?></title>
@@ -106,62 +300,6 @@ else
 	<input type="hidden" data-name="uri" value="<?php echo $apiUri ?>">
 	<input type="hidden" data-name="protocol"
 		value="<?php echo $apiProtocol ?>">
-
-	<?php
-	// Endpoints search. Each endpoint is a folder on filesystem under subfolder "api".
-	$showDivVersion = true;
-	$scan = scandir('api');
-	$endpoints = array();
-	$versions = array();
-	foreach ($scan as $result)
-	{
-		if ($result === '.' or $result === '..')
-		{
-			continue;
-		}
-
-		$path = 'api/' . $result;
-		if (is_dir($path))
-		{
-			// Version folder name: "v#VERSION_NUMBER"
-			if (strlen($result) < 2 || $result[0] !== 'v' || $result[1] !== '#')
-			{
-				$newEndpoint = array('name' => $result, 'path' => $path);
-				$endpoints[] = $newEndpoint;
-			}
-			else
-			{
-				$newVersion = array('name' => $result, 'path' => $path);
-				$versions[] = $newVersion;
-			}
-		}
-		else if (is_file($path) && strcmp($result, 'index.xml') == 0)
-		{
-			// Process "index.xml" to order endpoints.
-			$orderConfig = simplexml_load_file($path);
-			foreach ($orderConfig->order as $orderEndpoint)
-			{
-				$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
-			}
-		}
-	}
-
-	// Version ordering.
-	if (count($versions) > 0)
-	{
-		usort($versions, "cmpVersion");
-		$showDivVersion = true;
-
-		// If exists api versions, clean endpoints in this folder.
-		$endpoints = array();
-		$orderEndpoints = array();
-	}
-	else
-	{
-		$fakeVersion = array('name' => '', 'path' => 'api/');
-		$versions[] = $fakeVersion;
-	}
-	?>
 
 	<div id="controls">
 		<ul>
@@ -190,9 +328,10 @@ else
 
 			<?php endif; ?>
 		</ul>
-		<br><br>
+		<br> <br>
 		<?php if ($numVersions > 0 && !empty($versions[0]['name'])) : ?>
-		API source: <a href="source.php?v=<?php echo urlencode($versions[0]['path']); ?>&l=php">PHP</a>
+		API source: <a
+			href="source.php?v=<?php echo urlencode($versions[0]['path']); ?>&l=php">PHP</a>
 		<?php endif; ?>
 	</div>
 
@@ -202,45 +341,9 @@ else
 		style="<?php echo $showDivVersion ? "display: block" : "display: none;"
 			   ?>">
 
-		<?php
-			if (!empty($version['name']))
-			{
-				$endpoints = array();
-				$scan = scandir($version['path']);
-				foreach ($scan as $result)
-				{
-					if ($result === '.' or $result === '..')
-					{
-						continue;
-					}
-
-					$path = $version['path'] . '/' . $result;
-					if (is_dir($path))
-					{
-						$newEndpoint = array('name' => $result, 'path' => $path);
-						$endpoints[] = $newEndpoint;
-					}
-					else if (is_file($path) && strcmp($result, 'index.xml') == 0)
-					{
-						// Process "index.xml" to order endpoints.
-						$orderConfig = simplexml_load_file($path);
-						foreach ($orderConfig->order as $orderEndpoint)
-						{
-							$orderEndpoints[] = (string) $orderEndpoint->attributes()['name'];
-						}
-					}
-				}
-			}
-
-			// Endpoints ordering.
-			if (count($orderEndpoints) > 0)
-			{
-				$endpoints = reorderArrayEndpoints($endpoints, $orderEndpoints);
-			}
-		?>
-
 		<!-- Procesamiento de cada endpoint -->
-		<?php foreach ($endpoints as $endpoint) : ?>
+		<?php foreach ($version['endpoints'] as $endpointInfo) : ?>
+		<?php if (count($endpointInfo['methods']) > 0) : ?>
 		<div id="frmEndPoint">
 			<ul>
 				<!-- Listado de endpoints. -->
@@ -248,7 +351,7 @@ else
 					<!-- Cabecera del endpoint. -->
 					<h3 class="title">
 						<span class="name"> <a href="javascript:void(0)"
-							class="endpoint-name"> <?php echo $endpoint['name']; ?>
+							class="endpoint-name"> <?php echo $endpointInfo['name']; ?>
 						</a>
 						</span>
 						<ul class="actions">
@@ -259,58 +362,24 @@ else
 							<li><span class="count-methods" data-name="count-methods">0</span>
 							</li>
 						</ul>
-					</h3> <?php
-								  // Search endpoint methods.
-								  $scanMethods = scandir($endpoint['path']);
-								  $methods = array();
-								  $orderMethods = array();
-								  foreach ($scanMethods as $result)
-								  {
-									  if ($result === '.' or $result === '..')
-									  {
-										  continue;
-									  }
-									  $filename = $endpoint['path'] . '/' . $result;
-									  if (is_file($filename) && pathinfo($filename, PATHINFO_EXTENSION) == "xml")
-									  {
-										  if (pathinfo($filename, PATHINFO_FILENAME) != "index")
-										  {
-											  $methods[] = $filename;
-										  }
-										  else
-										  {
-											  // Process "index.xml" to order methods.
-											  $orderConfig = simplexml_load_file($filename);
-											  foreach ($orderConfig->order as $orderMethod)
-											  {
-												  $orderMethods[] = $endpoint['path'] . '/' . (string) $orderMethod->attributes()['name'];
-											  }
-										  }
-									  }
-								  }
-								  // Methods ordering.
-								  if (count($orderMethods) > 0)
-								  {
-									  $methods = reorderArrayMethods($methods, $orderMethods);
-								  }
-						  ?>
+					</h3>
+
 					<ul class="methods hidden">
-						<?php foreach ($methods as $method) : ?>
-						<?php $methodConfig = simplexml_load_file($method); ?>
+						<?php foreach ($endpointInfo['methods'] as $filename => $methodConfig) : ?>
 						<li
 							class="method <?php echo strtolower($methodConfig->attributes()['type']);
 										  ?>
 						<?php
-									if (isset($methodConfig->attributes()['deprecated']) && $methodConfig->attributes()['deprecated'] == 'Y')
-									{
-										echo 'deprecated';
-									}
+										if (isset($methodConfig->attributes()['deprecated']) && $methodConfig->attributes()['deprecated'] == 'Y')
+										{
+											echo 'deprecated';
+										}
 						?>
 						">
 							<div class="title clickable">
 								<span class="http-method" data-name="http-method"> <?php echo $methodConfig->attributes()['type'];
 																				   ?>
-								</span> <span class="name"> <?php echo pathinfo($method, PATHINFO_FILENAME);
+								</span> <span class="name"> <?php echo pathinfo($filename, PATHINFO_FILENAME);
 															?>
 								</span> <span class="status-methods"><?php echo $methodConfig->attributes()['status'];
 																	 ?></span>
@@ -337,7 +406,7 @@ else
 										<?php foreach ($methodConfig->param as $paramConfig) : ?>
 										<tr
 											class="<?php if ($paramConfig->attributes()['required'] == "Y")
-																		   echo 'required';
+																			   echo 'required';
 												   ?>"
 											data-name="item">
 											<td class="name" data-name="param"><?php echo $paramConfig->attributes()['name'];
@@ -346,14 +415,14 @@ else
 																  ?>
 												<input data-name="value"
 												value="<?php
-																			   if (isset($paramConfig->attributes()['defaultValue']))
-																				   echo $paramConfig->attributes()['defaultValue'];
+																				   if (isset($paramConfig->attributes()['defaultValue']))
+																					   echo $paramConfig->attributes()['defaultValue'];
 													   ?>"
 												placeholder="<?php if ($paramConfig->attributes()['required'] == "Y")
-																						 echo 'required';
+																							 echo 'required';
 															 ?>">
 												<?php
-																	else :
+																		else :
 												?> <select
 												data-name="select">
 													<?php foreach ($paramConfig->option as $option) :
@@ -362,7 +431,7 @@ else
 														value="<?php echo $option->attributes()['value'];
 															   ?>"
 														<?php if (isset($option->attributes()['defaultValue']) && $option->attributes()['defaultValue'] == 'Y')
-																						echo 'data-default="Y"';
+																							echo 'data-default="Y"';
 														?>>
 														<?php echo $option->attributes()['value'];
 														?>
@@ -396,7 +465,7 @@ else
 									</tbody>
 								</table>
 								<?php
-											else :
+												else :
 								?>
 								<br>
 								<?php endif; ?>
@@ -471,56 +540,13 @@ else
 				</li>
 			</ul>
 		</div>
+		<?php endif; ?>
 		<?php endforeach; ?>
 
 		<?php
-			$errorFile = $version['path'];
-			if (!empty($version['name']))
+
+			if (count($version['errors']) > 0)
 			{
-				$errorFile .= '/';
-			}
-			$errorFile .= 'errorcodes.xml';
-
-			if (file_exists($errorFile))
-			{
-				$errorsConfig = simplexml_load_file($errorFile);
-
-				$errors = array();
-				if (count($errorsConfig->error) > 0)
-				{
-					$uncategorized = array();
-
-					foreach ($errorsConfig->error as $error)
-					{
-						$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
-						$uncategorized[] = $error;
-					}
-
-					$errors['Uncategorized'] = $uncategorized;
-				}
-
-				if (count($errorsConfig->category) > 0)
-				{
-					foreach ($errorsConfig->category as $category)
-					{
-						if (count($category->error) > 0)
-						{
-							$categorized = array();
-
-							foreach ($category->error as $error)
-							{
-								$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
-								$categorized[] = $error;
-							}
-
-							$categoryName = (string) $category->attributes()['name'];
-							$errors[$categoryName] = $categorized;
-						}
-					}
-				}
-
-				if (count($errors) > 0)
-				{
 		?>
 
 		<div id="frmEndPoint">
@@ -536,14 +562,14 @@ else
 						<div class="tabs-container">
 							<ul class="tabs">
 								<li class="tab-link current" data-tab="tab-error-table">Information</li>
-								<?php if (isset($errorsConfig->sample)) :
+								<?php if (isset($version['errorSample'])) :
 								?>
 								<li class="tab-link current" data-tab="tab-error-sample">Error
 									Sample</li>
-								<?php endif; ?>				
+								<?php endif; ?>
 							</ul>
 							<div id="tab-error-table" class="tab-content current">
-								<?php foreach ($errors as $key => $value) : ?>
+								<?php foreach ($version['errors'] as $key => $value) : ?>
 								<h4>
 									<?php echo $key; ?>
 								</h4>
@@ -570,7 +596,7 @@ else
 							<div id="tab-error-sample" class="tab-content">
 								<h4>Error Sample</h4>
 								<pre class="error" data-name="error">
-											<?php echo $errorsConfig->sample; ?>
+											<?php echo $version['errorSample']; ?>
 											</pre>
 							</div>
 
@@ -580,7 +606,6 @@ else
 			</ul>
 		</div>
 		<?php
-				}
 			}
 		?>
 
