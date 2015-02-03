@@ -97,6 +97,10 @@ The method's info is defined by a ```xml``` file with the following structure:
 		<option defaultValue="Y" value="FULL" description="Full projection." />
 	</param>
 
+	<errorcodes>
+		<error code="100" />
+	</errorcodes>
+
 	<response>
 		<success>
 <![CDATA[
@@ -153,6 +157,8 @@ If successful, the response will look like:<br><br>
   - ```value``` (required): the parameter's value.
   - ```description``` (required): description of the value for the parameter.
   - ```defaultValue``` (optional): indicates that option is the default value for the param (```defaultValue="Y"```).
+
+You can define error codes returned by the method on the ```errorcodes``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errorcodes.xml``` file (see documentation below).
 
 ```method``` node also may contain a ```response``` node. This node may contain other nodes: ```success```, ```error``` and ```information```. These nodes contains a ```CDATA``` with the info to show, e.g. a JSON for ```success``` and ```error``` and HTML for ```information```.
 
