@@ -83,7 +83,7 @@ The method's info is defined by a ```xml``` file with the following structure:
 
 <method type="GET" uri="urlshortener/v1/url"
 	description="To look up a short URLs analytics, issue an expand request, adding a parameter to ask for additional details."
-	status="PRODUCTION">
+	status="PRODUCTION" hidden="N">
 
 	<param name="shortUrl" type="string" description="Is the short URL
 		to expand."
@@ -142,6 +142,7 @@ If successful, the response will look like:<br><br>
 - ```uri``` (required): URI to test the method.
 - ```description``` (required): synopsis.
 - ```deprecated``` (optional): mark the method as deprecated (```deprecated="Y"```).
+- ```hidden``` (optional): hides the method (```hidden="Y"```). If an endpoint has no methods or all methods are hidden, then the endpoint doesn't appear in the API documentation.
 
 ```method``` node may contain a set of ```param``` nodes. Each ```param``` node may contain the following attributes:
 
