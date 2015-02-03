@@ -147,6 +147,72 @@ else
 
 foreach ($versions as &$version)
 {
+	// Errors configuration.
+	$errorFile = $version['path'];
+	if (!empty($version['name']))
+	{
+		$errorFile .= '/';
+	}
+	$errorFile .= 'errorcodes.xml';
+
+	$errors = array();
+	$errorsByCode = array();
+	$errorSample = null;
+	if (file_exists($errorFile))
+	{
+		$errorsConfig = simplexml_load_file($errorFile);
+
+		if (count($errorsConfig->error) > 0)
+		{
+			$uncategorized = array();
+
+			foreach ($errorsConfig->error as $error)
+			{
+				$code = (string) $error->attributes()['code'];
+				$description = $error->attributes()['description'];
+
+				$error = array('code' => $code, 'description' => $description);
+				$uncategorized[] = $error;
+				$errorsByCode[] = array($code => array('category' => 'Uncategorized', 'description' => $description));
+			}
+
+			$errors['Uncategorized'] = $uncategorized;
+		}
+
+		if (count($errorsConfig->category) > 0)
+		{
+			foreach ($errorsConfig->category as $category)
+			{
+				if (count($category->error) > 0)
+				{
+					$categorized = array();
+					$categoryName = (string) $category->attributes()['name'];
+
+					foreach ($category->error as $error)
+					{
+						$code = (string) $error->attributes()['code'];
+						$description = $error->attributes()['description'];
+
+						$error = array('code' => $code, 'description' => $description);
+						$categorized[] = $error;
+						$errorsByCode[] = array($code => array('category' => $categoryName, 'description' => $description));
+					}
+
+					$errors[$categoryName] = $categorized;
+				}
+			}
+		}
+
+		if (isset($errorsConfig->sample))
+		{
+			$errorSample = $errorsConfig->sample;
+		}
+	}
+
+	$version['errors'] = $errors;
+	$version['errorsByCode'] = $errorsByCode;
+	$version['errorSample'] = $errorSample;
+
 	if (!empty($version['name']))
 	{
 		$endpoints = array();
@@ -227,62 +293,6 @@ foreach ($versions as &$version)
 	}
 
 	$version['endpoints'] = $endpoints;
-
-	// Errors configuration.
-	$errorFile = $version['path'];
-	if (!empty($version['name']))
-	{
-		$errorFile .= '/';
-	}
-	$errorFile .= 'errorcodes.xml';
-
-	$errors = array();
-	$errorSample = null;
-	if (file_exists($errorFile))
-	{
-		$errorsConfig = simplexml_load_file($errorFile);
-
-		if (count($errorsConfig->error) > 0)
-		{
-			$uncategorized = array();
-
-			foreach ($errorsConfig->error as $error)
-			{
-				$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
-				$uncategorized[] = $error;
-			}
-
-			$errors['Uncategorized'] = $uncategorized;
-		}
-
-		if (count($errorsConfig->category) > 0)
-		{
-			foreach ($errorsConfig->category as $category)
-			{
-				if (count($category->error) > 0)
-				{
-					$categorized = array();
-
-					foreach ($category->error as $error)
-					{
-						$error = array('code' => $error->attributes()['code'], 'description' => $error->attributes()['description']);
-						$categorized[] = $error;
-					}
-
-					$categoryName = (string) $category->attributes()['name'];
-					$errors[$categoryName] = $categorized;
-				}
-			}
-		}
-
-		if (isset($errorsConfig->sample))
-		{
-			$errorSample = $errorsConfig->sample;
-		}
-	}
-
-	$version['errors'] = $errors;
-	$version['errorSample'] = $errorSample;
 }
 ?>
 
@@ -493,6 +503,9 @@ foreach ($versions as &$version)
 											?>
 											<li class="tab-link" data-tab="tab-4">Information:</li>
 											<?php endif; ?>
+											<?php if (isset($methodConfig->errorcodes) && count($methodConfig->errorcodes) > 0) : ?>
+											<li class="tab-link" data-tab="tab-5">Errors:</li>
+											<?php endif; ?>
 										</ul>
 										<div id="tab-1" class="tab-content current">
 											<h4>Request</h4>
@@ -526,6 +539,84 @@ foreach ($versions as &$version)
 											<h4>Information</h4>
 											<div class="information" data-name="information">
 												<?php echo $methodConfig->response->information;
+												?>
+											</div>
+										</div>
+										<?php endif; ?>
+										<?php if (isset($methodConfig->errorcodes) && isset($methodConfig->errorcodes->error) && count($methodConfig->errorcodes->error) > 0) : ?>
+										<div id="tab-5" class="tab-content">
+											<div class="information" data-name="information">
+												<?php
+																	$methodErrors = array();
+																	foreach ($methodConfig->errorcodes->error as $methodError)
+																	{
+																		$codeSearch = (string) $methodError->attributes()['code'];
+																		for ($i = 0; $i < count($version['errorsByCode']); $i++)
+																		{
+																			foreach ($version['errorsByCode'][$i] as $code => $data)
+																			{
+																				if (strcmp($codeSearch, $code) == 0)
+																				{
+																					$inserted = false;
+
+																					foreach ($methodErrors as &$methodSearch)
+																					{
+																						if ($methodSearch['category'] == $data['category'])
+																						{
+																							array_push($methodSearch['errors'], array($code, $data['description']));
+																							$inserted = true;
+																							break;
+																						}
+																					}
+
+																					if (!$inserted)
+																					{
+																						$methodErrors[] = array('category' => $data['category'], 'errors' => array(array($code, $data['description'])));
+																					}
+																					break;
+																				}
+																			}
+																		}
+																	}
+
+																	usort($methodErrors, function ($a, $b)
+																	{
+																		if ($a['category'] == 'Uncategorized')
+																		{
+																			return -1;
+																		}
+																		else if ($b['category'] == 'Uncategorized')
+																		{
+																			return 1;
+																		}
+
+																		return strcmp($a['category'], $b['category']);
+																	});
+
+																	foreach ($methodErrors as $methodErrorConfig) :
+												?>
+												<h4>
+													<?php echo $methodErrorConfig['category']; ?>
+												</h4>
+												<table class="errortable">
+													<thead>
+														<tr>
+															<th class="code">Code</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<?php for ($i = 0; $i < count($methodErrorConfig['errors']); $i++) : ?>
+														<tr>
+															<td class="code"><?php echo $methodErrorConfig['errors'][$i][0]; ?></td>
+															<td class="description"><?php echo $methodErrorConfig['errors'][$i][1];
+																					?></td>
+														</tr>
+														<?php endfor; ?>
+													</tbody>
+												</table>
+												<?php
+																	endforeach;
 												?>
 											</div>
 										</div>

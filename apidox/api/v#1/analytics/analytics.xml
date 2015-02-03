@@ -16,6 +16,11 @@
 		<option defaultValue="Y" value="FULL" description="Full projection." />
 	</param>
 
+	<errorcodes>
+		<error code="300" />
+		<error code="200" />
+	</errorcodes>
+
 	<response>
 		<success>
 <![CDATA[

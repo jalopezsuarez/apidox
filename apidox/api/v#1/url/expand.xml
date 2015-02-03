@@ -7,6 +7,10 @@
 	<param name="shortUrl" type="string" description="Is the short URL to expand."
 		required="N" defaultValue="http://goo.gl/fbsS" />
 
+<errorcodes>
+<error code="300" />
+</errorcodes>
+
 	<response>
 		<success>
 <![CDATA[
