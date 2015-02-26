@@ -434,11 +434,8 @@ foreach ( $versions as &$version )
 											<?php echo $paramConfig->attributes()['name']; ?></td>
 											<td class="parameter">
 											<?php if (strcmp($paramConfig->attributes()['type'], "enumerated") != 0) : ?>
-												<input data-name="value" value="<?php if (isset($paramConfig->attributes()['defaultValue'])) : ?>
-													<?php echo $paramConfig->attributes()['defaultValue']; ?>
-												<?php endif; ?>"
-													placeholder="
-												<?php if ($paramConfig->attributes()['required'] == "Y"): ?>
+												<input data-name="value" value="<?php if (isset($paramConfig->attributes()['defaultValue'])) : ?><?php echo $paramConfig->attributes()['defaultValue']; ?><?php endif; ?>"
+													placeholder="<?php if ($paramConfig->attributes()['required'] == "Y"): ?>
 													<?php echo 'required'; ?>
 												<?php endif; ?>">
 											<?php else : ?> 
