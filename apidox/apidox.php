@@ -434,7 +434,12 @@ foreach ( $versions as &$version )
 											<?php echo $paramConfig->attributes()['name']; ?></td>
 											<td class="parameter">
 											<?php if (strcmp($paramConfig->attributes()['type'], "enumerated") != 0) : ?>
+<<<<<<< HEAD
 												<input data-name="value" value="<?php if (isset($paramConfig->attributes()['defaultValue'])) : ?>
+=======
+												<input data-name="value" value="
+												<?php if (isset($paramConfig->attributes()['defaultValue'])) : ?>
+>>>>>>> branch 'master' of https://github.com/jalopezsuarez/apidox.git
 													<?php echo $paramConfig->attributes()['defaultValue']; ?>
 												<?php endif; ?>"
 													placeholder="
