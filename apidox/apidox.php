@@ -4,7 +4,13 @@
 <meta charset="UTF-8">
 <?php
 
-// Re-ordering endpoints.
+/**
+ * Re-ordering endpoints.
+ *
+ * @param unknown $arrayOriginal        	
+ * @param unknown $arrayOrder        	
+ * @return Ambigous <multitype:, multitype:multitype: >
+ */
 function reorderArrayEndpoints($arrayOriginal, &$arrayOrder)
 {
 	$arrayNew = array ();
@@ -32,7 +38,13 @@ function reorderArrayEndpoints($arrayOriginal, &$arrayOrder)
 	return $arrayNew;
 }
 
-// Re-ordering methods.
+/**
+ * Re-ordering methods.
+ *
+ * @param unknown $arrayOriginal        	
+ * @param unknown $arrayOrder        	
+ * @return Ambigous <multitype:, multitype:unknown >
+ */
 function reorderArrayMethods($arrayOriginal, $arrayOrder)
 {
 	$arrayNew = array ();
@@ -55,7 +67,13 @@ function reorderArrayMethods($arrayOriginal, $arrayOrder)
 	return $arrayNew;
 }
 
-// Compare function for version ordering.
+/**
+ * Compare function for version ordering.
+ *
+ * @param unknown $a        	
+ * @param unknown $b        	
+ * @return number
+ */
 function cmpVersion($a, $b)
 {
 	$va = substr($a ['name'], 2);
@@ -69,7 +87,9 @@ function cmpVersion($a, $b)
 	return ($a < $b) ? 1 : - 1;
 }
 
-// Reading main file.
+/**
+ * Reading main file.
+ */
 if (file_exists('api/api_config.xml'))
 {
 	$apiConfig = simplexml_load_file('api/api_config.xml');
@@ -87,7 +107,10 @@ else
 	echo 'Configuration file not found.';
 }
 
-// Endpoints search. Each endpoint is a folder on filesystem under subfolder "api".
+/**
+ * Endpoints search.
+ * Each endpoint is a folder on filesystem under subfolder "api".
+ */
 $showDivVersion = true;
 $scan = scandir('api');
 $endpoints = array ();
@@ -125,7 +148,9 @@ foreach ( $scan as $result )
 	}
 }
 
-// Version ordering.
+/**
+ * Version ordering.
+ */
 if (count($versions) > 0)
 {
 	usort($versions, "cmpVersion");
@@ -314,32 +339,20 @@ foreach ( $versions as &$version )
 			<li><span class="total-methods" data-name="total-methods">0</span></li>
 
 			<?php $numVersions = count($versions); ?>
-			<?php
-			
-			if ($numVersions > 1 || ($numVersions == 1 && ! empty($versions [0] ['name'])))
-			:
-				?>
-
-			<li class="versions"><span> Version: <?php if ($numVersions > 1) : ?>
-			</span> <select id="select-version">
-					<?php for ($i = 0; $i < $numVersions; $i++) : ?>
-					<option value="<?php echo $versions[$i]['name']; ?>">
-						<?php echo substr($versions[$i]['name'], 2); ?>
-					</option>
-					<?php endfor; ?>
-			</select> 
-				
-				
-				
-				
-				
-				
-				<?php
-				else
-				:
-					?> <?php echo substr($versions[0]['name'], 2); ?>
-				<?php endif; ?></li>
-
+			<?php if ($numVersions > 1 || ($numVersions == 1 && ! empty($versions [0] ['name']))) : ?>
+			<li class="versions"><span> Version: 
+				<?php if ($numVersions > 1) : ?>
+				</span> <select id="select-version">
+						<?php for ($i = 0; $i < $numVersions; $i++) : ?>
+						<option value="<?php echo $versions[$i]['name']; ?>">
+							<?php echo substr($versions[$i]['name'], 2); ?>
+						</option>
+						<?php endfor; ?>
+				</select> 
+				<?php else : ?> 
+				<?php echo substr($versions[0]['name'], 2); ?>
+				<?php endif; ?>
+			</li>
 			<?php endif; ?>
 		</ul>
 		<br> <br>
@@ -351,9 +364,7 @@ foreach ( $versions as &$version )
 	<?php foreach ($versions as $version) : ?>
 	<div data-id="frmVersion"
 		data-version="<?php echo $version['name']; ?>"
-		style="<?php
-		
-		echo $showDivVersion ? "display: block" : "display: none;"?>">
+		style="<?php echo $showDivVersion ? "display: block" : "display: none;"?>">
 
 		<!-- Procesamiento de cada endpoint -->
 		<?php foreach ($version['endpoints'] as $endpointInfo) : ?>
@@ -378,43 +389,28 @@ foreach ( $versions as &$version )
 					<ul class="methods hidden">
 						<?php foreach ($endpointInfo['methods'] as $filename => $methodConfig) : ?>
 						<li
-							class="method <?php
-					
-					echo strtolower($methodConfig->attributes()['type']);
-					?>
-						<?php
-					if (isset($methodConfig->attributes()['deprecated']) && $methodConfig->attributes()['deprecated'] == 'Y')
-					{
-						echo 'deprecated';
-					}
-					?>
-						">
+							class="method 
+							<?php echo strtolower($methodConfig->attributes()['type']); ?>
+							<?php if (isset($methodConfig->attributes()['deprecated']) && $methodConfig->attributes()['deprecated'] == 'Y') : ?>
+								<?php echo 'deprecated'; ?>
+							<?php endif; ?> ">
 							<div class="title clickable">
-								<span class="http-method" data-name="http-method"> <?php
-					
-					echo $methodConfig->attributes()['type'];
-					?>
+								<span class="http-method" data-name="http-method"> 
+									<?php echo $methodConfig->attributes()['type']; ?>
 								</span>
-								<span class="name"> <?php
-					
-					echo pathinfo($filename, PATHINFO_FILENAME);
-					?>
+								<span class="name"> 
+									<?php echo pathinfo($filename, PATHINFO_FILENAME); ?>
 								</span>
-								<span class="status-methods"><?php
-					
-					echo $methodConfig->attributes()['status'];
-					?></span>
+								<span class="status-methods">
+									<?php echo $methodConfig->attributes()['status']; ?>
+								</span>
 							</div>
 							<form class="hidden">
-								<span data-name="uri" class="uri"> <?php
-					
-					echo $methodConfig->attributes()['uri'];
-					?>
+								<span data-name="uri" class="uri"> 
+									<?php echo $methodConfig->attributes()['uri']; ?>
 								</span>
-								<span class="description"> <?php
-					
-					echo $methodConfig->attributes()['description'];
-					?>
+								<span class="description"> 
+									<?php echo $methodConfig->attributes()['description']; ?>
 								</span>
 
 								<?php if (count($methodConfig->param) > 0) : ?>
@@ -430,111 +426,59 @@ foreach ( $versions as &$version )
 									</thead>
 									<tbody>
 										<?php foreach ($methodConfig->param as $paramConfig) : ?>
-										<tr class="<?php
-							
-							if ($paramConfig->attributes()['required'] == "Y")
-								echo 'required';
-							?>" data-name="item">
-											<td class="name" data-name="param"><?php
-							
-							echo $paramConfig->attributes()['name'];
-							?></td>
-											<td class="parameter"><?php
-							
-							if (strcmp($paramConfig->attributes()['type'], "enumerated") != 0)
-							:
-								?>
-												<input data-name="value" value="<?php
-								if (isset($paramConfig->attributes()['defaultValue']))
-									echo $paramConfig->attributes()['defaultValue'];
-								?>"
-													placeholder="<?php
-								
-								if ($paramConfig->attributes()['required'] == "Y")
-									echo 'required';
-								?>">
-												
-							
-							
-							
-							
-							
-							
-							<?php
-							else
-							:
-								?> <select data-name="select">
-													<?php
-								
-								foreach ( $paramConfig->option as $option )
-								:
-									?>
-													<option value="<?php
-									
-									echo $option->attributes()['value'];
-									?>"
-														<?php
-									
-									if (isset($option->attributes()['defaultValue']) && $option->attributes()['defaultValue'] == 'Y')
-										echo 'data-default="Y"';
-									?>>
-														<?php
-									
-									echo $option->attributes()['value'];
-									?>
+										<tr class="
+											<?php if ($paramConfig->attributes()['required'] == "Y") : ?>
+											<?php echo 'required'; ?>
+											<?php endif; ?>" data-name="item">
+											<td class="name" data-name="param">
+											<?php echo $paramConfig->attributes()['name']; ?></td>
+											<td class="parameter">
+											<?php if (strcmp($paramConfig->attributes()['type'], "enumerated") != 0) : ?>
+												<input data-name="value" value="
+												<?php if (isset($paramConfig->attributes()['defaultValue'])) : ?>
+													<?php echo $paramConfig->attributes()['defaultValue']; ?>
+												<?php endif; ?>"
+													placeholder="
+												<?php if ($paramConfig->attributes()['required'] == "Y"): ?>
+													<?php echo 'required'; ?>
+												<?php endif; ?>">
+											<?php else : ?> 
+												<select data-name="select">
+													<?php foreach ( $paramConfig->option as $option ) : ?>
+													<option value="
+													<?php echo $option->attributes()['value']; ?>" <?php if (isset($option->attributes()['defaultValue']) && $option->attributes()['defaultValue'] == 'Y') : ?> <?php echo 'data-default="Y"'; ?> <?php endif; ?>>
+													<?php echo $option->attributes()['value']; ?>
 													</option>
 													<?php endforeach; ?>
-											</select> <?php endif; ?></td>
-											<td class="type"><?php
-							
-							echo $paramConfig->attributes()['type'];
-							?></td>
+												</select> 
+											<?php endif; ?>
+											</td>
+											<td class="type">
+												<?php echo $paramConfig->attributes()['type']; ?>
+											</td>
 											<td class="description">
 												<p>
-													<?php
-							
-							echo $paramConfig->attributes()['description']?>
-												</p> <?php
-							
-							if (strcmp($paramConfig->attributes()['type'], "enumerated") == 0)
-							:
-								?>
+												<?php echo $paramConfig->attributes()['description']?>
+												</p> 
+												<?php if (strcmp($paramConfig->attributes()['type'], "enumerated") == 0) : ?>
 												<table class="table-enumerated">
 													<tbody>
-														<?php
-								
-								foreach ( $paramConfig->option as $option )
-								:
-									?>
+														<?php foreach ( $paramConfig->option as $option ) : ?>
 														<tr>
-															<td class="description"><?php
-									
-									echo $option->attributes()['value'];
-									?></td>
-															<td class="description"><?php
-									
-									echo $option->attributes()['description'];
-									?></td>
+															<td class="description">
+															<?php echo $option->attributes()['value']; ?></td>
+															<td class="description"><?php echo $option->attributes()['description']; ?></td>
 														</tr>
 														<?php endforeach; ?>
 													</tbody>
-												</table> <?php endif; ?>
+												</table> 
+												<?php endif; ?>
 											</td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
 								</table>
-								
-					
-					
-					
-					
-					
-					
-					<?php
-					else
-					:
-						?>
+								<?php else : ?>
 								<br>
 								<?php endif; ?>
 
@@ -547,25 +491,13 @@ foreach ( $versions as &$version )
 									<div class="tabs-container">
 										<ul class="tabs">
 											<li class="tab-link current" data-tab="tab-1">Run:</li>
-											<?php
-					
-					if (isset($methodConfig->response->success) && strlen(trim($methodConfig->response->success)) > 0)
-					:
-						?>
+											<?php if (isset($methodConfig->response->success) && strlen(trim($methodConfig->response->success)) > 0) : ?>
 											<li class="tab-link" data-tab="tab-2">Success Sample:</li>
 											<?php endif; ?>
-											<?php
-					
-					if (isset($methodConfig->response->error) && strlen(trim($methodConfig->response->error)) > 0)
-					:
-						?>
+											<?php if (isset($methodConfig->response->error) && strlen(trim($methodConfig->response->error)) > 0) : ?>
 											<li class="tab-link" data-tab="tab-3">Error Sample:</li>
 											<?php endif; ?>
-											<?php
-					
-					if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0)
-					:
-						?>
+											<?php if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0) : ?>
 											<li class="tab-link" data-tab="tab-4">Information:</li>
 											<?php endif; ?>
 											<?php if (isset($methodConfig->errorcodes) && count($methodConfig->errorcodes) > 0) : ?>
@@ -578,55 +510,34 @@ foreach ( $versions as &$version )
 											<h4>Response</h4>
 											<pre class="response"></pre>
 										</div>
-										<?php
-					
-					if (isset($methodConfig->response->success) && strlen(trim($methodConfig->response->success)) > 0)
-					:
-						?>
+										<?php if (isset($methodConfig->response->success) && strlen(trim($methodConfig->response->success)) > 0) : ?>
 										<div id="tab-2" class="tab-content">
 											<h4>Success Sample</h4>
 											<pre class="sample" data-name="success">
-											<?php
-						
-						echo $methodConfig->response->success;
-						?>
+											<?php echo $methodConfig->response->success; ?>
 											</pre>
 										</div>
 										<?php endif; ?>
-										<?php
-					
-					if (isset($methodConfig->response->error) && strlen(trim($methodConfig->response->error)) > 0)
-					:
-						?>
+										<?php if (isset($methodConfig->response->error) && strlen(trim($methodConfig->response->error)) > 0) : ?>
 										<div id="tab-3" class="tab-content">
 											<h4>Error Sample</h4>
 											<pre class="sample" data-name="error">
-											<?php
-						
-						echo $methodConfig->response->error;
-						?>
+											<?php echo $methodConfig->response->error; ?>
 											</pre>
 										</div>
 										<?php endif; ?>
-										<?php
-					
-					if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0)
-					:
-						?>
+										<?php if (isset($methodConfig->response->information) && strlen(trim($methodConfig->response->information)) > 0) :?>
 										<div id="tab-4" class="tab-content">
 											<h4>Information</h4>
 											<div class="information" data-name="information">
-												<?php
-						
-						echo $methodConfig->response->information;
-						?>
+												<?php echo $methodConfig->response->information; ?>
 											</div>
 										</div>
 										<?php endif; ?>
 										<?php if (isset($methodConfig->errorcodes) && isset($methodConfig->errorcodes->error) && count($methodConfig->errorcodes->error) > 0) : ?>
 										<div id="tab-5" class="tab-content">
 											<div class="information" data-name="information">
-												<?php
+						<?php
 						$methodErrors = array ();
 						foreach ( $methodConfig->errorcodes->error as $methodError )
 						{
@@ -658,7 +569,6 @@ foreach ( $versions as &$version )
 								}
 							}
 						}
-						
 						usort($methodErrors, function ($a, $b)
 						{
 							if ($a ['category'] == 'Uncategorized')
@@ -672,10 +582,8 @@ foreach ( $versions as &$version )
 							
 							return strcmp($a ['category'], $b ['category']);
 						});
-						
-						foreach ( $methodErrors as $methodErrorConfig )
-						:
-							?>
+						?>
+											<?php foreach ( $methodErrors as $methodErrorConfig ) : ?>
 												<h4>
 													<?php echo $methodErrorConfig['category']; ?>
 												</h4>
@@ -690,18 +598,12 @@ foreach ( $versions as &$version )
 														<?php for ($i = 0; $i < count($methodErrorConfig['errors']); $i++) : ?>
 														<tr>
 															<td class="code"><?php echo $methodErrorConfig['errors'][$i][0]; ?></td>
-															<td class="description"><?php
-								
-								echo $methodErrorConfig ['errors'] [$i] [1];
-								?></td>
+															<td class="description"><?php echo $methodErrorConfig ['errors'] [$i] [1]; ?></td>
 														</tr>
 														<?php endfor; ?>
 													</tbody>
 												</table>
-												<?php
-						endforeach
-						;
-						?>
+												<?php endforeach; ?>
 											</div>
 										</div>
 										<?php endif; ?>
@@ -718,12 +620,7 @@ foreach ( $versions as &$version )
 		<?php endif; ?>
 		<?php endforeach; ?>
 
-		<?php
-		
-		if (count($version ['errors']) > 0)
-		{
-			?>
-
+		<?php if (count($version ['errors']) > 0) : ?>
 		<div id="frmEndPoint">
 			<ul>
 				<li class="endpoint errorcodes" data-name="errorcodes">
@@ -737,11 +634,7 @@ foreach ( $versions as &$version )
 						<div class="tabs-container">
 							<ul class="tabs">
 								<li class="tab-link current" data-tab="tab-error-table">Information</li>
-								<?php
-			
-			if (isset($version ['errorSample']))
-			:
-				?>
+								<?php if (isset($version ['errorSample'])) : ?>
 								<li class="tab-link current" data-tab="tab-error-sample">Error Sample</li>
 								<?php endif; ?>
 							</ul>
@@ -761,10 +654,7 @@ foreach ( $versions as &$version )
 										<?php foreach ($value as $error) : ?>
 										<tr>
 											<td class="code"><?php echo $error['code']; ?></td>
-											<td class="description"><?php
-					
-					echo $error ['description'];
-					?></td>
+											<td class="description"><?php echo $error ['description']; ?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -775,8 +665,8 @@ foreach ( $versions as &$version )
 							<div id="tab-error-sample" class="tab-content">
 								<h4>Error Sample</h4>
 								<pre class="error" data-name="error">
-											<?php echo $version['errorSample']; ?>
-											</pre>
+								<?php echo $version['errorSample']; ?>
+								</pre>
 							</div>
 
 						</div>
@@ -784,9 +674,7 @@ foreach ( $versions as &$version )
 				</li>
 			</ul>
 		</div>
-		<?php
-		}
-		?>
+		<?php endif;  ?>
 
 	</div>
 
