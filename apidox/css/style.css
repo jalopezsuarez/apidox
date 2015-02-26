@@ -8,8 +8,7 @@ html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address
 	vertical-align: baseline;
 }
 
-article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
-	{
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
 	display: block;
 }
 
@@ -183,8 +182,7 @@ input[type="checkbox"] {
 	vertical-align: text-bottom;
 }
 
-label,input[type="button"],input[type="submit"],input[type="image"],button
-	{
+label,input[type="button"],input[type="submit"],input[type="image"],button {
 	cursor: pointer;
 }
 
@@ -350,38 +348,11 @@ li {
 	float: left;
 }
 
-#controls
- 
-li
- 
-:not
-  
-(
-:first-child
- 
-)
-{
-padding-left
-:
- 
-10
-px
-;
-
-	
-border-left
-:
- 
-1
-px
- 
-solid
- 
-#ddd
-;
-
-
+#controls li :not (:first-child ) {
+	padding-left: 10px;
+	border-left: 1px solid #ddd;
 }
+
 .endpoint {
 	margin: 0;
 	background-color: #fff;
@@ -944,8 +915,8 @@ div.clickable a {
 	z-index: 10; /* raises anchor tag above everything else in div */
 	background-color: white; /*workaround to make clickable in IE */
 	opacity: 0; /*workaround to make clickable in IE */
-	filter: alpha(opacity =                                                         
-		 1);
+	filter: alpha(opacity =                                                          
+		  1);
 	/*workaround to make clickable in IE */
 }
 
@@ -1083,7 +1054,7 @@ ul.tabs li.current {
 }
 
 .json-value {
-	color: navy;
+	color: #9BDDFF;
 }
 
 .json-string {
