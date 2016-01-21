@@ -1,0 +1,201 @@
+/*!
+ * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+body {
+	background-color: #ffffff;
+	font-family: ProximaNova, Helvetica, Arial, sans-serif;
+}
+
+#wrapper {
+	width: 100%;
+}
+
+#page-wrapper {
+	padding: 0;
+	min-height: 568px;
+	background-color: #fff;
+}
+
+@media ( min-width :768px) {
+	#page-wrapper {
+		position: inherit;
+		margin: 0 0 0 250px;
+		padding: 0;
+		border-left: 1px solid #e7e7e7;
+	}
+}
+
+.navbar {
+	background: #4c5264;
+}
+
+.navbar-static-top {
+	border-width: 0;
+	z-index: 1000;
+}
+
+a.navbar-brand {
+	color: #ffffff !important;
+}
+
+.navbar-top-links {
+	margin-right: 0;
+}
+
+.navbar-top-links li {
+	display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+	margin-right: 15px;
+}
+
+.navbar-top-links li a {
+	padding: 15px;
+	min-height: 50px;
+}
+
+.navbar-top-links .dropdown-menu li {
+	display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+	margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+	padding: 3px 20px;
+	min-height: 0;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+	white-space: normal;
+}
+
+.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks,
+	.navbar-top-links .dropdown-alerts {
+	width: 310px;
+	min-width: 0;
+}
+
+.navbar-top-links .dropdown-messages {
+	margin-left: 5px;
+}
+
+.navbar-top-links .dropdown-tasks {
+	margin-left: -59px;
+}
+
+.navbar-top-links .dropdown-alerts {
+	margin-left: -123px;
+}
+
+.navbar-top-links .dropdown-user {
+	right: 0;
+	left: auto;
+}
+
+.sidebar {
+	background-color: #ffffff;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.sidebar .sidebar-search {
+	padding: 15px;
+}
+
+.sidebar ul li {
+	border-bottom: 1px solid #ffffff;
+}
+
+.sidebar ul li a {
+	color: #7ccfaf;
+	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
+	font-size: 9pt;
+	font-weight: 700;
+	text-transform: uppercase;
+	outline: 0;
+}
+
+.sidebar ul li a.active {
+	background-color: #ffffff;
+}
+
+.sidebar .arrow {
+	float: right;
+}
+
+.sidebar .fa.arrow:before {
+	content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+	content: "\f107";
+}
+
+.sidebar .nav-second-level li, .sidebar .nav-third-level li {
+	border-bottom: 0 !important;
+}
+
+.sidebar .nav-second-level li a {
+	padding-left: 37px;
+	color: #5d6576;
+	font-weight: 200;
+	font-family: TitilliumText22L-Regular;
+	font-size: 14px;
+	text-transform: none;
+}
+
+.sidebar .nav-third-level li a {
+	padding-left: 52px;
+	background: green;
+}
+
+@media ( min-width :768px) {
+	.sidebar {
+		z-index: 1;
+		position: absolute;
+		width: 250px;
+		margin-top: 51px;
+	}
+	.navbar-top-links .dropdown-messages, .navbar-top-links .dropdown-tasks,
+		.navbar-top-links .dropdown-alerts {
+		margin-left: auto;
+	}
+}
+
+.body {
+	background-color: #ffffff;
+	min-height: 100%;
+}
+
+.human-side {
+	background-color: #ffffff;
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
+	height: 100%;
+}
+
+.human-side h1 {
+	border-bottom: 1px solid #c1c6d1;
+	color: #3c4151;
+	font-family: ProximaNova, Helvetica, Arial, sans-serif;
+	font-size: 46px;
+	font-weight: 700;
+	line-height: 125%;
+	margin: 0 0 20px;
+	padding-bottom: 10px;
+}
+
+.machine-side {
+	background-color: #2b2f3e;
+	padding-bottom: 1000px;
+	margin-bottom: -1000px;
+	height: 100%;
+}
