@@ -17,7 +17,7 @@ $(document).ready(function()
 		spyOffset : 0
 	// specify heading offset for spy scrolling
 	});
-
+ 
 	$("a[data-name='link']").each(function(index, element)
 	{
 		var url = $("input[data-name='service']").val().toLowerCase();

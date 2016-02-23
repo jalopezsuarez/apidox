@@ -56,7 +56,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<div class="container-fluid">
 
 		<div class="row">
-
+ 
 			<!-- Sidebar -->
 			<div class="col-md-2 hidden-sm hidden-xs">
 				<div class="anchorific-wrapper">
