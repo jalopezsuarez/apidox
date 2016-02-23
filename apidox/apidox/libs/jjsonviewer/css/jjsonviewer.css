@@ -87,6 +87,7 @@
 }
 
 .jjson-error {
+<<<<<<< HEAD
 	font-family: "Source Code Pro", Monaco, Lucida Console, Terminal,
 		monospace;
 	font-size: 13px;	
@@ -94,6 +95,10 @@
 	color: #E6DC6D;	
 	margin: 0px 0px 0px 0px;
 	padding: 10px 30px 5px 30px;
+=======
+	margin: 10px;
+	color: rgb(239, 62, 62);
+>>>>>>> branch 'master' of https://github.com/jalopezsuarez/apidox.git
 }
 
 .jjson-container .expanded {
