@@ -19,7 +19,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 <meta name="description" content="Apidox">
 <meta name="author" content="Apidox">
 <title><?php echo $apidox->getTitle(); ?></title>
-
+ 
 <link rel="stylesheet" href="apidox/libs/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="apidox/layouts/fonts/proxima-nova/proxima-nova.css">
 <link rel="stylesheet" href="apidox/layouts/fonts/source-code/source-code.css">
