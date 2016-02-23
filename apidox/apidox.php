@@ -1,6 +1,6 @@
 <?php
 // ==================================================================
-ini_set('display_errors', 'on'); 
+ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 // ==================================================================
 require_once realpath(dirname(__FILE__) . '/apidox/app/Controller.php');
@@ -34,7 +34,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
- 
+
 </head>
 <body>
 
@@ -52,7 +52,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 		</div>
 	</nav>
- 
+
 	<div class="container-fluid">
 
 		<div class="row">
@@ -68,7 +68,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 			<div class="col-md-10 content">
 
 				<div class="col-md-5 apidox-section-sidebar hidden-sm hidden-xs"></div>
- 
+
 				<!-- Application -->
 				<div class="row">
 					<div class="col-md-7 clearfix clearfix apidox-section-application">
@@ -96,7 +96,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				<?php $collapse = preg_replace("/[^ \w]+/", "", strtolower($endpointResource[Apidox::NAME])); ?>
 
 				<!-- Section -->
-				<div class="row">
+				<div class="row apidox-section-header">
 					<div class="col-md-7 clearfix apidox-section-endpoint">
 						<div class="apidox-endpoint">
 							<div class="prefix">
@@ -114,10 +114,11 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				</div>
 				<!-- /Section -->
 
+				<?php $methodEnding = count($endpointResource[Apidox::METHODS])?>
 				<?php foreach ($endpointResource[Apidox::METHODS] as $methodResource) : ?>
 
 				<!-- Method -->
-				<div class="row">
+				<div class="row apidox-section-method">
 					<div class="col-md-7 clearfix apidox-section-params">
 						<div class="apidox-method">
 							<div class="protocol">
@@ -133,12 +134,11 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 						<div class="apidox-parameters table-responsive">
 							<table>
 								<tbody>
-
-										<?php foreach ($methodResource[Apidox::PARAMS] as $paramsResource) : ?>
-										<!-- Params -->
+									<?php foreach ($methodResource[Apidox::PARAMS] as $paramsResource) : ?>
+									<!-- Params -->
 									<tr data-name="params">
-											<?php if (strcasecmp($paramsResource[Apidox::TYPE], Apidox::TYPE_ENUMERATED) === 0) : ?>
-											<td data-name="param" class="field"><?php echo $paramsResource[Apidox::NAME] ?></td>
+										<?php if (strcasecmp($paramsResource[Apidox::TYPE], Apidox::TYPE_ENUMERATED) === 0) : ?>
+										<td data-name="param" class="field"><?php echo $paramsResource[Apidox::NAME] ?></td>
 										<td class="value"><select data-name="value">
 												<?php foreach ($paramsResource[Apidox::TYPE_ENUMERATED] as $option) : ?>
 													<option value="<?php echo $option[Apidox::VALUE]?>"><?php echo $option[Apidox::VALUE]?></option>
@@ -191,19 +191,17 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 										<td class="value"><input data-name="value" name="<?php echo $paramsResource[Apidox::NAME] ?>" value="<?php echo $paramsResource[Apidox::VALUE] ?>" placeholder="<?php echo strcasecmp($paramsResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>" /></td>
 										<td class="type <?php echo strcasecmp($paramsResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $paramsResource[Apidox::TYPE] ?></td>
 										<td class="description"><?php echo $paramsResource[Apidox::DESCRIPTION] ?></td>
-											<?php endif; ?>
-										</tr>
+										<?php endif; ?>
+									</tr>
 									<!-- /Params -->
-										<?php endforeach ?>
+									<?php endforeach ?>
 
 									</tbody>
 							</table>
 						</div>
 						<div class="apidox-try">
-							<a id="try" data-name="try">
-								<span>Call Resource</span>
-								<img class="loader hidden" data-name="loader" height="21" src="apidox/layouts/img/spinner@2x.gif"></img>
-							</a>
+							<a id="try" data-name="try">Call Resource</a>
+							<img class="loader hidden" data-name="loader" height="21" src="apidox/layouts/img/spinner@2x.gif"></img>
 						</div>
 					</div>
 					<div class="col-md-5 pull-right apidox-section-response">
@@ -237,7 +235,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							<div class="json-response" data-name="response"></div>
 						</div>
 					</div>
-					<div class="col-md-7 clearfix apidox-section-information">
+					<div class="col-md-7 clearfix apidox-section-information <?php echo 0 === --$methodEnding?'last':'' ?>">
 						<?php $activeErrors = 'active'?>
 						<?php $activeExample = !isset($methodResource[Apidox::ERRORS])?'active':''?>
 						<?php $activeInformation = !isset($methodResource[Apidox::ERRORS]) && !isset($methodResource[Apidox::EXAMPLE])?'active':''?>

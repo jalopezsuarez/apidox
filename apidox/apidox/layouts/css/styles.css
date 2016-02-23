@@ -6,8 +6,9 @@
 
 body {
 	padding-top: 50px;
+	overflow-x: hidden;
 }
-
+ 
 .content {
 	border-left: 1px solid #ddd;
 }
@@ -30,9 +31,10 @@ body {
 	margin: 0px 0px 0px 0px;
 	height: 0 !important;
 	word-wrap: break-word;
+	word-break: break-all;
 	-ms-word-wrap: break-word;
 	-ms-word-break: break-all;
-} 
+}
 
 .anchorific ul {
 	cursor: pointer;
@@ -54,7 +56,7 @@ body {
 .anchorific ul li a {
 	color: #7ccfaf;
 	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
-	font-size: 14px; 
+	font-size: 14px;
 	font-weight: bold;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -65,7 +67,7 @@ body {
 	color: #3AB4A0;
 	text-decoration: none;
 }
- 
+
 .anchorific ul li.active>a {
 	color: #7ccfaf;
 	text-decoration: none;
@@ -132,18 +134,25 @@ body {
 	}
 }
 
+.apidox-section-header {
+	
+}
+
 .apidox-section-endpoint {
 	color: #3c4151;
-	margin-top: 25px;
+	margin-top: 0px;
+}
+
+.apidox-section-method {
+	
 }
 
 .apidox-section-params {
-	margin-top: 20px;
-	border-top: 1px solid #dce0eb;
+	margin-top: 0px;
 }
 
 .apidox-section-response {
-	margin-top: 20px;
+	margin-top: 0px;
 	padding: 0px 0px 0px 0px;
 	border-top: 1px solid #3a3e4d;
 }
@@ -157,7 +166,12 @@ body {
 }
 
 .apidox-section-information {
-	
+	border-bottom: 1px solid #dce0eb;
+	padding-bottom: 100px;
+}
+
+.apidox-section-information.last {
+	border: 0;
 }
 
 .apidox-content-information {
@@ -279,32 +293,34 @@ body {
 	padding: 10px 15px 10px 15px;
 	margin: 0px 0px 0px 0px;
 }
- 
+
 .apidox-endpoint {
-	background: #f3f4f6;
+	background: #7d8492;
 	height: 50px;
 	line-height: 50px;
 	padding: 0px 0px 0px 0px;
-	margin: 0px 0px 0px 0px;
+	margin: 0px -15px 0px -15px;
 	border-left: 5px solid #7ccfaf;
+	display: block;
 }
 
 .apidox-endpoint div.prefix {
-	float: left;
+	display: inline;
 }
 
 .apidox-endpoint h1 {
 	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
 	font-size: 26px;
-	font-weight: 700;
+	font-weight: 600;
+	color: #ffffff;
 	line-height: 50px;
-	color: #3c4151;
 	padding: 70px 0px 0px 15px;
 	margin: -70px 0px 0px 0px;
-	display: inline-block;
+	display: inline;
 }
 
 .apidox-endpoint div.total {
+	display: inline;
 	float: right;
 }
 
@@ -416,6 +432,7 @@ apidox-parameters table {
 	padding: 0px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;
 	width: 25%;
+	min-width: 100px;
 }
 
 .apidox-parameters td.type {
@@ -514,15 +531,14 @@ apidox-parameters table {
 	border-color: #3f4555;
 	color: #dbdfeb;
 	height: 42px;
-	display: inline-block;
+	display: inline;
 	border-radius: 4px;
 	cursor: pointer;
-	padding: 0px 14px 0px 14px;
-	margin: 0px 0px 0px 0px;
 	white-space: nowrap;
 	font-size: 16px;
 	font-weight: 600;
-	display: table-cell;
+	padding: 8px 10px 8px 10px;
+	margin: 0px 0px 0px 0px;	
 }
 
 .apidox-try a:hover {
@@ -532,18 +548,18 @@ apidox-parameters table {
 	text-decoration: none;
 }
 
-.apidox-try a span {
+.apidox-try a {
 	font-family: Titillium Text;
 	line-height: 42px;
-	display: inline-block;
+	display: inline;
 	vertical-align: middle;
 }
 
 .apidox-try img.loader {
-	display: inline-block;
+	display: inline;
 	vertical-align: middle;
-	padding: 0px 0px 0px 4px;
-	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 4px;
 }
 
 .apidox-subtitled {
@@ -647,12 +663,13 @@ apidox-parameters table {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
 		monospace;
 	font-weight: normal;
-	word-wrap: break-word;
-	-ms-word-wrap: break-word;
-	-ms-word-break: break-all;
-	display: inline-block;
 	padding: 0px 0px 0px 0px;
 	margin: 0px 0px 0px -2px;
+	display: inline-block;
+	word-wrap: break-word;
+	word-break: break-all;
+	-ms-word-wrap: break-word;
+	-ms-word-break: break-all;
 }
 
 .apidox-request a:hover, .apidox-request a:focus {
@@ -670,7 +687,7 @@ apidox-parameters table {
 
 .apidox-live div.status {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
-		monospace; 
+		monospace;
 	color: #c99;
 	padding: 10px 0px 10px 0px;
 	margin: 0px 0px 0px 20px;
@@ -706,6 +723,7 @@ apidox-parameters table {
 	max-height: 500px;
 	min-height: 40px;
 	word-wrap: break-word;
+	word-break: break-all;
 	-ms-word-wrap: break-word;
 	-ms-word-break: break-all;
 }
@@ -749,14 +767,14 @@ table.errortable {
 .errortable td.code {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
 		monospace;
-	font-size: 14px;		
+	font-size: 14px;
 	white-space: nowrap;
 	min-width: 48px;
 }
 
 .errortable td.description {
 	font-size: 14px;
-	text-align: left;	
+	text-align: left;
 	width: 100%;
 	color: #333333;
 }

@@ -3,9 +3,9 @@
  * 
  * @author apidox vemovi.com
  */
- 
+  
 $(document).ready(function()
-{  
+{   
 	$('.content').anchorific({
 		navigation : '.anchorific', // position of navigation
 		speed : 200, // speed of sliding back to top

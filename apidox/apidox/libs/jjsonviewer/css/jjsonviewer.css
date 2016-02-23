@@ -18,10 +18,11 @@
 	padding: 10px 30px 10px 30px;
 	margin: 0px 0px 0px 0px;
 	overflow: auto;
-	word-wrap: break-word;
-	-ms-word-wrap: break-word;
-	-ms-word-break: break-all;
 	display: inline-block;
+	word-wrap: break-word;
+	word-break: break-all;
+	-ms-word-wrap: break-word;
+	-ms-word-break: break-all;	
 }
 
 .jjson-container * {
@@ -139,4 +140,5 @@
 	color: #fff;
 	opacity: 1;
 	float: none;
+	font-weight: normal!important;
 }
