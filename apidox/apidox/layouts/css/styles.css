@@ -54,7 +54,7 @@ body {
 .anchorific ul li a {
 	color: #7ccfaf;
 	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	font-weight: bold;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -65,7 +65,7 @@ body {
 	color: #3AB4A0;
 	text-decoration: none;
 }
-
+ 
 .anchorific ul li.active>a {
 	color: #7ccfaf;
 	text-decoration: none;
@@ -670,7 +670,7 @@ apidox-parameters table {
 
 .apidox-live div.status {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
-		monospace;
+		monospace; 
 	color: #c99;
 	padding: 10px 0px 10px 0px;
 	margin: 0px 0px 0px 20px;
