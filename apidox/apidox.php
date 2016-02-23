@@ -52,7 +52,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 		</div>
 	</nav>
-
+ 
 	<div class="container-fluid">
 
 		<div class="row">
