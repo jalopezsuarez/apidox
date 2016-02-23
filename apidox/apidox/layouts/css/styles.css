@@ -32,7 +32,7 @@ body {
 	word-wrap: break-word;
 	-ms-word-wrap: break-word;
 	-ms-word-break: break-all;
-}
+} 
 
 .anchorific ul {
 	cursor: pointer;
@@ -671,7 +671,6 @@ apidox-parameters table {
 .apidox-live div.status {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
 		monospace;
-	text-transform: uppercase;
 	color: #c99;
 	padding: 10px 0px 10px 0px;
 	margin: 0px 0px 0px 20px;
@@ -750,11 +749,14 @@ table.errortable {
 .errortable td.code {
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
 		monospace;
+	font-size: 14px;		
 	white-space: nowrap;
 	min-width: 48px;
 }
 
 .errortable td.description {
+	font-size: 14px;
+	text-align: left;	
 	width: 100%;
-	color: #686f80;
+	color: #333333;
 }

@@ -39,6 +39,7 @@ class Apidox
 	const INDEX = "index";
 	const XML = "xml";
 	protected $title;
+	protected $version;
 	protected $uri;
 	protected $scheme;
 	protected $counter;
@@ -48,6 +49,7 @@ class Apidox
 	public function __construct()
 	{
 		$title = "";
+		$version = "";
 		$uri = "";
 		$scheme = "";
 		
@@ -65,6 +67,16 @@ class Apidox
 	public function setTitle($title)
 	{
 		$this->title = $title;
+	}
+
+	public function getVersion()
+	{
+		return $this->version;
+	}
+
+	public function setVersion($version)
+	{
+		$this->version = $version;
 	}
 
 	public function getUri()

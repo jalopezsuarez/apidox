@@ -157,6 +157,8 @@ function onResourceAction()
 	context.find('#uri').data('param', (dataParams.length > 0 ? '?' : '') + dataParams);
 	context.find('#link').attr("href", get);
 
+	var requestTime = new Date().getTime();
+
 	jQuery.ajax({
 		url : "apidox/app/Request.php",
 		type : "POST",
@@ -170,6 +172,17 @@ function onResourceAction()
 	}).always(function(response)
 	{
 		dataLoader.addClass('hidden');
+
+		var responseTime = new Date().getTime() - requestTime;
+		date = new Date(responseTime);
+		var responseString = "Time ";
+		if (date.getMinutes() > 0)
+			responseString += date.getMinutes() + " min ";
+		if (date.getSeconds() > 0)
+			responseString += date.getSeconds() + " sec ";
+		if (date.getMilliseconds() > 0)
+			responseString += date.getMilliseconds() + " ms";
+		context.find("[data-name='status']").html(responseString);
 
 	}).done(function(response)
 	{

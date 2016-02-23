@@ -2,10 +2,12 @@
 
 <errors>
 
+	<category name="General">
 		<error code="10" description="La página especificada es errónea." />
 		<error code="11" description="No se ha especificado el tamaño de página." />
 		<error code="12" description="El tamaño de página especificado es erróneo." />
-
+	</category>
+	
 	<category name="Acceso">
 		<error code="100" description="No se ha especificado el identificador del almacén." />
 		<error code="101" description="No se ha especificado el identificador del usuario." />

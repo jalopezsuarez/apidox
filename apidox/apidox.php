@@ -75,7 +75,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 						<div class="apidox-application">
 							<div class="title"><?php echo $apidox->getTitle() ?></div>
 							<div class="version">
-								<span>1.0</span>
+								<span><?php echo $apidox->getVersion(); ?></span>
 							</div>
 							<div class="total">
 								<span><?php echo $apidox->getCounter() ?></span>
@@ -232,7 +232,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 						</div>
 						<div class="apidox-entitled">Response</div>
 						<div class="apidox-live">
-							<div class="status">200</div>
+							<div class="status" data-name="status">200</div>
 							<div class="body">BODY</div>
 							<div class="json-response" data-name="response"></div>
 						</div>
@@ -266,36 +266,21 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							<div class="tab-content apidox-tabs">
 								<?php if (isset($methodResource[Apidox::ERRORS])) :?>
 								<div id="<?php echo $tagger . 'errors' ; ?>" class="tab-pane in <?php echo $activeErrors ?>">
-									<div class="error-section">Acceso</div>
+
+									<?php foreach ($methodResource[Apidox::ERRORS] as $keyCategory => $errorCategory) : ?>
+									<div class="error-section"><?php echo $keyCategory ?></div>
 									<table class="errortable">
 										<tbody>
+											<?php foreach ($errorCategory as $errorsResource ) : ?>
 											<tr>
-												<td class="code">107</td>
-												<td class="description">No se ha especificado el token de sesión.</td>
+												<td class="code"><?php echo $errorsResource[Apidox::CODE]?></td>
+												<td class="description"><?php echo $errorsResource[Apidox::DESCRIPTION]?></td>
 											</tr>
+											<?php endforeach; ?>
 										</tbody>
 									</table>
-									<div class="error-section">Albaranes</div>
-									<table class="errortable">
-										<tbody>
-											<tr>
-												<td class="code">300</td>
-												<td class="description">No se ha especificado la fecha de inicio de campaña.</td>
-											</tr>
-											<tr>
-												<td class="code">301</td>
-												<td class="description">No se ha especificado la fecha de fin de campaña.</td>
-											</tr>
-											<tr>
-												<td class="code">302</td>
-												<td class="description">La fecha de inicio de campaña es errónea.</td>
-											</tr>
-											<tr>
-												<td class="code">303</td>
-												<td class="description">La fecha de fin de campaña es errónea.</td>
-											</tr>
-										</tbody>
-									</table>
+									<?php endforeach; ?>
+
 								</div>
 								<?php endif ?>
 								<?php if (isset($methodResource[Apidox::EXAMPLE])) :?>

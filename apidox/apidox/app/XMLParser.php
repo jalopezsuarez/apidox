@@ -50,6 +50,7 @@ class XMLParser
 				$configFile = simplexml_load_file($filepath);
 				
 				$apidox->setTitle($configFile->attributes()[Apidox::TITLE]);
+				$apidox->setVersion($configFile->attributes()[Apidox::VERSION]);
 				$apidox->setUri($configFile->attributes()[Apidox::URI]);
 				$apidox->setScheme($configFile->attributes()[Apidox::SCHEME]);
 			}
@@ -74,7 +75,7 @@ class XMLParser
 				if (isset($errorsFile->error) && count($errorsFile->error) > 0)
 				{
 					$categorized = array();
-					$grouped = (string)Apidox::CATEGORY;
+					$grouped = (string)Apidox::CATEGORY_NONE;
 					
 					foreach ( $errorsFile->error as $error )
 					{
@@ -82,8 +83,8 @@ class XMLParser
 						$description = $error->attributes()[Apidox::DESCRIPTION];
 						
 						$errorResource = array();
-						$errorResource[Apidox::CODE] = $code;
-						$errorResource[Apidox::DESCRIPTION] = $description;
+						$errorResource[Apidox::CODE] = (string)$code;
+						$errorResource[Apidox::DESCRIPTION] = (string)$description;
 						array_push($categorized, $errorResource);
 						
 						$errorsDictionary[$code][Apidox::CATEGORY] = $grouped;
@@ -179,6 +180,39 @@ class XMLParser
 							$methodResource[Apidox::TYPE] = $methodFile->attributes()[Apidox::TYPE];
 							$methodResource[Apidox::DESCRIPTION] = $methodFile->attributes()[Apidox::DESCRIPTION];
 							
+							$errors = $methodFile->errors;
+							if (isset($errors->error) && count($errors->error) > 0)
+							{
+								$errorsResources = array();
+								foreach ( $errors->error as $error )
+								{
+									$code = (string)$error->attributes()[Apidox::CODE];
+									if (!is_null($code) && array_key_exists($code, $errorsDictionary))
+									{
+										if (array_key_exists(Apidox::CATEGORY, $errorsDictionary[$code]) && array_key_exists(Apidox::DESCRIPTION, $errorsDictionary[$code]))
+										{
+											$category = $errorsDictionary[$code][Apidox::CATEGORY];
+											if (!is_null($category) && is_string($category) && strlen($category) > 0)
+											{
+												$description = $errorsDictionary[$code][Apidox::DESCRIPTION];
+												
+												$errorResource = array();
+												$errorResource[Apidox::CODE] = $code;
+												$errorResource[Apidox::CATEGORY] = $category;
+												$errorResource[Apidox::DESCRIPTION] = $description;
+												
+												if (!isset($errorsResources[$category]) || !is_array($errorsResources[$category]))
+												{
+													$errorsResources[$category] = array();
+												}
+												array_push($errorsResources[$category], $errorResource);
+											}
+										}
+									}
+								}
+								$methodResource[Apidox::ERRORS] = $errorsResources;
+							}
+							
 							$example = trim((string)$methodFile->example);
 							if (!is_null($example) && is_string($example) && strlen($example) > 0)
 							{
@@ -215,8 +249,8 @@ class XMLParser
 								}
 								array_push($paramResources, $paramResource);
 							}
-							
 							$methodResource[Apidox::PARAMS] = $paramResources;
+							
 							array_push($methodResources, $methodResource);
 						}
 					}
