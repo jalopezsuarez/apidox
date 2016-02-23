@@ -1,0 +1,87 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="listados/almacenes"
+	description="Obtiene un listado de las cooperativas disponibles indicando su código, nombre y url de la imagen. También indica, mediante 0 o 1, si la cooperativa disponde de información de socios, trabajadores, y si está activa en la plataforma.">
+
+	<errors></errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": 
+	[
+		{
+			"codigo": "001",
+			"nombre": "CABASC",
+			"socios": 1,
+			"trabajadores": 1,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/001/index.png"
+		},
+		{
+			"codigo": "002",
+			"nombre": "CASUR",
+			"socios": 1,
+			"trabajadores": 0,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/002/index.png"
+		},
+		{
+			"codigo": "003",
+			"nombre": "COHORSAN",
+			"socios": 1,
+			"trabajadores": 1,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/003/index.png"
+		},
+		{
+			"codigo": "004",
+			"nombre": "FERVA",
+			"socios": 1,
+			"trabajadores": 1,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/004/index.png"
+		},
+		{
+			"codigo": "007",
+			"nombre": "AGRIECO",
+			"socios": 0,
+			"trabajadores": 0,
+			"activo": 0,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/007/index.png"
+		},
+		{
+			"codigo": "009",
+			"nombre": "EL GRUPO",
+			"socios": 1,
+			"trabajadores": 1,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/009/index.png"
+		},
+		{
+			"codigo": "011",
+			"nombre": "PARQUENAT",
+			"socios": 1,
+			"trabajadores": 0,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/011/index.png"
+		},
+		{
+			"codigo": "012",
+			"nombre": "COTA120",
+			"socios": 1,
+			"trabajadores": 0,
+			"activo": 1,
+			"cover": "http://localhost/soydeunica-server/public/media/almacen/012/index.png"
+		}
+	]
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

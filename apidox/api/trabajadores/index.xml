@@ -1,0 +1,8 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="fichajes-campana" />
+	<order name="fichajes-mes" />
+	<order name="fichajes-dia" />
+</index>
+

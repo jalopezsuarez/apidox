@@ -1,0 +1,9 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="pendientes" />
+	<order name="recibidas" />
+	<order name="enviadas" />
+	<order name="notificar" />
+</index>
+

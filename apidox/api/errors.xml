@@ -1,0 +1,86 @@
+<!DOCTYPE errors SYSTEM "errors.dtd">
+
+<errors>
+
+		<error code="10" description="La página especificada es errónea." />
+		<error code="11" description="No se ha especificado el tamaño de página." />
+		<error code="12" description="El tamaño de página especificado es erróneo." />
+
+	<category name="Acceso">
+		<error code="100" description="No se ha especificado el identificador del almacén." />
+		<error code="101" description="No se ha especificado el identificador del usuario." />
+		<error code="102" description="No se ha especificado el tipo de usuario." />
+		<error code="103" description="No se ha especificado la contraseña del usuario." />
+		<error code="104" description="El identificador del almacén es erróneo." />
+		<error code="105" description="El identificador del usuario es erróneo." />
+		<error code="106" description="El tipo de usuario es erróneo." />
+		<error code="107" description="No se ha especificado el token de sesión." />
+		<error code="108" description="No se ha especificado la plataforma de acceso." />
+		<error code="109" description="La plataforma de acceso especificada no es correcta." />
+		<error code="110" description="La plataforma de acceso especificada no es correcta." />
+	</category>
+
+	<category name="Fincas">
+		<error code="200" description="No se ha especificado el codigo de la finca." />
+		<error code="201" description="Error en la latitud y longitud de geoposicionamiento." />
+	</category>
+
+	<category name="Albaranes">
+		<error code="300" description="No se ha especificado la fecha de inicio de campaña." />
+		<error code="301" description="No se ha especificado la fecha de fin de campaña." />
+		<error code="302" description="La fecha de inicio de campaña es errónea." />
+		<error code="303" description="La fecha de fin de campaña es errónea." />
+		<error code="304" description="No se ha especificado el almacén." />
+		<error code="305" description="No se ha especificado el número del albarán." />
+		<error code="306" description="No se ha indicado el codigo de confirmacion de albaran." />
+	</category>
+
+	<category name="Mensajeria">
+		<error code="400" description="No se ha especificado el código Unica del interlocutor." />
+		<error code="401" description="No se ha especificado el tipo de contenido (TEXTO o IMAGEN)." />
+		<error code="402" description="El tipo de contenido especificado es erróneo." />
+		<error code="403" description="No se ha especificado el mensaje." />
+		<error code="404" description="Las notificaciones sólo pueden ser enviadas por empleados." />
+		<error code="405" description="Un usuario no puede enviarse mensajes a sí mismo." />
+		<error code="406" description="Existe un error en los interlocutores especificados." />
+		<error code="407" description="No se ha encotrado el interlocutor especificado." />
+		<error code="408" description="Hay un problema con la subida de adjuntos al servidor." />
+	</category>
+
+	<category name="Empleado">
+		<error code="500" description="No se ha especificado el año." />
+		<error code="501" description="No se ha especificado el mes." />
+		<error code="502" description="El año especificado es erróneo." />
+		<error code="503" description="El mes especificado es erróneo." />
+		<error code="504" description="No se ha especificado el día." />
+		<error code="505" description="El día especificado es erróneo." />
+		<error code="506" description="La fecha especificada no es correcta." />
+	</category>
+
+	<category name="Usuario">
+		<error code="600" description="No se ha especificado el tipo de usuario." />
+		<error code="601" description="No se ha indicado el uuid token de Apple (APNS) o Google (GCM) de servicios push." />
+		<error code="602" description="No se han especificado el numero de dias a comprobar." />
+		<error code="603" description="Tipo de usuario no permitido para consultar usuarios activos." />
+	</category>
+
+	<category name="Meteo">
+		<error code="700" description="El número de días introducido no es correcto." />
+		<error code="701" description="No se ha especificado la latitud." />
+		<error code="702" description="No se ha especificado la longitud." />
+	</category>
+
+	<category name="Previsiones">
+		<error code="800" description="No se ha especificado el producto." />
+		<error code="801" description="No se ha especificado la cantidad." />
+		<error code="802" description="La cantidad especificada es errónea." />
+		<error code="803" description="No se ha especificado la fecha." />
+		<error code="804" description="La fecha especificada es errónea." />
+	</category>
+
+	<category name="Muestreos">
+		<error code="900" description="No se ha especificado el producto." />
+	</category>
+
+</errors>
+

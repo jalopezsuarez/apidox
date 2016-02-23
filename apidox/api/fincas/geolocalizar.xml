@@ -1,0 +1,22 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="fincas/geolocalizar" description="Almacena la posicion de latitud y longitud para una finca dada que pertenezca a un socio.">
+
+	<param name="token" type="string" description="Token" required="Y" />
+
+	<param name="idfinca" type="string" description="Finca seleccionada para la que se actualizara su geolocalizacion." required="Y" />
+	<param name="nombre" type="string" description="Nombre generico identificativo de la finca." required="N" />
+	<param name="latitud" type="string" description="Coordenada de latitud geolocaliar la finca." required="N" />
+	<param name="longitud" type="string" description="Coordenada de longitud para geolocalizar la finca." required="N" />
+
+	<errors>
+		<error code="200" />
+		<error code="201" />
+	</errors>
+
+	<example><![CDATA[]]></example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

@@ -1,0 +1,8 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="listado" />
+	<order name="guardar" />
+	<order name="historico" />
+</index>
+

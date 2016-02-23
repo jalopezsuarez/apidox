@@ -1,0 +1,33 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="usuario/tiles" description="Obtiene la configuración los tiles configurados por el usuario.">
+
+	<param name="token" type="string" required="Y" description="Token de sesion." />
+	<param name="tiles" type="string" description="Lista de tiles, separados por comas, configurados por el usuario. Si no se especifica nada, se devuelven todos los tiles disponibles." />
+
+	<errors>
+		<error code="107" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": 
+	[
+		{
+			"nombre": "Test",
+			"tipo": "MUESTREO",
+			"orden": 0,
+			"cover": "http://localhost/soydeunica-server/public/media/tiles/1/index.png"
+		}
+	]
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

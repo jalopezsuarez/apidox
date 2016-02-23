@@ -1,0 +1,13 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="perfil" />
+	<order name="clave" />
+	<order name="uuid" />
+	<order name="campanas" />
+	<order name="menu" />
+	<order name="tiles" />
+	<order name="unidades" />
+	<order name="activos" />	
+</index>
+

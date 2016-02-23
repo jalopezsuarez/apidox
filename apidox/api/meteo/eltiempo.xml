@@ -1,0 +1,311 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="meteo/eltiempo" description="Todas las condiciones meteorologicas actuales y previstas para los proximos dias. Se incluye la prevision de las fases lunares para las proximas semanas.">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="lat" type="float" description="Latitud del lugar para el que obtener las condiciones meteorológicas." required="Y" />
+	<param name="lon" type="float" description="Longitud del lugar para el que obtener las condiciones meteorológicas." required="Y" />
+
+	<errors>
+		<error code="107" />
+		<error code="701" />
+		<error code="702" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+    "status": "OK",
+    "message": "",
+    "results": {
+        "actual": {
+            "fecha": "2015-08-15 11:30:00",
+            "temperatura_actual": 26,
+            "temperatura_maxima": "N/A",
+            "temperatura_minima": "N/A",
+            "humedad": 69,
+            "viento_direccion": "SSO",
+            "viento_velocidad": 9,
+            "lluvia": "N/A",
+            "hora_salida_sol": "2015-08-15 07:26:53",
+            "hora_puesta_sol": "2015-08-15 21:01:07",
+            "estado": "DESPEJADO"
+        },
+        "prevision": [
+            {
+                "fecha": "2015-08-15 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 31,
+                "temperatura_minima": 25,
+                "humedad": 70,
+                "viento_direccion": "ESE",
+                "viento_velocidad": 6,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "NUBLADO"
+            },
+            {
+                "fecha": "2015-08-16 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 29,
+                "temperatura_minima": 24,
+                "humedad": 76,
+                "viento_direccion": "SE",
+                "viento_velocidad": 17,
+                "lluvia": 0.26,
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "LLUVIOSO"
+            },
+            {
+                "fecha": "2015-08-17 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 30,
+                "temperatura_minima": 23,
+                "humedad": 73,
+                "viento_direccion": "S",
+                "viento_velocidad": 12,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "DESPEJADO"
+            },
+            {
+                "fecha": "2015-08-18 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 28,
+                "temperatura_minima": 22,
+                "humedad": 81,
+                "viento_direccion": "SE",
+                "viento_velocidad": 9,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "PARCIALMENTE_NUBLADO"
+            },
+            {
+                "fecha": "2015-08-19 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 29,
+                "temperatura_minima": 23,
+                "humedad": 0,
+                "viento_direccion": "E",
+                "viento_velocidad": 17,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "DESPEJADO"
+            },
+            {
+                "fecha": "2015-08-20 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 28,
+                "temperatura_minima": 22,
+                "humedad": 0,
+                "viento_direccion": "ENE",
+                "viento_velocidad": 21,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "LLUVIOSO"
+            },
+            {
+                "fecha": "2015-08-21 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 29,
+                "temperatura_minima": 22,
+                "humedad": 0,
+                "viento_direccion": "E",
+                "viento_velocidad": 11,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "DESPEJADO"
+            },
+            {
+                "fecha": "2015-08-22 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 31,
+                "temperatura_minima": 22,
+                "humedad": 0,
+                "viento_direccion": "SO",
+                "viento_velocidad": 21,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "DESPEJADO"
+            },
+            {
+                "fecha": "2015-08-23 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 27,
+                "temperatura_minima": 22,
+                "humedad": 0,
+                "viento_direccion": "ESE",
+                "viento_velocidad": 20,
+                "lluvia": 0.86,
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "LLUVIOSO"
+            },
+            {
+                "fecha": "2015-08-24 14:00:00",
+                "temperatura_actual": "N/A",
+                "temperatura_maxima": 28,
+                "temperatura_minima": 20,
+                "humedad": 0,
+                "viento_direccion": "ENE",
+                "viento_velocidad": 18,
+                "lluvia": "N/A",
+                "hora_salida_sol": "N/A",
+                "hora_puesta_sol": "N/A",
+                "estado": "DESPEJADO"
+            }
+        ],
+        "luna": [
+            {
+                "fecha": "2015-08-15",
+                "fase_lunar": "LUNA_NUEVA"
+            },
+            {
+                "fecha": "2015-08-16",
+                "fase_lunar": "LUNA_NUEVA"
+            },
+            {
+                "fecha": "2015-08-17",
+                "fase_lunar": "LUNA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-18",
+                "fase_lunar": "LUNA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-19",
+                "fase_lunar": "LUNA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-20",
+                "fase_lunar": "LUNA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-21",
+                "fase_lunar": "CUARTO_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-22",
+                "fase_lunar": "CUARTO_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-23",
+                "fase_lunar": "CUARTO_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-24",
+                "fase_lunar": "CUARTO_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-25",
+                "fase_lunar": "LUNA_GIBOSA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-26",
+                "fase_lunar": "LUNA_GIBOSA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-27",
+                "fase_lunar": "LUNA_GIBOSA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-28",
+                "fase_lunar": "LUNA_GIBOSA_CRECIENTE"
+            },
+            {
+                "fecha": "2015-08-29",
+                "fase_lunar": "LUNA_LLENA"
+            },
+            {
+                "fecha": "2015-08-30",
+                "fase_lunar": "LUNA_LLENA"
+            },
+            {
+                "fecha": "2015-08-31",
+                "fase_lunar": "LUNA_LLENA"
+            },
+            {
+                "fecha": "2015-09-01",
+                "fase_lunar": "LUNA_GIBOSA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-02",
+                "fase_lunar": "LUNA_GIBOSA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-03",
+                "fase_lunar": "LUNA_GIBOSA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-04",
+                "fase_lunar": "CUARTO_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-05",
+                "fase_lunar": "CUARTO_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-06",
+                "fase_lunar": "CUARTO_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-07",
+                "fase_lunar": "CUARTO_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-08",
+                "fase_lunar": "LUNA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-09",
+                "fase_lunar": "LUNA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-10",
+                "fase_lunar": "LUNA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-11",
+                "fase_lunar": "LUNA_MENGUANTE"
+            },
+            {
+                "fecha": "2015-09-12",
+                "fase_lunar": "LUNA_NUEVA"
+            },
+            {
+                "fecha": "2015-09-13",
+                "fase_lunar": "LUNA_NUEVA"
+            }
+        ]
+    }
+}
+]]>
+	</example>
+	<information>
+<![CDATA[
+IMPORTANTE<br/>
+Según la documentación de Open Weather, las fechas se muestran en UTC.
+Parece que el campo "fecha" se está enviando de esa manera. Sin embargo, 
+los campos "hora_salida_sol" y "hora_puesta_sol" parecen llegar con la 
+hora local (UTC+1). Queda pendiente de confirmar.<br/><br/>
+Si un dato no está disponible, se devuelve la cadena "N/A".<br/>
+Las temperaturas se devuelven en grados celsius.<br/>
+La humedad se devuelve como porcentaje.<br/>
+La dirección del viento puede tomar los siguientes valores: N, NNE, NE,
+ENE, E, ESE, SE, SSE, S, SSO, SO, OSO, O, ONO, NO, NNO.<br/>
+La velocidad del viento se devuelve en kilómetros por hora.<br/>
+El estado puede tomar los siguientes valores: DESPEJADO,
+PARCIALMENTE_NUBLADO, NUBLADO, LLUVIOSO, TORMENTA, NIEVE, NIEBLA.
+]]>
+	</information>
+
+</method>
+

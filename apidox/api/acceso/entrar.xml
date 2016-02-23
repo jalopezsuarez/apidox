@@ -1,0 +1,110 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+<method type="GET" uri="acceso/entrar" version="1.0"
+	description="Inicio de sesión en la plataforma. Genera una sesion en la plataforma generando un token de sesion para acceso. Devuelve datos del usuario, datos de menu y otra informacion relativa al perfil del usuario dependiendo de cada tipo de usuario.">
+
+	<param name="idalmacen" type="string" required="Y" description="Identificador del almacén." />
+	<param name="idusuario" type="string" required="Y" description="Identificador del usuario." />
+	<param name="tipousuario" type="enumerated" required="Y" default="TESTING" description="Tipo de usuario.">
+		<option value="SOCIO" description="Socio" />
+		<option value="TRABAJADOR" description="Trabajador" />
+		<option value="EMPLEADO" description="Empleado" />
+		<option value="INVITADO" description="Invitado" />
+	</param>
+	<param name="password" type="string" required="Y" description="Contraseña asociada al usuario." />
+	<param name="plataforma" type="enumerated" required="Y" default="UNICAGES" description="Plataforma desde la que accede el usuario (android, iphone).">
+		<option value="IPHONE" description="Aplicación móvil iPhone." />
+		<option value="ANDROID" description="Aplicación móvil Android." />
+		<option value="UNICAGES" description="Plataforma de gestión UNICAGES." />
+	</param>
+	<param name="uuid" type="string" description="Identificador del dispositivo iOS o Android. Es obligatorio especificarlo en el caso de que la plataforma sea ANDROID o IPHONE. Si la plataforma es UNICAGES, el valor del parámetro no se tendrá en cuenta." />
+
+	<errors>
+		<error code="100" />
+		<error code="101" />
+		<error code="102" />
+		<error code="103" />
+		<error code="104" />
+		<error code="105" />
+		<error code="106" />
+		<error code="108" />
+		<error code="109" />
+		<error code="110" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": 
+	{
+		"login" :
+		{
+			"token": "20e098191414e13a6355ed1896946723c568ea54e2a611da32d10633066070e9",
+			"codigo_unica": "20070300015",
+			"nombre": "YOLANDA",
+			"apellidos": "NAVARRO DIAZ",
+			"email": null,
+			"avatar": "http://localhost/soydeunica-server/public/media/usuario/3/0015.jpg",
+			"tipo_usuario": "TRABAJADOR",
+			"ultimo_login": null,
+			"nif": "45589094N",
+			"trabajador_ficha": "54936",
+			"sexo": "M",
+			"empresa": 3,
+			"empleado_id_departamento": null,
+			"empleado_departamento": null
+		},
+		"menu" :
+		[
+			{
+				"nombre": "Test",
+				"tipo": "MUESTREO",
+				"orden": 0
+			},
+			{
+				"nombre": "Test 2",
+				"tipo": "ALBARANES",
+				"orden": 1
+			}
+		],
+		"unidades" :
+		[
+			{
+				"id": 3,
+				"codigo": "KG",
+				"nombre": "Kilogramos"
+			},
+			{
+				"id": 4,
+				"codigo": "UN",
+				"nombre": "Unidades"
+			},
+			{
+				"id": 5,
+				"codigo": "PAL",
+				"nombre": "Palets"
+			},
+			{
+				"id": 6,
+				"codigo": "ENV",
+				"nombre": "Envases"
+			},
+			{
+				"id": 7,
+				"codigo": "PZ",
+				"nombre": "Piezas"
+			}
+		]
+	}
+}
+]]>
+	</example>
+
+	<information>
+<![CDATA[
+<p>El método devuelve un TOKEN, una vez obtenido el token todas las consultas en el sistema se realizarán con dicho token.</p>
+]]>
+	</information>
+
+</method>

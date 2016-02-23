@@ -1,0 +1,32 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="previsiones/guardar" description="Guarda una previsión del usuario.">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="producto" type="string" description="Producto" required="Y" />
+	<param name="fecha" type="string" description="Fecha de la previsión" required="Y" />
+	<param name="cantidad" type="float" description="Cantidad prevista" required="Y" />
+
+	<errors>
+		<error code="107" />
+		<error code="800" />
+		<error code="801" />
+		<error code="802" />
+		<error code="803" />
+		<error code="804" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+"status": "OK",
+"message": "",
+"results": null
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

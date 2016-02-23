@@ -1,0 +1,57 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="calendario/corte" description="Calendario de corte relativo a la actividad de un socio." hidden="N">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />
+	<param name="fin_campana" type="string" description="Fecha de fin de campaña" required="Y"  />
+	<param name="medianeria" type="boolean" description="Resultados con sistema de medianeria" required="N"  />
+	<param name="idfamilia" type="string" description="Calendario de corte del producto indicado." required="N"  />
+	<param name="idfinca" type="string" description="Calendario de corte de la finca indicada." required="N"  />
+
+	<errors>
+		<error code="10" />
+		<error code="12" />
+		<error code="107" />
+		<error code="300" />
+		<error code="301" />
+		<error code="302" />
+		<error code="303" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": 
+	[
+		{
+			"semana": 2,
+			"desde": "2015-01-03",
+			"hasta": "2015-01-09",
+			"producto": "TOMATE \"RAMA\" SUELTO",
+			"codigo_producto": "1013005",
+			"unidad_medida": 3,
+			"cantidad": 27,
+			"imagen": "http://localhost/soydeunica-server/public/media/producto/1013005/index.png"
+		},
+		{
+			"semana": 2,
+			"desde": "2015-01-03",
+			"hasta": "2015-01-09",
+			"producto": "TOMATE ESTANDAR",
+			"codigo_producto": "1013101",
+			"unidad_medida": 3,
+			"cantidad": 69,
+			"imagen": "http://localhost/soydeunica-server/public/media/producto/1013101/index.png"
+		}
+	]
+}
+]]>
+	</example>
+	
+	<information><![CDATA[]]></information>
+
+</method>
+

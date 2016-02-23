@@ -1,0 +1,6 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="entrar" />
+	<order name="salir" />
+</index>

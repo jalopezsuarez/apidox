@@ -1,0 +1,24 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="buzon/socios" description="Obtiene los socios con los que puede comunicarse el usuario." hidden="N">
+
+	<param name="token" type="string" description="Token" required="Y" />
+
+	<errors>
+		<error code="107" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": []
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

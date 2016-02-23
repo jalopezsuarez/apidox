@@ -1,0 +1,18 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="rendimientos/productos" description="Kilos totales muestreados agrupados por producto hasta la fecha. Todas las cantidades se dan con destrio incluido." hidden="N">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />
+	<param name="fin_campana" type="string" description="Fecha de fin de campaña" required="Y" />
+	<param name="medianeria" type="boolean" description="Resultados con sistema de medianeria" required="N" />
+
+	<errors>
+		<error code="107" />
+	</errors>
+
+	<example><![CDATA[]]></example>
+
+	<information><![CDATA[]]></information>
+
+</method>

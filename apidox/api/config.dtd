@@ -1,0 +1,6 @@
+<!ELEMENT config (#PCDATA)>
+<!ATTLIST config
+        title CDATA #REQUIRED
+        version CDATA #REQUIRED
+        uri CDATA #REQUIRED
+        scheme CDATA #REQUIRED>
