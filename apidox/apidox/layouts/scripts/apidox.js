@@ -19,7 +19,7 @@ $(document).ready(function()
 	});
 
 	$("a[data-name='link']").each(function(index, element)
-	{
+	{ 
 		var url = $("input[data-name='service']").val().toLowerCase();
 		if (url.indexOf("://") > 0)
 		{
