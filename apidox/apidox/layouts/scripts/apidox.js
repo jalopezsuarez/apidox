@@ -92,7 +92,7 @@ function onUpdateServer(index, element)
 		$("[data-name='server']").html(uri);
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri") + $(element).find("#uri").data("param"));
+			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
 		});
 	}
 	else if (url.length > 0)
@@ -103,7 +103,7 @@ function onUpdateServer(index, element)
 		$("[data-name='server']").html(uri);
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri") + $(element).find("#uri").data("param"));
+			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
 		});
 	}
 	else
@@ -114,7 +114,7 @@ function onUpdateServer(index, element)
 		$("[data-name='server']").html(uri);
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri") + $(element).find("#uri").data("param"));
+			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
 		});
 	}
 }

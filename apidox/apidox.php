@@ -45,7 +45,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 					<span><?php echo $apidox->getTitle(); ?></span>
 				</a>
 			</div>
-			<a class="apidox-powered hidden-xs" href="https://github.com/jalopezsuarez/apidox">
+			<a class="apidox-powered hidden-xs" href="http://github">
 				<span class="powered">{Apidox} Powered &lt;XML/&gt;</span>
 				<span class="credits">Generated with Apidox v2.0.2016</span>
 			</a>

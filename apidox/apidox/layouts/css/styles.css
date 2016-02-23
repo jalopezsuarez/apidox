@@ -652,7 +652,7 @@ apidox-parameters table {
 	-ms-word-break: break-all;
 	display: inline-block;
 	padding: 0px 0px 0px 0px;
-	margin: 0px 0px 0px -4px;
+	margin: 0px 0px 0px -2px;
 }
 
 .apidox-request a:hover, .apidox-request a:focus {
