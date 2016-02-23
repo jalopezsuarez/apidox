@@ -54,7 +54,7 @@ body {
 .anchorific ul li a {
 	color: #7ccfaf;
 	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
-	font-size: 14px;
+	font-size: 14px; 
 	font-weight: bold;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -264,7 +264,7 @@ body {
 	font-size: 17px;
 	font-weight: 600;
 	border-bottom: 1px solid #3a3e4d;
-	padding: 10px 15px 0px 15px;
+	padding: 5px 15px 5px 15px;
 	margin: 0px 0px 0px 0px;
 }
 
@@ -279,7 +279,7 @@ body {
 	padding: 10px 15px 10px 15px;
 	margin: 0px 0px 0px 0px;
 }
-
+ 
 .apidox-endpoint {
 	background: #f3f4f6;
 	height: 50px;

@@ -1,6 +1,6 @@
 <?php
 // ==================================================================
-ini_set('display_errors', 'on');
+ini_set('display_errors', 'on'); 
 error_reporting(E_ALL);
 // ==================================================================
 require_once realpath(dirname(__FILE__) . '/apidox/app/Controller.php');
@@ -52,7 +52,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 		</div>
 	</nav>
-
+ 
 	<div class="container-fluid">
 
 		<div class="row">
