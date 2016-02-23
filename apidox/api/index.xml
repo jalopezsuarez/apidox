@@ -1,0 +1,26 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="acceso" />
+
+	<order name="actividad" />
+	<order name="albaranes" />
+	<order name="muestreo" />
+	<order name="rendimientos" />
+	<order name="liquidacion" />
+	<order name="calendario" />
+	<order name="previsiones" />
+	<order name="tratamientos" />
+
+	<order name="trabajadores" />
+
+	<order name="notificaciones" />
+	<order name="buzon" />
+
+	<order name="usuario" />
+	<order name="fincas" />
+	<order name="listados" />
+
+	<order name="meteo" />
+</index>
+

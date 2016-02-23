@@ -1,0 +1,26 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="buzon/pendientes" description="Obtiene el número de mensajes y notificaciones no leídas de un usuario." hidden="N">
+
+	<param name="token" type="string" description="Token" required="Y" />
+
+	<errors>
+		<error code="107" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	"status": "OK",
+	"message": "",
+	"results": {
+		"mensajes_no_leidos": 2,
+		"notificaciones_no_leidas": 1
+	}
+}]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

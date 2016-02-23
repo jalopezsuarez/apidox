@@ -1,0 +1,9 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="eltiempo" />
+	<order name="actual" />
+	<order name="prevision" />
+	<order name="luna" />
+</index>
+

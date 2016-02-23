@@ -1,0 +1,69 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="usuario/campanas" description="Obtiene un listado de las campañas disponibles indicando su identificador, código, nombre, fecha de inicio y fecha final.">
+
+	<param name="token" type="string" description="Token de sesion." required="Y" />
+
+	<errors>
+		<error code="10" />
+		<error code="12" />
+		<error code="107" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+	status: "OK",
+	message: "",
+	results: [
+		{
+			id: 7,
+			codigo: "14/15",
+			nombre: "CAMPAÑA 2014/2015",
+			inicio: "20140901",
+			final: "20150831"
+		},
+		{
+			id: 6,
+			codigo: "13/14",
+			nombre: "CAMPAÑA 2013/2014",
+			inicio: "20130901",
+			final: "20140831"
+		},
+		{
+			id: 5,
+			codigo: "12/13",
+			nombre: "CAMPAÑA 2012/2013",
+			inicio: "20120901",
+			final: "20130831"
+		},
+		{
+			id: 4,
+			codigo: "11/12",
+			nombre: "CAMPAÑA 2011/2012",
+			inicio: "20110901",
+			final: "20120831"
+		},
+		{
+			id: 3,
+			codigo: "10/11",
+			nombre: "CAMPAÑA 2010/2011",
+			inicio: "20100901",
+			final: "20110831"
+		},
+		{
+			id: 1,
+			codigo: "09/10",
+			nombre: "CAMPAÑA 2009/2010",
+			inicio: "20090901",
+			final: "20100831"
+		}
+	]
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="albaranes/detalle" description="Obtiene el detalle de un albarán indicando (TODO: rellenar aquí la información devuelta).">
+
+	<param name="token" type="string" required="Y" description="Token" />
+	<param name="inicio_campana" type="string" required="Y" description="Fecha de inicio de campaña" />
+	<param name="fin_campana" type="string" required="Y" description="Fecha de fin de campaña" />
+	<param name="medianeria" type="boolean" required="N" description="Resultados con sistema de medianeria" />
+
+	<param name="serie" type="string" required="Y" description="Identificador del almacén." />
+	<param name="numero" type="integer" required="Y" description="Número de albarán." />
+
+	<errors>
+		<error code="107" />
+		<error code="300" />
+		<error code="301" />
+		<error code="302" />
+		<error code="303" />
+		<error code="304" />
+		<error code="305" />
+	</errors>
+
+	<example><![CDATA[]]></example>
+	<information><![CDATA[]]></information>
+
+</method>
+

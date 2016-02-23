@@ -1,0 +1,12 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+
+<index>
+	<order name="pendientes" />
+	<order name="socios" />
+	<order name="trabajadores" />
+	<order name="empleados" />
+	<order name="conversaciones" />
+	<order name="detalle" />
+	<order name="enviar" />
+</index>
+

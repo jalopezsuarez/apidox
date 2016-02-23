@@ -1,0 +1,19 @@
+{
+  "name": "titillium",
+  "version": "1.0.0",
+  "description": "Type designed by Accademia di Belle Arti di Urbino.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chialab/titillium.git"
+  },
+  "keywords": [
+    "font",
+    "Titillium"
+  ],
+  "author": "BEdita Team <info@bedita.com> (http://www.bedita.com)",
+  "license": "OFL",
+  "bugs": {
+    "url": "https://github.com/Chialab/titillium/issues"
+  },
+  "homepage": "https://github.com/Chialab/titillium"
+}

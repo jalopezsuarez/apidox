@@ -1,0 +1,76 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="albaranes/listado" description="Obtiene un listado de los albaranes disponibles para un usuario (identificado a partir de su token de sesión).">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />
+	<param name="fin_campana" type="string" description="Fecha de fin de campaña" required="Y" />
+	<param name="medianeria" type="boolean" description="Resultados con sistema de medianeria" required="N" />
+
+	<param name="semana" type="string" description="Semana" />
+	<param name="producto" type="string" description="Producto" />
+	<param name="page" type="integer" description="Página de resultados a obtener comenzando por la pagina 0." />
+	<param name="pagesize" type="integer" description="Cantidad de resultados a obtener." required="N" />
+
+	<errors>
+		<error code="10" />
+		<error code="12" />
+		<error code="107" />
+		<error code="300" />
+		<error code="301" />
+		<error code="302" />
+		<error code="303" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+    "status": "OK",
+    "message": "",
+    "results": 
+    {
+    	"cabecera":
+    	{
+			"num_albaranes": 41,
+			"peso_total": 57695
+       	},
+    	"lista_albaranes":
+		[
+			{
+				"semana": 1505,
+				"fecha": 
+				{
+					"date": "2015-01-29 00:00:00",
+					"timezone_type": 3,
+					"timezone": "Europe/Madrid"
+				},
+				"albaran": 8424,
+				"producto": "TOMATE RAMA",
+				"finca": "02914-4",
+				"kg": 2772,
+				"unidad_medida": 3,
+				"medianeria": 100,
+				"muestreo": true
+	        }
+	    ]
+	}
+}
+]]>
+	</example>
+
+	<information>
+<![CDATA[
+	<p>Unica API Server Information</p>
+	<p>Salida:<br>
+	<ul>
+		<li>-Listado de productos<li>
+		<li>-Albaranes totales<li>
+		<li>-Kilogramos totales<li>
+		<li>-Albaran (detalle /campos)<li>
+	</ul>
+	</p>
+]]>
+	</information>
+
+</method>
+

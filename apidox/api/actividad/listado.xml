@@ -1,0 +1,67 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+<method type="GET" uri="actividad/listado" description="Obtiene el informe de actividad de un usuario.">
+
+	<param name="token" type="string" required="Y" description="Token" />
+	<param name="inicio_campana" type="string" required="Y" description="Fecha de inicio de campaña" />
+	<param name="fin_campana" type="string" required="Y" description="Fecha de fin de campaña" />
+	<param name="medianeria" type="boolean" description="Resultados con sistema de medianeria" />
+	<param name="page" type="integer" description="Página de resultados a obtener" />
+	<param name="pagesize" type="integer" description="Cantidad de resultados a obtener" />
+
+	<errors>
+		<error code="10" />
+		<error code="12" />
+		<error code="107" />
+		<error code="300" />
+		<error code="301" />
+		<error code="302" />
+		<error code="303" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+    "status": "OK",
+    "message": "",
+    "results": [{
+	
+        "imagen": "http://localhost/soydeunica-server/public/media/producto/1033210/index.png",
+	    "producto": "PIMIENTO PICANTE ROJO",
+	    "finca": "0105010B",
+	    "fecha_entrada": "2015-01-16",
+	    "fecha_peso": "2015-01-16 12:30:20",
+	    "semana": 3,
+	    "cantidad": 103.7,
+	    "unidad_medida": 3,
+	    "etapa": "ETAPA_MUESTREO",
+	    "bultos": 74,
+	    "peso_calibre_maximo": 95.4,
+	    "porcentaje_calibre_maximo": 100,
+	    "importe": 171.72,
+	    "albaran": 25222,
+	    "fecha_muestreo": "2015-01-20 19:22:10"
+	
+	},{
+        "imagen": "http://localhost/soydeunica-server/public/media/producto/1033210/index.png",
+        "producto": "PIMIENTO PICANTE ROJO",
+        "finca": "0105010B",
+        "fecha_entrada": "2015-01-16",
+        "fecha_peso": "2015-01-16 12:30:20",
+        "semana": 3,
+        "cantidad": 103.7,
+        "unidad_medida": 3,
+        "etapa": "ETAPA_PESO",
+        "bultos": 74,
+        "peso_calibre_maximo": null,
+        "porcentaje_calibre_maximo": null,
+        "importe": 171.72,
+        "albaran": 25222,
+        "fecha_muestreo": null
+	}]
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>

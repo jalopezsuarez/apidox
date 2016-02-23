@@ -1,0 +1,51 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="previsiones/historico" description="Devuelve el histórico de previsiones del usuario. Los datos de previsiones y entradas reales agrupados por semanas.">
+
+	<param name="token" type="string" description="Token" required="Y" />
+	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />
+	<param name="fin_campana" type="string" description="Fecha de fin de campaña" required="Y" />
+	<param name="producto" type="string" description="Producto" required="Y" />
+
+	<errors>
+		<error code="10" />
+		<error code="12" />
+		<error code="107" />
+		<error code="300" />
+		<error code="301" />
+		<error code="302" />
+		<error code="303" />
+		<error code="800" />
+	</errors>
+
+	<example>
+<![CDATA[
+{
+"status": "OK",
+"message": "",
+"results": 
+	[
+		{
+			"semana": 45,
+			"real": 50,
+			"prevision": 0
+		},
+		{
+			"semana": 47,
+			"real": 962,
+			"prevision": 0
+		},
+		{
+			"semana": 48,
+			"real": 2005,
+			"prevision": 0
+		}
+	]
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

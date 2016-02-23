@@ -1,0 +1,23 @@
+<!DOCTYPE method SYSTEM "method.dtd">
+
+<method type="GET" uri="usuario/clave" description="Realiza el cambio de clave de acceso de un usuario dado por token de usuario." hidden="N">
+
+	<param name="token" type="string" description="Token de sesion." required="Y" />
+	<param name="password" type="string" description="Nueva contraseña asociada al usuario." required="Y" />
+
+	<errors></errors>
+
+	<example>
+<![CDATA[
+{
+ "status": "OK",
+ "message": "",
+ "response": ""
+}
+]]>
+	</example>
+
+	<information><![CDATA[]]></information>
+
+</method>
+

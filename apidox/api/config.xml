@@ -1,0 +1,3 @@
+<!DOCTYPE config SYSTEM "config.dtd">
+
+<config title="Agronote / Agro App" uri="api.soydeunica.net/api-v1" scheme="http://"/>
