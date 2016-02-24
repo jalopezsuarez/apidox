@@ -35,7 +35,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-</head>
+</head> 
 <body>
 
 	<nav class="navbar navbar-default navbar-fixed-top apidox-nav">

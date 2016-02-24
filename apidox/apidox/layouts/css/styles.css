@@ -314,10 +314,10 @@ body {
 	font-weight: 600;
 	color: #ffffff;
 	line-height: 50px;
-	padding: 65px 0px 0px 15px;
-	margin: -65px 0px 0px 0px;
+	padding: 70px 0px 0px 15px;
+	margin: -70px 0px 0px 0px;
 	display: inline;
-} 
+}  
 
 .apidox-endpoint div.total {
 	display: inline;
