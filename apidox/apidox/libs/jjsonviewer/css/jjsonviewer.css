@@ -4,9 +4,9 @@
 	font-family: monospace;
 	padding-left: 0;
 	margin-left: 20px;
-	overflow: auto;
-}
-
+	overflow: auto; 
+} 
+ 
 .jjson-container {
 	background: #292b36;
 	color: #fff;
@@ -140,5 +140,9 @@
 	color: #fff;
 	opacity: 1;
 	float: none;
+}
+
+.jjson-container .close {
 	font-weight: normal!important;
+	text-shadow: none!important;
 }

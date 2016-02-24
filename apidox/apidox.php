@@ -10,8 +10,8 @@ use Application\Apidox;
 $controller = new Controller();
 $apidox = $controller->parse(dirname(__FILE__) . '/api');
 // ==================================================================
-?>   
-<!DOCTYPE html> 
+?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,8 +35,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-</head>  
-<body>  
+</head>
+<body>
 
 	<nav class="navbar navbar-default navbar-fixed-top apidox-nav">
 		<div class="container-fluid">
@@ -224,8 +224,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 						<div class="apidox-request">
 							<span id="type" class="protocol" data-type="<?php echo $methodResource[Apidox::TYPE] ?>"><?php echo $methodResource[Apidox::TYPE] ?></span>
 							<a id="link" data-name="link" target="_blank" href="<?php echo $apidox->getScheme()?><?php echo trim($apidox->getUri(), '/')?><?php echo '/' . trim($methodResource[Apidox::URI], '/') ?>">
-								<span id="server" class="server" data-name="server"><?php echo $apidox->getScheme()?><?php echo trim($apidox->getUri(), '/')?></span>
-								<span id="uri" class="uri" data-uri="<?php echo '/' . trim($methodResource[Apidox::URI], '/') ?>" data-param=""><?php echo '/' . trim($methodResource[Apidox::URI], '/')?></span>
+								<span id="server" class="server" data-name="server" data-server="<?php echo $apidox->getScheme()?><?php echo trim($apidox->getUri(), '/')?>" data-uri="<?php echo '/' . trim($methodResource[Apidox::URI], '/')?>" data-param=""><?php echo $apidox->getScheme()?><?php echo trim($apidox->getUri(), '/')?></span>
 							</a>
 						</div>
 						<div class="apidox-entitled">Response</div>

@@ -4,7 +4,7 @@
  * @author apidox vemovi.com
  */
 $(document).ready(function()
-{  
+{
 	$('.content').anchorific({
 		navigation : '.anchorific', // position of navigation
 		speed : 200, // speed of sliding back to top
@@ -15,36 +15,39 @@ $(document).ready(function()
 		position : 'append', // position of anchor text
 		spyOffset : 0
 	// specify heading offset for spy scrolling
-	}); 
+	});
 
 	$("a[data-name='link']").each(function(index, element)
 	{
 		var url = $("input[data-name='service']").val().toLowerCase();
 		if (url.indexOf("://") > 0)
 		{
-			var urlIndex = url.indexOf("://");
-			var schema = url.substr(0, urlIndex + 3);
-			var server = url.substr(urlIndex + 3, url.length - 1);
+			var indexSchema = url.indexOf("://");
+			var schema = url.substr(0, indexSchema + 3);
+			var server = url.substr(indexSchema + 3, url.length - 1);
 			server = server.replace(/\/+$/, '');
-			var uri = schema + server;
-			$(element).find("#server").html(uri);
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		}
 		else if (url.length > 0)
 		{
-			url = url.replace(/\/+$/, '');
 			var schema = $('#service').data('schema');
-			var uri = schema + url;
-			$(element).find("#server").html(uri);
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var server = url.replace(/\/+$/, '');
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		}
 		else
 		{
 			var schema = $('#service').data('schema');
 			var server = $('#service').data('server');
-			var uri = schema + server;
-			$(element).find("#server").html(uri);
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		}
 	});
 
@@ -83,26 +86,29 @@ function onUpdateServer(index, element)
 	var url = $("input[data-name='service']").val().toLowerCase();
 	if (url.indexOf("://") > 0)
 	{
-		var urlIndex = url.indexOf("://");
-		var schema = url.substr(0, urlIndex + 3);
-		var server = url.substr(urlIndex + 3, url.length - 1);
+		var indexSchema = url.indexOf("://");
+		var schema = url.substr(0, indexSchema + 3);
+		var server = url.substr(indexSchema + 3, url.length - 1);
 		server = server.replace(/\/+$/, '');
-		var uri = schema + server;
-		$("[data-name='server']").html(uri);
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		});
 	}
 	else if (url.length > 0)
 	{
-		url = url.replace(/\/+$/, '');
 		var schema = $('#service').data('schema');
-		var uri = schema + url;
-		$("[data-name='server']").html(uri);
+		var server = url.replace(/\/+$/, '');
+		var uri = schema + server;
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		});
 	}
 	else
@@ -110,10 +116,12 @@ function onUpdateServer(index, element)
 		var schema = $('#service').data('schema');
 		var server = $('#service').data('server');
 		var uri = schema + server;
-		$("[data-name='server']").html(uri);
 		$("[data-name='link']").each(function(index, element)
 		{
-			$(element).attr("href", uri + $(element).find("#uri").data("uri"));
+			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
+			$(element).find("[data-name='server']").data('server', schema + server);
+			$(element).find("[data-name='server']").html(uri);
+			$(element).attr("href", uri);
 		});
 	}
 }
@@ -125,8 +133,8 @@ function onResourceAction()
 	var dataLoader = context.find('.loader');
 	dataLoader.removeClass('hidden');
 
-	var dataServer = context.find('#server').html();
-	var dataUri = context.find('#uri').data('uri');
+	var dataServer = context.find("[data-name='server']").data('server');
+	var dataUri = context.find("[data-name='server']").data('uri');
 	var dataType = context.find('#type').data('type');
 
 	var dataParams = '';
@@ -151,9 +159,8 @@ function onResourceAction()
 	var type = dataType.toLowerCase();
 	var params = JSON.stringify(dataJSON);
 
-	var uri = dataUri + (dataParams.length > 0 ? '?' : '') + dataParams;
-	context.find('#uri').html(uri);
-	context.find('#uri').data('param', (dataParams.length > 0 ? '?' : '') + dataParams);
+	context.find("[data-name='server']").html(get);
+	context.find("[data-name='server']").data('param', (dataParams.length > 0 ? '?' : '') + dataParams);
 	context.find('#link').attr("href", get);
 
 	var requestTime = new Date().getTime();
@@ -192,7 +199,7 @@ function onResourceAction()
 	{
 		var dataResponse = context.find("[data-name='response']");
 		var jsonResponse = {
-			exception : 'Request Exception: server response ' + textStatus
+			exception : 'ServerResponse status ' + textStatus
 		};
 		dataResponse.jJsonViewer(jsonResponse);
 	});
