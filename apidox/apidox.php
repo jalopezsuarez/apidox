@@ -10,8 +10,8 @@ use Application\Apidox;
 $controller = new Controller();
 $apidox = $controller->parse(dirname(__FILE__) . '/api');
 // ==================================================================
-?>  
-<!DOCTYPE html>
+?>   
+<!DOCTYPE html> 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -35,8 +35,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-</head> 
-<body>
+</head>  
+<body> 
 
 	<nav class="navbar navbar-default navbar-fixed-top apidox-nav">
 		<div class="container-fluid">

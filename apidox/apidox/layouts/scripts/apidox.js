@@ -3,9 +3,8 @@
  * 
  * @author apidox vemovi.com
  */
-  
 $(document).ready(function()
-{     
+{ 
 	$('.content').anchorific({
 		navigation : '.anchorific', // position of navigation
 		speed : 200, // speed of sliding back to top
@@ -19,7 +18,7 @@ $(document).ready(function()
 	}); 
 
 	$("a[data-name='link']").each(function(index, element)
-	{ 
+	{
 		var url = $("input[data-name='service']").val().toLowerCase();
 		if (url.indexOf("://") > 0)
 		{
@@ -189,10 +188,13 @@ function onResourceAction()
 		var dataResponse = context.find("[data-name='response']");
 		dataResponse.jJsonViewer($.trim(response));
 
-	}).fail(function(response)
+	}).fail(function(jqXHR, textStatus, errorThrown)
 	{
 		var dataResponse = context.find("[data-name='response']");
-		dataResponse.jJsonViewer($.trim(response));
+		var jsonResponse = {
+			exception : 'Request Exception: server response ' + textStatus
+		};
+		dataResponse.jJsonViewer(jsonResponse);
 	});
 
 }
