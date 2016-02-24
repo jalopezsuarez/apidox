@@ -93,7 +93,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				<!-- /Application -->
 
 				<?php foreach ($apidox->getEndpoints() as $endpointResource) : ?>
-				<?php $collapse = preg_replace("/[^ \w]+/", "", strtolower($endpointResource[Apidox::NAME])); ?>
+				<?php $methodCounting = count($endpointResource[Apidox::METHODS])?>
+				<?php if ($methodCounting > 0 ): ?>
 
 				<!-- Section -->
 				<div class="row apidox-section-header">
@@ -114,7 +115,6 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				</div>
 				<!-- /Section -->
 
-				<?php $methodEnding = count($endpointResource[Apidox::METHODS])?>
 				<?php foreach ($endpointResource[Apidox::METHODS] as $methodResource) : ?>
 
 				<!-- Method -->
@@ -234,7 +234,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							<div class="json-response" data-name="response"></div>
 						</div>
 					</div>
-					<div class="col-md-7 clearfix apidox-section-information <?php echo 0 === --$methodEnding?'last':'' ?>">
+					<div class="col-md-7 clearfix apidox-section-information <?php echo 0 === --$methodCounting?'last':'' ?>">
 						<?php $activeErrors = 'active'?>
 						<?php $activeExample = !isset($methodResource[Apidox::ERRORS])?'active':''?>
 						<?php $activeInformation = !isset($methodResource[Apidox::ERRORS]) && !isset($methodResource[Apidox::EXAMPLE])?'active':''?>
@@ -303,6 +303,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 				<?php endforeach; ?>
 
+				<?php endif; ?>
 				<?php endforeach; ?>
 
 				<div class="row">
