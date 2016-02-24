@@ -3,7 +3,7 @@
  * 
  * @author apidox vemovi.com
  */
-  
+   
 $(document).ready(function()
 {     
 	$('.content').anchorific({
