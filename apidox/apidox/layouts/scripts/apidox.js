@@ -16,7 +16,7 @@ $(document).ready(function()
 		position : 'append', // position of anchor text
 		spyOffset : 0
 	// specify heading offset for spy scrolling
-	});
+	}); 
 
 	$("a[data-name='link']").each(function(index, element)
 	{ 
