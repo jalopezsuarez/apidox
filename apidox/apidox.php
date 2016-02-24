@@ -36,7 +36,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 <![endif]-->
 
 </head>  
-<body> 
+<body>  
 
 	<nav class="navbar navbar-default navbar-fixed-top apidox-nav">
 		<div class="container-fluid">
