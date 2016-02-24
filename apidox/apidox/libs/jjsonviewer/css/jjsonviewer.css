@@ -140,5 +140,9 @@
 	color: #fff;
 	opacity: 1;
 	float: none;
+}
+
+.jjson-container .close {
 	font-weight: normal!important;
+	text-shadow: none!important;
 }
