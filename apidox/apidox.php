@@ -58,14 +58,14 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 		<div class="row">
 
 			<!-- Sidebar -->
-			<div class="col-md-2 hidden-sm hidden-xs">
-				<div class="anchorific-wrapper">
+			<div class="col-md-2 col-md-2a hidden-sm hidden-xs">
+				<div class="anchorific-wrapper col-md-2a">
 					<nav class="anchorific "></nav>
 				</div>
 			</div>
 			<!-- /Sidebar -->
 
-			<div class="col-md-10 content">
+			<div class="col-md-10 col-md-10a content">
 
 				<div class="col-md-5 apidox-section-sidebar hidden-sm hidden-xs"></div>
 

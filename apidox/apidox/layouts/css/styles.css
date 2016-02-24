@@ -12,6 +12,14 @@ body {
 .content {
 	border-left: 1px solid #ddd;
 }
+
+.col-md-2a {
+	width: 13%;
+}
+
+.col-md-10a {
+	width: 87%;
+}
  
 /* Sideber Styles   
 ----------------------------------*/
@@ -19,7 +27,6 @@ body {
 	position: fixed !important;
 	overflow-y: scroll !important;
 	height: 100%;
-	width: 16.6667%;
 	margin-left: -15px;
 	padding-left: 15px;
 	top: 50px;
