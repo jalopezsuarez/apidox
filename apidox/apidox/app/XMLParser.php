@@ -25,7 +25,6 @@ class XMLParser
 		
 		// =======================================================
 		
-		$endpointsDictionary = array();
 		$errorsDictionary = array();
 		
 		// -------------------------------------------------------
@@ -133,17 +132,16 @@ class XMLParser
 		
 		if (count($endpointsOrdering) > 0)
 		{
-			$endpointsDictionary = $this->reorderingEndpoints($endpointsCollection, $endpointsOrdering);
+			$endpointsCollection = $this->reorderingEndpoints($endpointsCollection, $endpointsOrdering);
 		}
 		
 		// =======================================================
 		
-		$methodDictionary = array();
-		$methodOrdering = array();
 		$apidoxCounter = 0;
 		
-		foreach ( $endpointsDictionary as &$endpointResource )
+		foreach ( $endpointsCollection as &$endpointResource )
 		{
+			$methodOrdering = array();
 			$methodResources = array();
 			$methodCounter = 0;
 			
@@ -163,7 +161,7 @@ class XMLParser
 						$orderFile = simplexml_load_file($filepath, null, LIBXML_NOCDATA);
 						foreach ( $orderFile->order as $order )
 						{
-							$methodOrdering[] = (string)$order->attributes()[Apidox::NAME];
+							$methodOrdering[] = trim((string)$order->attributes()[Apidox::NAME], '/');
 						}
 					}
 					else
@@ -251,7 +249,8 @@ class XMLParser
 							}
 							$methodResource[Apidox::PARAMS] = $paramResources;
 							
-							array_push($methodResources, $methodResource);
+							$resource = trim(pathinfo($filepath, PATHINFO_FILENAME), '/');
+							$methodResources[$resource] = $methodResource;
 						}
 					}
 				}
@@ -260,18 +259,18 @@ class XMLParser
 			// -------------------------------------------------------
 			if (count($methodOrdering) > 0)
 			{
-				$methodDictionary = $this->reorderingMethods($methodResources, $methodOrdering);
+				$methodResources = $this->reorderingMethods($methodResources, $methodOrdering);
 			}
 			// -------------------------------------------------------
 			
-			$endpointResource[Apidox::METHODS] = $methodDictionary;
+			$endpointResource[Apidox::METHODS] = $methodResources;
 			$endpointResource[Apidox::COUNTER] = $methodCounter;
 		}
 		
 		// =======================================================
 		$apidox->setCounter($apidoxCounter);
 		
-		$apidox->setEndpoints($endpointsDictionary);
+		$apidox->setEndpoints($endpointsCollection);
 		$apidox->setErrors($errorsDictionary);
 		// =======================================================
 	}
@@ -280,20 +279,20 @@ class XMLParser
 	 * Proceso para la reorganizacion de endpoints.
 	 * 
 	 * @param unknown $arrayOriginal        
-	 * @param unknown $arrayOrder        
+	 * @param unknown $arrayOrdering        
 	 * @return Ambigous <multitype:, multitype:NULL
 	 */
-	private function reorderingEndpoints($arrayOriginal, &$arrayOrder)
+	private function reorderingEndpoints($arrayOriginal, &$arrayOrdering)
 	{
 		$arrayNew = array();
-		$numOrders = count($arrayOrder);
+		$numOrders = count($arrayOrdering);
 		
 		for($currIdx = 0; $currIdx < $numOrders; $currIdx ++)
 		{
 			$numOriginal = count($arrayOriginal);
 			for($j = 0; $j < $numOriginal; $j ++)
 			{
-				if (strcasecmp($arrayOrder[$currIdx], $arrayOriginal[$j][Apidox::NAME]) === 0)
+				if (strcasecmp($arrayOrdering[$currIdx], $arrayOriginal[$j][Apidox::NAME]) === 0)
 				{
 					$arrayNew[] = array_splice($arrayOriginal, $j, 1)[0];
 					break;
@@ -312,20 +311,20 @@ class XMLParser
 	 * Proceso de reordenacion de los metodos de un endpoint.
 	 * 
 	 * @param unknown $arrayOriginal        
-	 * @param unknown $arrayOrder        
+	 * @param unknown $arrayOrdering        
 	 * @return Ambigous <multitype:, multitype:unknown >
 	 */
-	private function reorderingMethods($arrayOriginal, $arrayOrder)
+	private function reorderingMethods($arrayOriginal, $arrayOrdering)
 	{
 		$arrayNew = array();
-		$numOrders = count($arrayOrder);
+		$numOrders = count($arrayOrdering);
 		
 		for($currIdx = 0; $currIdx < $numOrders; $currIdx ++)
 		{
-			if (array_key_exists($arrayOrder[$currIdx], $arrayOriginal))
+			if (array_key_exists($arrayOrdering[$currIdx], $arrayOriginal))
 			{
-				$key = $arrayOriginal[$arrayOrder[$currIdx]];
-				$arrayNew[$arrayOrder[$currIdx]] = $key;
+				$key = $arrayOriginal[$arrayOrdering[$currIdx]];
+				$arrayNew[$arrayOrdering[$currIdx]] = $key;
 			}
 		}
 		if (count($arrayOriginal) > 0)

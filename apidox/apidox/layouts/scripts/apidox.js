@@ -13,7 +13,7 @@ $(document).ready(function()
 		top : '.top', // back to top button or link class
 		spy : true, // scroll spy
 		position : 'append', // position of anchor text
-		spyOffset : 0
+		spyOffset : 128
 	// specify heading offset for spy scrolling
 	});
 
