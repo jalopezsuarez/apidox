@@ -10,7 +10,7 @@ class XMLParser
 
 	public function __construct()
 	{
-	}
+	} 
 
 	public function parse(&$apidox, $dirname)
 	{
