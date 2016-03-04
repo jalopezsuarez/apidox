@@ -15,7 +15,7 @@ $(document).ready(function()
 		position : 'append', // position of anchor text
 		spyOffset : 32
 	// specify heading offset for spy scrolling
-	}); 
+	});
 
 	$("a[data-name='link']").each(function(index, element)
 	{
@@ -147,6 +147,7 @@ function onResourceAction()
 		{
 			value = $(element).find("[data-name='value'] option:selected").text();
 		}
+		value = value.replace(/[\u200B-\u200D\uFEFF]/g, '');
 		if (value != undefined && value != null && value.length > 0)
 		{
 			dataParams += (dataParams.length > 0 ? '&' : '') + $.trim(param) + '=' + $.trim(value);
@@ -203,5 +204,4 @@ function onResourceAction()
 		};
 		dataResponse.jJsonViewer(jsonResponse);
 	});
-
 }
