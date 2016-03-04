@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="notificaciones/recibidas" description="Obtiene el listado de notificaciones del usuario." hidden="N">
+<method hidden="Y" type="GET" uri="notificaciones/recibidas" description="Obtiene el listado de notificaciones del usuario.">
 
 	<param name="token" type="string" description="Token de sesion." required="Y" />
 	<param name="page" type="integer" description="Página de resultados a obtener comenzando por la pagina 0." required="N" />

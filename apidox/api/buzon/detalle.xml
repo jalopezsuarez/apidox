@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="buzon/detalle" description="Obtiene el detalle de una conversación del usuario." hidden="N">
+<method hidden="Y" type="GET" uri="buzon/detalle" description="Obtiene el detalle de una conversación del usuario.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="interlocutor" type="string" description="Identificador única del otro usuario de la conversación" required="Y" />

@@ -1,3 +1,3 @@
 <!DOCTYPE config SYSTEM "config.dtd">
 
-<config title="Agronote / Agro App" version="1.0" uri="api.soydeunica.net/api-v1" scheme="http://"/>
+<config title="Soydeunica API" version="1.0" uri="localhost/soydeunica-master/api-v1" scheme="http://"/>

@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="buzon/empleados" description="Obtiene los empleados con los que puede comunicarse el usuario." hidden="N">
+<method hidden="Y" type="GET" uri="buzon/empleados" description="Obtiene los empleados con los que puede comunicarse el usuario.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 

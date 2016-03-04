@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="fincas/geolocalizar" description="Almacena la posicion de latitud y longitud para una finca dada que pertenezca a un socio.">
+<method hidden="Y" type="GET" uri="fincas/geolocalizar" description="Almacena la posicion de latitud y longitud para una finca dada que pertenezca a un socio.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 

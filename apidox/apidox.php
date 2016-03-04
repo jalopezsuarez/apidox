@@ -322,6 +322,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 	<script src="apidox/libs/anchorific/min/anchorific.min.js"></script>
 	<script src="apidox/libs/jjsonviewer/js/jjsonviewer.js"></script>
 	<script src="apidox/libs/json-js/json2.js"></script>
+	<script src="apidox/libs/cookie/src/jquery.cookie.js"></script>
 
 	<script src="apidox/layouts/scripts/apidox.js"></script>
 

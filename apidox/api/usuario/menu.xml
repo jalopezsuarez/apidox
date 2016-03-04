@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="usuario/menu" description="Obtiene la configuración del menú principal de la aplicación.">
+<method hidden="N" type="GET" uri="usuario/menu" description="Obtiene la configuración del menú principal de la aplicación.">
 
 	<param name="token" type="string" description="Token de sesion." required="Y" />
 

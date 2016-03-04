@@ -1,7 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="listados/almacenes"
-	description="Obtiene un listado de las cooperativas disponibles indicando su código, nombre y url de la imagen. También indica, mediante 0 o 1, si la cooperativa disponde de información de socios, trabajadores, y si está activa en la plataforma.">
+<method hidden="N" type="GET" uri="listados/almacenes" description="Obtiene un listado de las cooperativas disponibles indicando su código, nombre y url de la imagen. También indica, mediante 0 o 1, si la cooperativa disponde de información de socios, trabajadores, y si está activa en la plataforma.">
 
 	<errors></errors>
 

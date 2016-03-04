@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-<method type="GET" uri="acceso/entrar" hidden="N"
-	description="Inicio de sesión en la plataforma. Genera una sesion en la plataforma generando un token de sesion para acceso. Devuelve datos del usuario, datos de menu y otra informacion relativa al perfil del usuario dependiendo de cada tipo de usuario.">
+
+<method hidden="N" type="GET" uri="acceso/entrar" description="Inicio de sesión en la plataforma. Genera una sesion en la plataforma generando un token de sesion para acceso. Devuelve datos del usuario, datos de menu y otra informacion relativa al perfil del usuario dependiendo de cada tipo de usuario.">
 
 	<param name="idalmacen" type="string" required="Y" description="Identificador del almacén." />
 	<param name="idusuario" type="string" required="Y" description="Identificador del usuario." />
@@ -19,7 +19,7 @@
 	<param name="uuid" type="string" description="Identificador del dispositivo iOS o Android. Es obligatorio especificarlo en el caso de que la plataforma sea ANDROID o IPHONE. Si la plataforma es UNICAGES, el valor del parámetro no se tendrá en cuenta." />
 
 	<errors>
-		<error code="100" />	
+		<error code="100" />
 		<error code="101" />
 		<error code="102" />
 		<error code="103" />

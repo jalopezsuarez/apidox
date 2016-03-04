@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="usuario/unidades" description="Obtiene un listado de las distintas unidades de medida indicando su id, código y nombre.">
+<method hidden="N" type="GET" uri="usuario/unidades" description="Obtiene un listado de las distintas unidades de medida indicando su id, código y nombre.">
 
 	<errors></errors>
 

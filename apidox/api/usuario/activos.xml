@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="usuario/activos" description="Permite conocer los usuarios activos en los ultimos dias indicados." hidden="N">
+<method hidden="Y" type="GET" uri="usuario/activos" description="Permite conocer los usuarios activos en los ultimos dias indicados.">
 
 	<param name="token" type="string" description="Token de session." required="Y" />
 	<param name="dias" type="string" description="Usuarios activos en los ultimos n dias." required="Y" />

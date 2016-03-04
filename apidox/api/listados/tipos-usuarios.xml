@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="listados/tipos-usuarios" description="Obtiene un listado de los tipos de usuarios disponibles en la plataforma, indicando su código y tipo.">
+<method hidden="N" type="GET" uri="listados/tipos-usuarios" description="Obtiene un listado de los tipos de usuarios disponibles en la plataforma, indicando su código y tipo.">
 
 	<errors></errors>
 

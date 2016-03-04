@@ -1,7 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="notificaciones/notificar" description="Envío de una notificación. Permite indicar distintos tipos de interlocutores, sean socios (4007XXX), trabajadores (2007XXX) o empleados (username). Se enviaran las notificaciones a los distintos tipos de destinatarios."
-	hidden="N">
+<method hidden="Y" type="GET" uri="notificaciones/notificar" description="Envío de una notificación. Permite indicar distintos tipos de interlocutores, sean socios (4007XXX), trabajadores (2007XXX) o empleados (username). Se enviaran las notificaciones a los distintos tipos de destinatarios.">
 
 	<param name="token" type="string" description="Token de sesion." required="Y" />
 	<param name="interlocutores" type="array" description="Array de identificadores de usuarios destinatarios del mensaje." required="N" />

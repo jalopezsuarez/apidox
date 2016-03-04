@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="fincas/listado" description="Obtencion del listado de fincas asociadas a un socio. Listado sin filtrar por fincas activas en produccion por campaña.">
+<method hidden="N" type="GET" uri="fincas/listado" description="Obtencion del listado de fincas asociadas a un socio. Listado sin filtrar por fincas activas en produccion por campaña.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 

@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="buzon/conversaciones" description="Obtiene el listado de conversaciones activas del usuario." hidden="N">
+<method hidden="Y" type="GET" uri="buzon/conversaciones" description="Obtiene el listado de conversaciones activas del usuario.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="page" type="integer" description="Página de resultados a obtener" required="N" />

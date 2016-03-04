@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="notificaciones/enviadas" description="Obtiene el listado de notificaciones enviadas por el usuario." hidden="N">
+<method hidden="Y" type="GET" uri="notificaciones/enviadas" description="Obtiene el listado de notificaciones enviadas por el usuario.">
 
 	<param name="token" type="string" description="Token de sesion." required="Y" />
 	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña." required="Y" />

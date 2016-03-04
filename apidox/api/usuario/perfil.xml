@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="usuario/perfil" description="Devuelve datos del usuario, datos de menu y otra informacion relativa al perfil del usuario dependiendo de la informacion disponible para cada tipo usuario." hidden="N">
+<method hidden="N" type="GET" uri="usuario/perfil" description="Devuelve datos del usuario, datos de menu y otra informacion relativa al perfil del usuario dependiendo de la informacion disponible para cada tipo usuario.">
 
 	<param name="token" type="string" description="Token de sesion." required="Y" />
 

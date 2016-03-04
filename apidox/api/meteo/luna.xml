@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="meteo/luna" description="Obtiene las fases lunares para los siguientes días.">
+<method hidden="Y" type="GET" uri="meteo/luna" description="Obtiene las fases lunares para los siguientes días.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="numdias" type="integer" description="Número de días para obtener las fases lunares." required="N" />

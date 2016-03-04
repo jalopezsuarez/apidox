@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="meteo/eltiempo" description="Todas las condiciones meteorologicas actuales y previstas para los proximos dias. Se incluye la prevision de las fases lunares para las proximas semanas.">
+<method hidden="Y" type="GET" uri="meteo/eltiempo" description="Todas las condiciones meteorologicas actuales y previstas para los proximos dias. Se incluye la prevision de las fases lunares para las proximas semanas.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="lat" type="float" description="Latitud del lugar para el que obtener las condiciones meteorológicas." required="Y" />

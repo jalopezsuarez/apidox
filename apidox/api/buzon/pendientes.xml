@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="buzon/pendientes" description="Obtiene el número de mensajes y notificaciones no leídas de un usuario." hidden="N">
+<method hidden="Y" type="GET" uri="buzon/pendientes" description="Obtiene el número de mensajes y notificaciones no leídas de un usuario.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 

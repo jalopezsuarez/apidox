@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="albaranes/confirmar" description="Realiza la confirmacion de un albaran dado por el usuario propietario.">
+<method hidden="N" type="GET" uri="albaranes/confirmar" description="Realiza la confirmacion de un albaran dado por el usuario propietario.">
 
 	<param name="token" type="string" required="Y" description="Token" />
 	<param name="idconfirmacion" type="string" required="Y" description="Identificador de confirmacion para el albaran muestreado. Este identificador se obtiene de la lineas de muestreo de los albaranes." />
@@ -10,15 +10,7 @@
 		<error code="201" />
 	</errors>
 
-	<example>
-<![CDATA[
-{
- "status": "OK",
- "message": "",
- "response": ""
-}
-]]>
-	</example>
+	<example><![CDATA[]]></example>	
 	<information><![CDATA[]]></information>
 
 </method>

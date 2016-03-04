@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="trabajadores/fichajes-dia" description="Obtiene el detalle de las horas trabajadas para el día especificado." hidden="N">
+<method hidden="Y" type="GET" uri="trabajadores/fichajes-dia" description="Obtiene el detalle de las horas trabajadas para el día especificado.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="anio" type="string" description="Año sobre el que obtener la información (formato YYYY)." required="Y" />

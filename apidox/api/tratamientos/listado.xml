@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="tratamientos/listado" description="Obtención de los tratamientos realizados." hidden="N">
+<method hidden="Y" type="GET" uri="tratamientos/listado" description="Obtención de los tratamientos realizados.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />

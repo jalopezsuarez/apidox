@@ -15,10 +15,15 @@ $(document).ready(function()
 		position : 'append', // position of anchor text
 		spyOffset : 32
 	// specify heading offset for spy scrolling
-	}); 
+	});
 
 	$("a[data-name='link']").each(function(index, element)
 	{
+		var cookieServer = $.cookie('apidox_server');
+		if (cookieServer != undefined)
+		{
+			$("input[data-name='service']").val(cookieServer);
+		}
 		var url = $("input[data-name='service']").val().toLowerCase();
 		if (url.indexOf("://") > 0)
 		{
@@ -83,6 +88,7 @@ $(document).ready(function()
 
 function onUpdateServer(index, element)
 {
+	var cookieServer = "";
 	var url = $("input[data-name='service']").val().toLowerCase();
 	if (url.indexOf("://") > 0)
 	{
@@ -90,6 +96,7 @@ function onUpdateServer(index, element)
 		var schema = url.substr(0, indexSchema + 3);
 		var server = url.substr(indexSchema + 3, url.length - 1);
 		server = server.replace(/\/+$/, '');
+		cookieServer = schema + server;
 		$("[data-name='link']").each(function(index, element)
 		{
 			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
@@ -103,6 +110,7 @@ function onUpdateServer(index, element)
 		var schema = $('#service').data('schema');
 		var server = url.replace(/\/+$/, '');
 		var uri = schema + server;
+		cookieServer = schema + server;
 		$("[data-name='link']").each(function(index, element)
 		{
 			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
@@ -116,6 +124,7 @@ function onUpdateServer(index, element)
 		var schema = $('#service').data('schema');
 		var server = $('#service').data('server');
 		var uri = schema + server;
+		cookieServer = schema + server;
 		$("[data-name='link']").each(function(index, element)
 		{
 			var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
@@ -124,6 +133,10 @@ function onUpdateServer(index, element)
 			$(element).attr("href", uri);
 		});
 	}
+
+	$.cookie('apidox_server', cookieServer, {
+		path : '/'
+	});
 }
 
 function onResourceAction()
@@ -147,6 +160,7 @@ function onResourceAction()
 		{
 			value = $(element).find("[data-name='value'] option:selected").text();
 		}
+		value = value.replace(/[\u200B-\u200D\uFEFF]/g, '');
 		if (value != undefined && value != null && value.length > 0)
 		{
 			dataParams += (dataParams.length > 0 ? '&' : '') + $.trim(param) + '=' + $.trim(value);
@@ -190,18 +204,33 @@ function onResourceAction()
 			responseString += date.getMilliseconds() + " ms";
 		context.find("[data-name='status']").html(responseString);
 
-	}).done(function(response)
+	}).done(function(data, textStatus, jqXHR)
 	{
 		var dataResponse = context.find("[data-name='response']");
-		dataResponse.jJsonViewer($.trim(response));
+		var dataParser = data;
+		try
+		{
+			json = jQuery.parseJSON(data);
+		}
+		catch (e)
+		{
+			dataParser = ('<!DOCTYPE html>\n<html>\n' + data + '\n</html>').replace(/[<>]/g, function(m)
+			{
+				return {
+					'<' : '&lt;',
+					'>' : '&gt;'
+				}[m]
+			});
+
+		}
+		dataResponse.jJsonViewer($.trim(dataParser));
 
 	}).fail(function(jqXHR, textStatus, errorThrown)
 	{
 		var dataResponse = context.find("[data-name='response']");
 		var jsonResponse = {
-			exception : 'ServerResponse status ' + textStatus
+			exception : 'ServerResponse status: ' + textStatus
 		};
 		dataResponse.jJsonViewer(jsonResponse);
 	});
-
 }

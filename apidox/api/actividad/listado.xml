@@ -1,5 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-<method type="GET" uri="actividad/listado" description="Obtiene el informe de actividad de un usuario.">
+
+<method hidden="N" type="GET" uri="actividad/listado" description="Obtiene el informe de actividad de un usuario.">
 
 	<param name="token" type="string" required="Y" description="Token" />
 	<param name="inicio_campana" type="string" required="Y" description="Fecha de inicio de campaña" />

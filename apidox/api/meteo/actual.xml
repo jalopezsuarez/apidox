@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="meteo/actual" description="Obtiene las condiciones meteorológicas actuales.">
+<method hidden="Y" type="GET" uri="meteo/actual" description="Obtiene las condiciones meteorológicas actuales.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="lat" type="float" description="Latitud del lugar para el que obtener las condiciones meteorológicas." required="Y" />

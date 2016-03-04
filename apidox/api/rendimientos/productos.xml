@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="rendimientos/productos" description="Kilos totales muestreados agrupados por producto hasta la fecha. Todas las cantidades se dan con destrio incluido." hidden="N">
+<method hidden="Y" type="GET" uri="rendimientos/productos" description="Kilos totales muestreados agrupados por producto hasta la fecha. Todas las cantidades se dan con destrio incluido.">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />

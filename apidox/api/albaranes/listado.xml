@@ -1,6 +1,6 @@
 <!DOCTYPE method SYSTEM "method.dtd">
 
-<method type="GET" uri="albaranes/listado" description="Obtiene un listado de los albaranes disponibles para un usuario (identificado a partir de su token de sesión).">
+<method hidden="N" type="GET" uri="albaranes/listado" description="Obtiene un listado de los albaranes disponibles para un usuario (identificado a partir de su token de sesión).">
 
 	<param name="token" type="string" description="Token" required="Y" />
 	<param name="inicio_campana" type="string" description="Fecha de inicio de campaña" required="Y" />
