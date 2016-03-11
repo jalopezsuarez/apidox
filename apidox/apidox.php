@@ -47,9 +47,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 			</div>
 			<a class="apidox-powered hidden-xs" href="http://github">
 				<span class="powered">{Apidox} Powered &lt;XML/&gt;</span>
-				<span class="credits">Generated with Apidox v2.0.2016</span>
+				<span class="credits">Generated with Apidox v2.20160312</span>
 			</a>
-
 		</div>
 	</nav>
 
