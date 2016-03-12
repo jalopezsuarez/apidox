@@ -16,8 +16,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Apidox">
-<meta name="author" content="Apidox">
+<meta name="description" content="Apidox Live Documentation for RESTful APIs">
+<meta name="author" content="Vemovi Desarrolla SL">
 <title><?php echo $apidox->getTitle(); ?></title>
 
 <link rel="stylesheet" href="apidox/libs/bootstrap/css/bootstrap.min.css">
@@ -46,8 +46,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				</a>
 			</div>
 			<a class="apidox-powered hidden-xs" href="http://github">
-				<span class="powered">{Apidox} Powered &lt;XML/&gt;</span>
-				<span class="credits">Generated with Apidox v2.20160312</span>
+				<span class="powered">{Apidox} Live Documentation for RESTful APIs </span>
+				<span class="credits">Generated with Apidox v2.20160312 Powered &lt;XML/&gt;</span>
 			</a>
 		</div>
 	</nav>
