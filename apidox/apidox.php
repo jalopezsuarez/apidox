@@ -14,10 +14,16 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Apidox Live Documentation for RESTful APIs">
-<meta name="author" content="Vemovi Desarrolla SL">
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=EDGE" />
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Apidox Live Documentation for RESTful APIs. A place where APIs are kept. Apidox provide fast, powerful API documentation test calls, so your developers have more time to code great apps.">
+<meta name="keywords" content="apidox, live documentantion, api documentation, restful api, json api" />
+<meta name="author" content="Vemovi Desarrolla SL vemovi.com">
+<meta name="application-name" content="Apidox apidox.net">
+<meta name="generator" content="Apidox apidox.net">
+
 <title><?php echo $apidox->getTitle(); ?></title>
 
 <link rel="stylesheet" href="apidox/libs/bootstrap/css/bootstrap.min.css">
@@ -45,7 +51,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 					<span><?php echo $apidox->getTitle(); ?></span>
 				</a>
 			</div>
-			<a class="apidox-powered hidden-xs" href="http://github">
+			<a class="apidox-powered hidden-xs" target="_blank" href="https://github.com/jalopezsuarez/apidox">
 				<span class="powered">{Apidox} Live Documentation for RESTful APIs </span>
 				<span class="credits">Generated with Apidox v2.20160312 Powered &lt;XML/&gt;</span>
 			</a>
@@ -54,7 +60,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 	<div class="container-fluid">
 
-		<div class="row">
+		<div class="row apidox-container">
 
 			<!-- Sidebar -->
 			<div class="col-md-2 col-md-2a hidden-sm hidden-xs">
@@ -72,7 +78,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				<div class="row">
 					<div class="col-md-7 clearfix clearfix apidox-section-application">
 						<div class="apidox-application">
-							<div class="title"><?php echo $apidox->getTitle() ?></div>
+							<div class="title" data-name="title"><?php echo $apidox->getTitle() ?></div>
 							<div class="version">
 								<span><?php echo $apidox->getVersion(); ?></span>
 							</div>
@@ -84,7 +90,11 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 					<div class="col-md-5 pull-right apidox-section-service">
 						<div class="apidox-service">
 							<div class="title">API Server</div>
-							<input id="service" name="service" data-name="service" type="text" value="<?php echo $apidox->getScheme() . trim($apidox->getUri(), '/') ?>" data-schema="<?php echo $apidox->getScheme() ?>" data-server="<?php echo trim($apidox->getUri(), '/') ?>">
+							<div class="control">
+								<input id="service" name="service" data-name="service" type="text" value="<?php echo $apidox->getScheme() . trim($apidox->getUri(), '/') ?>" data-schema="<?php echo $apidox->getScheme() ?>" data-server="<?php echo trim($apidox->getUri(), '/') ?>">
+								<a id="restore" data-name="restore" class="restore glyphicon glyphicon-repeat"> </a>
+
+							</div>
 						</div>
 					</div>
 					<div class="col-md-7 clearfix"></div>
@@ -123,7 +133,13 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							<div class="protocol">
 								<span><?php echo $methodResource[Apidox::TYPE] ?></span>
 							</div>
-							<h2><?php echo $methodResource[Apidox::URI] ?></h2>
+							<?php $methodName = trim(trim($methodResource[Apidox::URI]), '/')?>
+							<?php if (!is_null($methodName) && strlen($methodName) > 0) :?>
+							<h2><?php echo $methodName ?></h2>
+							<?php else: ?>
+							<h2><?php echo $methodResource[Apidox::NAME] ?></h2>
+							<?php endif; ?>
+
 						</div>
 						<div class="apidox-reference">REFERENCE</div>
 						<div class="apidox-description">
@@ -140,7 +156,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 										<td data-name="param" class="field"><?php echo $paramsResource[Apidox::NAME] ?></td>
 										<td class="value"><select data-name="value">
 												<?php foreach ($paramsResource[Apidox::TYPE_ENUMERATED] as $option) : ?>
-													<option value="<?php echo $option[Apidox::VALUE]?>"><?php echo $option[Apidox::VALUE]?></option>
+													<option value="<?php echo $option[Apidox::VALUE]?>" <?php echo strcasecmp($option[Apidox::VALUE], $paramsResource[Apidox::VALUE])==0?'selected':''?>><?php echo $option[Apidox::VALUE]?></option>
 												<?php endforeach ?>
 											</select></td>
 										<td class="type <?php echo strcasecmp($paramsResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $paramsResource[Apidox::TYPE] ?></td>
@@ -210,10 +226,10 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 								<?php $count = 1; ?>
 								<?php foreach($breads as $bread) :?>
 								<?php if ($count < count($breads)) :?>
-								<div class="bread"><?php echo $bread; ?></div>
+								<div class="bread"><?php echo $bread ?></div>
 							<div class="separator">/</div>
 								<?php else:?>
-								<div class="active"><?php echo $bread; ?></div>
+								<div class="active"><?php echo strlen($bread)>0?$bread:'&nbsp;' ?></div>
 								<?php endif;?>
 								<?php $count++; ?>
 								<?php endforeach; ?>

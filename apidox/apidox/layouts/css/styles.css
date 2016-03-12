@@ -13,14 +13,15 @@ body {
 	border-left: 1px solid #ddd;
 }
 
-.col-md-2a {
-	width: 13%;
+@media all and (min-width: 992px) {
+	.col-md-2a {
+		width: 13%;
+	}
+	.col-md-10a {
+		width: 87%;
+	}
 }
 
-.col-md-10a {
-	width: 87%;
-}
- 
 /* Sideber Styles   
 ----------------------------------*/
 .anchorific-wrapper {
@@ -108,14 +109,19 @@ body {
 }
 
 .anchorific ul li ul li.active>a {
-	font-weight: bold;
-	color: #5ba4e5;
+	background-color: #f3f4f6;
+	color: #3b4151;
 	border-left: 2px solid #5ba4e5;
 	text-decoration: none;
+	margin-right: 15px;
 }
 
 /* Apidox Styles
 ----------------------------------*/
+.apidox-container {
+	border-bottom: 1px solid #ddd;
+}
+
 .apidox-section-sidebar {
 	position: absolute;
 	top: 0;
@@ -289,6 +295,10 @@ body {
 	margin: 0px 0px 0px 0px;
 }
 
+.apidox-service div.control {
+	position: relative;
+}
+
 .apidox-service input {
 	background-color: #262c39;
 	font-family: Source Code Pro, Monaco, Lucida Console, Terminal,
@@ -299,6 +309,26 @@ body {
 	border: 0 none;
 	padding: 10px 15px 10px 15px;
 	margin: 0px 0px 0px 0px;
+}
+
+.apidox-service a.restore {
+	background-color: #262c39;
+	color: #959cad;
+	border: 0 none;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 12px 16px 12px 12px;
+	margin: 0px 0px 0px 0px;
+	height: 100%;
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: normal;
+}
+
+.apidox-service a.restore:hover {
+	background-color: #262c39;
+	color: #ffffff;
 }
 
 .apidox-endpoint {
@@ -458,8 +488,8 @@ apidox-parameters table {
 .apidox-parameters input {
 	width: 100%;
 	border: 0px none;
-	line-height: 22px;
-	height: 22px;
+	line-height: 23px;
+	height: 23px;
 	vertical-align: middle;
 	background: #f0f1f4;
 	padding: 0px 0px 0px 4px;

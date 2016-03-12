@@ -3,23 +3,38 @@
  * 
  * @author apidox vemovi.com
  */
+
+var APPLICATION_COOKIE = applicationCookie();
+
 $(document).ready(function()
 {
 	$('.content').anchorific({
 		navigation : '.anchorific', // position of navigation
-		speed : 200, // speed of sliding back to top
+		speed : 192, // speed of sliding back to top
 		anchorClass : 'anchor', // class of anchor links
 		anchorText : '', // prepended or appended to anchor headings
 		top : '.top', // back to top button or link class
 		spy : true, // scroll spy
 		position : 'append', // position of anchor text
-		spyOffset : 32
+		spyOffset : 192
 	// specify heading offset for spy scrolling
+	});
+
+	$("a[href^='#']").on('click', function(e)
+	{
+		e.preventDefault();
+
+		$('html, body').animate({
+			'scrollTop' : $($(this).attr("href")).offset().top
+		}, {
+			duration : 256,
+			easing : 'swing'
+		});
 	});
 
 	$("a[data-name='link']").each(function(index, element)
 	{
-		var cookieServer = $.cookie('apidox_server');
+		var cookieServer = $.cookie(APPLICATION_COOKIE);
 		if (cookieServer != undefined)
 		{
 			$("input[data-name='service']").val(cookieServer);
@@ -83,8 +98,27 @@ $(document).ready(function()
 	});
 
 	$("input[data-name='service']").on("keyup", onUpdateServer);
+	$("a[data-name='restore']").on("click", onRestoreServer);
+
 	$("[data-name='try']").on("click", onResourceAction);
 });
+
+function applicationCookie()
+{
+	var applicationCookie = '__apidox_server_';
+
+	var title = $("div[data-name='title']").text()
+	var trimmed = $.trim(title);
+	var slug = trimmed.replace(/[^a-z0-9-]/gi, '_').replace(/-+/g, '_').replace(/^-|-$/g, '');
+	var cookie = slug.toLowerCase();
+
+	if (cookie != undefined && cookie != null && cookie.length > 0)
+	{
+		applicationCookie = applicationCookie + '_' + cookie;
+	}
+
+	return applicationCookie;
+}
 
 function onUpdateServer(index, element)
 {
@@ -134,13 +168,35 @@ function onUpdateServer(index, element)
 		});
 	}
 
-	$.cookie('apidox_server', cookieServer, {
-		path : '/'
+	$.cookie(APPLICATION_COOKIE, cookieServer, {
+		expires : 365 * 10
 	});
 }
 
-function onResourceAction()
+function onRestoreServer(event)
 {
+	event.preventDefault();
+
+	var schema = $('#service').data('schema').toLowerCase();
+	var server = $('#service').data('server').toLowerCase();
+	var uri = schema + server;
+
+	$("input[data-name='service']").val(uri);
+	$("[data-name='link']").each(function(index, element)
+	{
+		var uri = schema + server + $(element).find("[data-name='server']").data("uri") + $(element).find("[data-name='server']").data("param");
+		$(element).find("[data-name='server']").data('server', schema + server);
+		$(element).find("[data-name='server']").html(uri);
+		$(element).attr("href", uri);
+	});
+
+	$.removeCookie(APPLICATION_COOKIE);
+}
+
+function onResourceAction(event)
+{
+	event.preventDefault();
+
 	var context = $(this).parent().parent().parent();
 
 	var dataLoader = context.find('.loader');
@@ -155,7 +211,7 @@ function onResourceAction()
 	context.find("[data-name='params']").each(function(index, element)
 	{
 		var param = $(element).find("[data-name='param']").html();
-		var value = $(element).find("[data-name='value']").val();
+		var value = encodeURIComponent($(element).find("[data-name='value']").val());
 		if (value == undefined)
 		{
 			value = $(element).find("[data-name='value'] option:selected").text();
