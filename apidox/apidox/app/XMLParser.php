@@ -6,11 +6,11 @@ require_once realpath(dirname(__FILE__) . '/Apidox.php');
 use Application\Apidox;
 
 class XMLParser
-{ 
+{
 
 	public function __construct()
 	{
-	} 
+	}
 
 	public function parse(&$apidox, $dirname)
 	{
@@ -35,7 +35,14 @@ class XMLParser
 		
 		// =======================================================
 		
-		$resources = scandir($dirname);
+		$resources = array();
+		if (is_dir($dirname))
+		{
+			$resources = scandir($dirname);
+		}
+		
+		// -------------------------------------------------------
+		
 		foreach ( $resources as $resource )
 		{
 			if ($resource === '.' or $resource === '..')
@@ -43,7 +50,7 @@ class XMLParser
 				continue;
 			}
 			// -------------------------------------------------------
-			$filepath = rtrim($dirname, '/') . '/' . rtrim($resource, '/');
+			$filepath = rtrim(trim($dirname), '/') . '/' . rtrim(trim($resource), '/');
 			if (is_file($filepath) && strcasecmp($resource, Apidox::CONFIG_XML) === 0)
 			{
 				$configFile = simplexml_load_file($filepath);
@@ -122,8 +129,8 @@ class XMLParser
 			else if (is_dir($filepath))
 			{
 				$endpointsResource = array();
-				$endpointsResource[Apidox::NAME] = $resource;
-				$endpointsResource[Apidox::PATH] = $filepath;
+				$endpointsResource[Apidox::NAME] = trim($resource);
+				$endpointsResource[Apidox::PATH] = trim($filepath);
 				
 				array_push($endpointsCollection, $endpointsResource);
 			}
@@ -153,7 +160,7 @@ class XMLParser
 					continue;
 				}
 				// -------------------------------------------------------
-				$filepath = rtrim($endpointResource[Apidox::PATH], '/') . '/' . rtrim($resource, '/');
+				$filepath = rtrim(trim($endpointResource[Apidox::PATH]), '/') . '/' . rtrim(trim($resource), '/');
 				if (is_file($filepath) && strcasecmp(pathinfo($filepath, PATHINFO_EXTENSION), Apidox::XML) === 0)
 				{
 					if (strcasecmp(pathinfo($filepath, PATHINFO_FILENAME), Apidox::INDEX) === 0)
@@ -171,9 +178,9 @@ class XMLParser
 						{
 							$apidoxCounter ++;
 							$methodCounter ++;
-							$name = pathinfo($filepath, PATHINFO_FILENAME);
 							
 							$methodResource = array();
+							$methodResource[Apidox::NAME] = strtolower(rtrim(trim($endpointResource[Apidox::NAME]), '/')) . '/' . strtolower(pathinfo($filepath, PATHINFO_FILENAME));
 							$methodResource[Apidox::URI] = $methodFile->attributes()[Apidox::URI];
 							$methodResource[Apidox::TYPE] = $methodFile->attributes()[Apidox::TYPE];
 							$methodResource[Apidox::DESCRIPTION] = $methodFile->attributes()[Apidox::DESCRIPTION];

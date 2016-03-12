@@ -1,8 +1,0 @@
-<!DOCTYPE method SYSTEM "../index.dtd">
-
-<index>
-	<order name="listado" />
-	<order name="detalle" />
-	<order name="confirmar" />
-</index>
-

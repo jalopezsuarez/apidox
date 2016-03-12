@@ -1,4 +1,0 @@
-<!ELEMENT index (order*)>
-<!ELEMENT order (#PCDATA)>
-<!ATTLIST order
-        name CDATA #REQUIRED>
