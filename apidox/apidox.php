@@ -17,7 +17,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=8;IE=9;IE=EDGE" />
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="description" content="Apidox Live Documentation for RESTful APIs. A place where APIs are kept. Apidox provide fast, powerful API documentation test calls, so your developers have more time to code great apps.">
 <meta name="keywords" content="apidox, live documentantion, api documentation, restful api, json api" />
 <meta name="author" content="Vemovi Desarrolla SL vemovi.com">

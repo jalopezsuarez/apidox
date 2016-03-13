@@ -11,7 +11,7 @@ a, a:hover, a:focus, a:active, a.active {
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 200;
+	font-weight: 300;
 }
 
 hr.star-light, hr.star-primary {
@@ -72,23 +72,13 @@ header img {
 
 header .intro-text .name {
 	display: block;
-	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
-}
-
-header .intro-text .skills {
-	
+	font-family: Fira Sans, Helvetica, Arial, sans-serif;
 }
 
 @media ( min-width :768px) {
 	header .container {
 		padding-top: 200px;
 		padding-bottom: 100px;
-	}
-	header .intro-text .name {
-		
-	}
-	header .intro-text .skills {
-		
 	}
 }
 
@@ -113,7 +103,7 @@ header .intro-text .skills {
 }
 
 .navbar {
-	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
+	font-family: Fira Sans, Helvetica, Arial, sans-serif;
 }
 
 .navbar a:focus {
@@ -134,6 +124,10 @@ header .intro-text .skills {
 
 .navbar-brand {
 	text-transform: none;
+}
+
+.navbar-image {
+	margin: 6px 0px 0px 0px;
 }
 
 section {
@@ -303,7 +297,6 @@ h2 {
 	padding: 110px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;
 	background-color: #4178be;
-	height: 400px;
 	color: #fff;
 }
 
@@ -341,7 +334,10 @@ h2 {
 	float: none;
 	height: 250px;
 	vertical-align: middle;
-	display: table-cell;
+	padding: 35px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	text-align: center;
+	width: 100%;
 }
 
 i.key-icon {
@@ -354,13 +350,12 @@ i.key-icon {
 
 div.key-title {
 	font-size: 26px;
-	font-weight: 600;
 	text-align: center;
 	padding: 6px 6px 6px 6px;
 	margin: 0px 0px 0px 0px;
 	text-align: center;
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 200;
+	font-weight: 300;
 }
 
 div.key-body {
@@ -389,7 +384,7 @@ div.key-body {
 	padding: 6px 6px 6px 6px;
 	margin: 20px 0px 0px 0px;
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 200;
+	font-weight: 300;
 	font-size: 16px;
 }
 
@@ -433,6 +428,13 @@ div.sample-title {
 	font-weight: 300;
 	font-size: 24px;
 	text-align: center;
+	padding: 0px 6px 34px 6px;
+	margin: 0px 0px 0px 0px;
+}
+
+div.sample-code {
+	overflow-y: scroll !important;
+	white-space: nowrap;
 }
 
 .sample-code span.node {
@@ -460,17 +462,28 @@ div.sample-title {
 
 div.claim-title {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 26px;
 	text-align: center;
 }
 
 .header-sub {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 26px;
 	padding: 34px 6px 16px 6px;
 	margin: 0px 0px 0px 0px;
+}
+
+.header-demo {
+	padding: 0px 6px 32px 6px;
+	margin: 0px 0px 0px 0px;
+}
+
+@media ( max-width :1200px) {
+	.header-image {
+		display: none;
+	}
 }
 
 .btn-demo {
@@ -485,7 +498,7 @@ div.claim-title {
 
 .demo-title {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 18px;
 	padding: 16px 6px 16px 6px;
 	line-height: 30px;
@@ -493,7 +506,7 @@ div.claim-title {
 
 .demo-subtitle {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 18px;
 	padding: 16px 6px 16px 6px;
 	line-height: 30px;
@@ -501,14 +514,14 @@ div.claim-title {
 
 .download-info {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 18px;
 	line-height: 30px;
 }
 
 .footer-title {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 26px;
 	padding: 0px 0px 0px 0px;
 	margin: px 0px 12px 0px;
@@ -522,7 +535,7 @@ ul.footer-team {
 
 .footer-team li {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 16px;
 	padding: 0px 0px 0px 0px;
 	margin: px 0px 12px 0px;
@@ -530,7 +543,7 @@ ul.footer-team {
 
 .footer-open {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 16px;
 	padding: 0px 0px 0px 0px;
 	margin: px 0px 12px 0px;
@@ -542,14 +555,14 @@ ul.footer-team {
 
 .footer-company {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 14px;
 	color: #718092;
 }
 
 .footer-company  a {
 	font-family: Fira Sans, Helvetica, Arial, sans-serif;
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 14px;
 	color: #718092;
 }
