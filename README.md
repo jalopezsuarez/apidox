@@ -55,7 +55,7 @@ apidox/api
 
 #### config.xml
 
-```config.xml``` defines basic API's information:
+This file defines basic API's information:
 
 ```xml
 <!DOCTYPE config SYSTEM "config.dtd">
@@ -63,11 +63,39 @@ apidox/api
 ```
 
 ```config``` node may contain the following attributes:
-
 - ```title```: main title for the API.
 - ```version```: indicates the api version.
 - ```uri```: URI to test the API.
 - ```scheme```: scheme used on main server URI.
+- 
+#### index.xml
+
+The ```index.xml``` files define the listing order of endpoints and methods. The root folder (of each version) may contain an ```index.xml``` file for endpoints, whereas each endpoint may contain (in its folder) an ```index.xml``` file for methods. The ```xml``` syntax is:
+
+```xml
+<!DOCTYPE index SYSTEM "index.dtd">
+<index>
+	<order name="search" />
+	<order name="movie" />
+</index>
+```
+
+#### errors.xml
+
+An ```errors.xml``` file can be placed on each version root folder to define different error codes returned by API calls. These error codes can be categorized according to this file structure:
+
+```xml
+<!DOCTYPE errors SYSTEM "errors.dtd">
+<errors>
+	<category name="General">
+		<error code="100" description="Something went wrong." />
+		<error code="101" description="Movie not found!" />
+	</category>
+	<category name="Search">
+		<error code="200" description="Series or season not found!" />
+	</category>
+</errors>
+```
 
 ### Annotations Mode
 
