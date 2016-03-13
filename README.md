@@ -97,6 +97,84 @@ An ```errors.xml``` file can be placed on each version root folder to define dif
 </errors>
 ```
 
+#### method.xml
+
+This is the most important file in api definition. Every API method information is defined by a ```xml``` file with the following structure:
+
+```xml
+<!DOCTYPE method SYSTEM "method.dtd">
+<method hidden="N" type="GET" uri="/" description="Obtain movie information, all content and images on the site are contributed and maintained by our users.">
+
+	<param name="i" type="string" required="N" description="A valid IMDb ID (e.g. tt1285016)." />
+	<param name="t" type="string" required="N" value="Game of Thrones" description="Movie title to search for." />
+	<param name="type" type="enumerated" required="Y" value="series" description="Type of result to return.">
+		<option value="movie" description="Movie data type." />
+		<option value="series" description="Series data type." />
+		<option value="episode" description="Episode data type." />
+	</param>
+	<param name="y" type="string" required="N" description="Year of release." />
+	<param name="season" type="string" required="N" value="1" description="Season to return." />
+	<param name="episode" type="string" required="N" value="1" description="Selected episode." />
+
+	<errors>
+		<error code="100" />
+		<error code="200" />
+	</errors>
+	<example><![CDATA[
+{
+
+    "Title": "Interstellar",
+    "Year": "2014",
+    "Rated": "PG-13",
+    "Released": "07 Nov 2014",
+    "Runtime": "169 min",
+    "Genre": "Adventure, Drama, Sci-Fi",
+    "Director": "Christopher Nolan",
+    "Writer": "Jonathan Nolan, Christopher Nolan",
+    "Actors": "Ellen Burstyn, Matthew McConaughey, Mackenzie Foy, John Lithgow",
+    "Plot": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+    "Language": "English",
+    "Country": "USA, UK",
+    "Awards": "Won 1 Oscar. Another 36 wins & 122 nominations.",
+    "Poster": "http://ia.media-imdb.com/images/M/MV5BMjIxNTU4MzY4MF5BMl5BanBnXkFtZTgwMzM4ODI3MjE@._V1_SX300.jpg",
+    "Metascore": "74",
+    "imdbRating": "8.6",
+    "imdbVotes": "845,024",
+    "imdbID": "tt0816692",
+    "Type": "movie",
+    "Response": "True"
+
+}	
+	]]></example>
+	<information><![CDATA[
+Please note while both "i" and "t" are optional at least one argument is required.	
+	]]></information>
+</method>
+```
+
+```method``` node may contain the following attributes:
+
+- ```hidden``` (optional): hides the method (```hidden="Y"```). If an endpoint has no methods or all methods are hidden, then the endpoint doesn't appear in the API documentation.
+- ```type``` (required): http method (```type="GET"``` or ```type="POST"```).
+- - ```uri``` (required): URI to test the method.
+- ```description``` (required): synopsis.
+
+```method``` node may contain a set of ```param``` nodes. Each ```param``` node may contain the following attributes:
+
+- ```name``` (required): the parameter's name.
+- ```type``` (required): parameter data type represented as a string, e.g. ```"int"```. If ```type="enumerated"```, you can define a set of ```option``` nodes inside ```param``` node specifying the available options for the param. Each ```option``` may contain the following attributes:
+  - ```value``` (required): the parameter's value.
+  - ```description``` (required): description of the value for the parameter.
+- ```required``` (required): indicates if the parameter is required (```required="Y"```) for the method.
+- ```value``` (optional): indicates the default value for the parameter.
+ 
+
+You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation below).
+
+```example``` and ```information``` nodes contains a ```CDATA``` with the info to show, e.g. a static JSON sample. This is useful when someone doesn't have the information or ability to test the method, the user can have an idea about the response data.
+
+```information``` nodes contains a ```CDATA``` with some other information about the method. Here it is possible to use basic HTML fromatting to make the information looks clear for users.
+
 ### Annotations Mode
 
 TODO!
