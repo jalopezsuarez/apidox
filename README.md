@@ -171,9 +171,9 @@ Please note while both "i" and "t" are optional at least one argument is require
 - ```value``` (optional): indicates the default value for the parameter.
  
 
-You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation ```errors.xml```).
+```errors``` You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation ```errors.xml```).
 
-```example``` and ```information``` nodes contains a ```CDATA``` with the info to show, e.g. a static JSON sample. This is useful when someone doesn't have the information or ability to test the method, the user can have an idea about the response data.
+```example``` node contains a ```CDATA``` with the info to show, e.g. a static JSON sample. This is useful when someone doesn't have the information or ability to test the method, the user can have an idea about the response data.
 
 ```information``` nodes contains a ```CDATA``` with some other information about the method. Here it is possible to use basic HTML fromatting to make the information looks clear for users.
 
