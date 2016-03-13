@@ -22,16 +22,62 @@ APIDox gives you:
 - Any Web Server/PHP 5.4+ with CURL enabled.
 - A Web Browser ;)
 
+## How Apidox Works
+
+Apidox automatically generate your API documentation on fly. Apidox has two ways to generate the API documentation: XML file and folders structure and inline Annotations on sorce code.
+
+### XML Mode
+
+The API definition is automatically generated using a tree on /api/ directory. Each subdirectory on api/ folder is a ENDPOINT and each XML file in ENDPOINT directories is a METHOD of this ENDPOINT. The server supports full API versioning.
+
+#### API XML Documenation Structure
+
+APIDox definition structure starts from API folder in apidox homefolder.
+
+```
+apidox/api
+├── config.xml
+└── ├── index.xml
+    ├── errors.xml
+    ├── endpoint1/
+    │   ├── method_a.xml
+    │   ├── method_b.xml
+    │   ├── method_c.xml
+    │   └── index.xml
+    ├── endpoint2/
+    │   ├── method_d.xml
+    │   └── method_e.xml
+    └── endpoint(n)/
+        ├── method_f.xml
+        ├── method_g.xml
+        └── index.xml
+```
+
+#### config.xml
+
+```config.xml``` defines basic API's information:
+
+```xml
+<!DOCTYPE config SYSTEM "config.dtd">
+<config title="OMDb API The Open Movie Database" version="1.0" uri="www.omdbapi.com/" scheme="http://" />
+```
+
+```config``` node may contain the following attributes:
+
+- ```title```: main title for the API.
+- ```version```: indicates the api version.
+- ```uri```: URI to test the API.
+- ```scheme```: scheme used on main server URI.
+
+### Annotations Mode
+
+TODO!
+
 ## Author & Contributors
 
-**Jose Antonio Lopez**
-- [github.com/jalopezsuarez](https://github.com/jalopezsuarez)
-
-**Sebastian Garcia Rodriguez**
-- [github.com/segarci](https://github.com/segarci)
-
-**Eduardo Estrella Rosario**
-- [github.com/eduestrella](https://github.com/eduestrella)
+- Jose Antonio Lopez | [github.com/jalopezsuarez](https://github.com/jalopezsuarez)
+- Sebastian Garcia Rodriguez | [github.com/segarci](https://github.com/segarci)
+- Eduardo Estrella Rosario | [github.com/eduestrella](https://github.com/eduestrella)
 
 ## Support & Contributing
 
