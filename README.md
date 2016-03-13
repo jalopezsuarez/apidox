@@ -170,8 +170,7 @@ Please note while both "i" and "t" are optional at least one argument is require
 - ```required``` (required): indicates if the parameter is required (```required="Y"```) for the method.
 - ```value``` (optional): indicates the default value for the parameter.
  
-
-```errors``` You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation ```errors.xml```).
+```errors``` links every error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation ```errors.xml```).
 
 ```example``` node contains a ```CDATA``` with the info to show, e.g. a static JSON sample. This is useful when someone doesn't have the information or ability to test the method, the user can have an idea about the response data.
 
