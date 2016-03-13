@@ -3,6 +3,8 @@ Apidox
 
 [Apidox](https://apidox.net) Live Interactive API Documentation and Browsing for RESTful APIs, `Apidox`
 
+For more information see Apidox [apidox.net](https://apidox.net).
+
 ## Description
 Apidox is a small, simple and powerfull PHP application that creates a documentation from API XML structure definitions or annotations in your source code.
 
@@ -169,7 +171,7 @@ Please note while both "i" and "t" are optional at least one argument is require
 - ```value``` (optional): indicates the default value for the parameter.
  
 
-You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation below).
+You can define error codes returned by the method on the ```errors``` node. This node may contains ```error``` nodes defining the error code. This error code has to be defined on ```errors.xml``` file (see documentation ```errors.xml```).
 
 ```example``` and ```information``` nodes contains a ```CDATA``` with the info to show, e.g. a static JSON sample. This is useful when someone doesn't have the information or ability to test the method, the user can have an idea about the response data.
 
