@@ -99,9 +99,9 @@ An ```errors.xml``` file can be placed on each version root folder to define dif
 </errors>
 ```
 
-#### method.xml
+#### {method}.xml
 
-This is the most important file in api definition. Every API method information is defined by a ```xml``` file with the following structure:
+This is the most important file in api definition. Each method has its own XML file named with the name of the contained method. Every API method information is defined by a ```xml``` file with the following structure:
 
 ```xml
 <!DOCTYPE method SYSTEM "method.dtd">
