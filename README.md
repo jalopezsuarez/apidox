@@ -3,7 +3,7 @@ Apidox
 
 [Apidox](http://apidox.net) Live Interactive API Documentation and Browsing for RESTful APIs, `Apidox`
 
-For more information see Apidox [apidox.net](http://apidox.net).
+*For more information see Apidox [apidox.net](http://apidox.net).*
 
 ## Description
 Apidox is a small, simple and powerfull PHP application that creates a documentation from API XML structure definitions or annotations in your source code.
