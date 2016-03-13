@@ -1,5 +1,4 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-
 <method hidden="N" type="GET" uri="/" description="Obtain movie information, all content and images on the site are contributed and maintained by our users.">
 
 	<param name="i" type="string" required="N" description="A valid IMDb ID (e.g. tt1285016)." />
@@ -10,7 +9,6 @@
 		<option value="episode" description="Episode data type." />
 	</param>
 	<param name="y" type="string" required="N" description="Year of release." />
-
 	<param name="season" type="string" required="N" value="1" description="Season to return." />
 	<param name="episode" type="string" required="N" value="1" description="Selected episode." />
 
@@ -18,7 +16,7 @@
 		<error code="100" />
 		<error code="200" />
 	</errors>
-
+	
 	<example><![CDATA[
 {
 
@@ -45,9 +43,7 @@
 
 }	
 	]]></example>
-
 	<information><![CDATA[
 Please note while both "i" and "t" are optional at least one argument is required.	
 	]]></information>
-
 </method>

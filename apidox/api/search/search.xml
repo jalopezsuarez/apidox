@@ -1,5 +1,4 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-
 <method hidden="N" type="GET" uri="/" description="Search over all database available information.">
 
 	<param name="s" type="string" required="N" value="Batman" description="A valid IMDb ID (e.g. tt1285016)." />
@@ -9,7 +8,7 @@
 		<error code="100" />
 		<error code="101" />
 	</errors>
-
+	
 	<example><![CDATA[]]></example>
 	<information><![CDATA[]]></information>
 
