@@ -72,7 +72,7 @@ header img {
 
 header .intro-text .name {
 	display: block;
-	font-family: Fira Sans, Helvetica, Arial, sans-serif;
+	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
 }
 
 @media ( min-width :768px) {
@@ -103,7 +103,7 @@ header .intro-text .name {
 }
 
 .navbar {
-	font-family: Fira Sans, Helvetica, Arial, sans-serif;
+	font-family: Proxima Nova, Helvetica, Arial, sans-serif;
 }
 
 .navbar a:focus {
