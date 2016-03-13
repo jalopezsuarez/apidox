@@ -67,7 +67,7 @@ This file defines basic API's information:
 - ```version```: indicates the api version.
 - ```uri```: URI to test the API.
 - ```scheme```: scheme used on main server URI.
-- 
+
 #### index.xml
 
 The ```index.xml``` files define the listing order of endpoints and methods. The root folder (of each version) may contain an ```index.xml``` file for endpoints, whereas each endpoint may contain (in its folder) an ```index.xml``` file for methods. The ```xml``` syntax is:
