@@ -1,7 +1,7 @@
 Apidox
 =================
 
-[Apidox](http://apidox.net) Live Interactive API Documentation and Browsing for RESTful APIs, `Apidox`
+[Apidox](http://apidox.net) Live Interactive Documentation and Browsing for RESTful APIs, `Apidox`
 
 *For more information see Apidox [apidox.net](http://apidox.net).*
 
@@ -38,9 +38,9 @@ APIDox definition structure starts from API folder in apidox homefolder.
 
 ```
 apidox/api
-├── config.xml
-└── ├── index.xml
+    ├── config.xml
     ├── errors.xml
+    ├── index.xml    
     ├── endpoint1/
     │   ├── method_a.xml
     │   ├── method_b.xml
