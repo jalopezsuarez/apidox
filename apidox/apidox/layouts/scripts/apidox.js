@@ -238,7 +238,7 @@ function onResourceAction(event)
 	jQuery.ajax({
 		url : "apidox/app/Request.php",
 		type : "POST",
-		timeout : 10000,
+		timeout : 45000,
 		data : {
 			get : get,
 			post : post,
