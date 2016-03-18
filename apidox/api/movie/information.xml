@@ -1,5 +1,5 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-<method hidden="N" type="GET" uri="/" description="Obtain movie information, all content and images on the site are contributed and maintained by our users.">
+<method deprecated="Y" hidden="N" type="GET" uri="/" description="Obtain movie information, all content and images on the site are contributed and maintained by our users.">
 
 	<param name="i" type="string" required="N" description="A valid IMDb ID (e.g. tt1285016)." />
 	<param name="t" type="string" required="N" value="Game of Thrones" description="Movie title to search for." />

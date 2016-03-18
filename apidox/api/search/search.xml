@@ -1,5 +1,5 @@
 <!DOCTYPE method SYSTEM "method.dtd">
-<method hidden="N" type="GET" uri="/" description="Search over all database available information.">
+<method type="GET" uri="/" description="Search over all database available information.">
 
 	<param name="s" type="string" required="N" value="Batman" description="A valid IMDb ID (e.g. tt1285016)." />
 	<param name="page" type="integer" required="N" value="2" description="Page number" />

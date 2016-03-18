@@ -52,7 +52,8 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 				</a>
 			</div>
 			<a class="apidox-powered hidden-xs" target="_blank" href="https://github.com/jalopezsuarez/apidox">
-				<span class="powered">{Apidox} Live Documentation for RESTful APIs </span> <span class="credits">Generated with Apidox v2.20160312 Powered &lt;XML/&gt;</span>
+				<span class="powered">{Apidox} Live Documentation for RESTful APIs </span>
+				<span class="credits">Generated with Apidox v2.20160312 Powered &lt;XML/&gt;</span>
 			</a>
 		</div>
 	</nav>
@@ -134,9 +135,9 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							</div>
 							<?php $methodName = trim(trim($methodResource[Apidox::URI]), '/')?>
 							<?php if (!is_null($methodName) && strlen($methodName) > 0) :?>
-							<h2><?php echo $methodName ?></h2>
+							<h2 class="<?php echo $methodResource[Apidox::DEPRECATED]?'deprecated':''?>"><?php echo $methodName ?></h2>
 							<?php else: ?>
-							<h2><?php echo $methodResource[Apidox::NAME] ?></h2>
+							<h2 class="<?php echo $methodResource[Apidox::DEPRECATED]?'deprecated':''?>"><?php echo $methodResource[Apidox::NAME] ?></h2>
 							<?php endif; ?>
 
 						</div>
@@ -185,7 +186,9 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 											<?php elseif (strcasecmp($paramsResource[Apidox::TYPE], Apidox::TYPE_FILE) === 0) : ?>
 											<td data-name="param" class="field"><?php echo $paramsResource[Apidox::NAME] ?></td>
 										<td class="value"><div class="apidox-file">
-												<span> browse&hellip; <input type="file" multiple>
+												<span>
+													browse&hellip;
+													<input type="file" multiple>
 												</span>
 											</div></td>
 										<td class="type <?php echo strcasecmp($paramsResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $paramsResource[Apidox::TYPE] ?></td>

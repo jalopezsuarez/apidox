@@ -405,6 +405,10 @@ body {
 	display: inline-block;
 }
 
+.apidox-method .deprecated {
+	text-decoration: line-through;
+}
+
 .apidox-reference {
 	color: #7ccfaf;
 	font-family: Proxima Nova, Helvetica, Arial, sans-serif;

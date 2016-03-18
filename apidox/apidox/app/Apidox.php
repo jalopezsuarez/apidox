@@ -23,6 +23,7 @@ class Apidox
 	const TYPE = "type";
 	const VERSION = "version";
 	const DESCRIPTION = "description";
+	const DEPRECATED = "deprecated";
 	const HIDDEN = "hidden";
 	const PARAMS = "params";
 	const PARAM = "param";

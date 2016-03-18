@@ -3,6 +3,7 @@
         type (GET | POST | PUT | DELETE | HEAD | CONNECT | OPTIONS | TRACE | PATCH) #REQUIRED
         uri CDATA #REQUIRED
         description CDATA #REQUIRED
+        deprecated (Y | N ) #IMPLIED
         hidden (Y | N ) #IMPLIED>
 <!ELEMENT param (option*)>
 <!ATTLIST param

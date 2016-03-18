@@ -185,6 +185,12 @@ class XMLParser
 							$methodResource[Apidox::TYPE] = $methodFile->attributes()[Apidox::TYPE];
 							$methodResource[Apidox::DESCRIPTION] = $methodFile->attributes()[Apidox::DESCRIPTION];
 							
+							$methodResource[Apidox::DEPRECATED] = false;
+							if (isset($methodFile->attributes()[Apidox::DEPRECATED]) && strcasecmp($methodFile->attributes()[Apidox::DEPRECATED], "Y") === 0)
+							{
+								$methodResource[Apidox::DEPRECATED] = true;
+							}
+							
 							$errors = $methodFile->errors;
 							if (isset($errors->error) && count($errors->error) > 0)
 							{
