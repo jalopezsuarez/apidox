@@ -53,7 +53,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 			</div>
 			<a class="apidox-powered hidden-xs" target="_blank" href="https://github.com/jalopezsuarez/apidox">
 				<span class="powered">{Apidox} Live Documentation for RESTful APIs </span>
-				<span class="credits">Generated with Apidox v2.20160312 Powered &lt;XML/&gt;</span>
+				<span class="credits">Generated with Apidox v2.20161121 Powered &lt;XML/&gt;</span>
 			</a>
 		</div>
 	</nav>
@@ -133,7 +133,7 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 							<div class="protocol">
 								<span><?php echo $methodResource[Apidox::TYPE] ?></span>
 							</div>
-							<?php $methodName = trim(trim($methodResource[Apidox::URI]), '/')?>
+							<?php $methodName = trim(trim($methodResource[Apidox::NAME]), '/')?>
 							<?php if (!is_null($methodName) && strlen($methodName) > 0) :?>
 							<h2 class="<?php echo $methodResource[Apidox::DEPRECATED]?'deprecated':''?>"><?php echo $methodName ?></h2>
 							<?php else: ?>
