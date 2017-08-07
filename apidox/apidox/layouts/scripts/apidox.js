@@ -1,6 +1,6 @@
 /**
  * jQuery events management controller
- * 
+ *
  * @author apidox vemovi.com
  */
 
@@ -206,6 +206,24 @@ function onResourceAction(event)
 	var dataUri = context.find("[data-name='server']").data('uri');
 	var dataType = context.find('#type').data('type');
 
+	var dataHeaders = '';
+	var headerJson = {};
+	context.find("[data-name='headers']").each(function(index, element)
+	{
+		var header = $(element).find("[data-name='header']").html();
+		var value = encodeURIComponent($(element).find("[data-name='value']").val());
+		if (value == undefined)
+		{
+			value = $(element).find("[data-name='value'] option:selected").text();
+		}
+		value = value.replace(/[\u200B-\u200D\uFEFF]/g, '');
+		if (value != undefined && value != null && value.length > 0)
+		{
+			dataHeaders += (dataHeaders.length > 0 ? '&' : '') + $.trim(header) + '=' + $.trim(value);
+		}
+		headerJson[$.trim(header)] = $.trim(value);
+	});
+
 	var dataParams = '';
 	var dataJSON = {};
 	context.find("[data-name='params']").each(function(index, element)
@@ -227,6 +245,7 @@ function onResourceAction(event)
 	var get = dataServer + dataUri + (dataParams.length > 0 ? '?' : '') + dataParams;
 	var post = dataServer + dataUri;
 	var type = dataType.toLowerCase();
+	var headers = JSON.stringify(headerJson);
 	var params = JSON.stringify(dataJSON);
 
 	context.find("[data-name='server']").html(get);
@@ -243,6 +262,7 @@ function onResourceAction(event)
 			get : get,
 			post : post,
 			type : type,
+			headers : headers,
 			params : params
 		}
 	}).always(function(response)

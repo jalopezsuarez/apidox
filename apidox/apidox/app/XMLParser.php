@@ -22,27 +22,27 @@ class XMLParser
 		{
 			new \Exception();
 		}
-		
+
 		// =======================================================
-		
+
 		$errorsDictionary = array();
-		
+
 		// -------------------------------------------------------
-		
+
 		$endpointsOrdering = array();
 		$endpointsCollection = array();
 		$errorsCollection = array();
-		
+
 		// =======================================================
-		
+
 		$resources = array();
 		if (is_dir($dirname))
 		{
 			$resources = scandir($dirname);
 		}
-		
+
 		// -------------------------------------------------------
-		
+
 		foreach ( $resources as $resource )
 		{
 			if ($resource === '.' or $resource === '..')
@@ -54,7 +54,7 @@ class XMLParser
 			if (is_file($filepath) && strcasecmp($resource, Apidox::CONFIG_XML) === 0)
 			{
 				$configFile = simplexml_load_file($filepath);
-				
+
 				$apidox->setTitle($configFile->attributes()[Apidox::TITLE]);
 				$apidox->setVersion($configFile->attributes()[Apidox::VERSION]);
 				$apidox->setUri($configFile->attributes()[Apidox::URI]);
@@ -82,17 +82,17 @@ class XMLParser
 				{
 					$categorized = array();
 					$grouped = (string)Apidox::CATEGORY_NONE;
-					
+
 					foreach ( $errorsFile->error as $error )
 					{
 						$code = (string)$error->attributes()[Apidox::CODE];
 						$description = $error->attributes()[Apidox::DESCRIPTION];
-						
+
 						$errorResource = array();
 						$errorResource[Apidox::CODE] = (string)$code;
 						$errorResource[Apidox::DESCRIPTION] = (string)$description;
 						array_push($categorized, $errorResource);
-						
+
 						$errorsDictionary[$code][Apidox::CATEGORY] = $grouped;
 						$errorsDictionary[$code][Apidox::DESCRIPTION] = $description;
 					}
@@ -107,17 +107,17 @@ class XMLParser
 						{
 							$categorized = array();
 							$grouped = (string)$category->attributes()[Apidox::NAME];
-							
+
 							foreach ( $category->error as $error )
 							{
 								$code = (string)$error->attributes()[Apidox::CODE];
 								$description = $error->attributes()[Apidox::DESCRIPTION];
-								
+
 								$errorResource = array();
 								$errorResource[Apidox::CODE] = $code;
 								$errorResource[Apidox::DESCRIPTION] = $description;
 								array_push($categorized, $errorResource);
-								
+
 								$errorsDictionary[$code][Apidox::CATEGORY] = $grouped;
 								$errorsDictionary[$code][Apidox::DESCRIPTION] = $description;
 							}
@@ -131,27 +131,27 @@ class XMLParser
 				$endpointsResource = array();
 				$endpointsResource[Apidox::NAME] = trim($resource);
 				$endpointsResource[Apidox::PATH] = trim($filepath);
-				
+
 				array_push($endpointsCollection, $endpointsResource);
 			}
 		}
 		// =======================================================
-		
+
 		if (count($endpointsOrdering) > 0)
 		{
 			$endpointsCollection = $this->reorderingEndpoints($endpointsCollection, $endpointsOrdering);
 		}
-		
+
 		// =======================================================
-		
+
 		$apidoxCounter = 0;
-		
+
 		foreach ( $endpointsCollection as &$endpointResource )
 		{
 			$methodOrdering = array();
 			$methodResources = array();
 			$methodCounter = 0;
-			
+
 			$methods = scandir($endpointResource[Apidox::PATH]);
 			foreach ( $methods as $resource )
 			{
@@ -178,19 +178,19 @@ class XMLParser
 						{
 							$apidoxCounter ++;
 							$methodCounter ++;
-							
+
 							$methodResource = array();
 							$methodResource[Apidox::NAME] = strtolower(rtrim(trim($endpointResource[Apidox::NAME]), '/')) . '/' . strtolower(pathinfo($filepath, PATHINFO_FILENAME));
 							$methodResource[Apidox::URI] = $methodFile->attributes()[Apidox::URI];
 							$methodResource[Apidox::TYPE] = $methodFile->attributes()[Apidox::TYPE];
 							$methodResource[Apidox::DESCRIPTION] = $methodFile->attributes()[Apidox::DESCRIPTION];
-							
+
 							$methodResource[Apidox::DEPRECATED] = false;
 							if (isset($methodFile->attributes()[Apidox::DEPRECATED]) && strcasecmp($methodFile->attributes()[Apidox::DEPRECATED], "Y") === 0)
 							{
 								$methodResource[Apidox::DEPRECATED] = true;
 							}
-							
+
 							$errors = $methodFile->errors;
 							if (isset($errors->error) && count($errors->error) > 0)
 							{
@@ -206,12 +206,12 @@ class XMLParser
 											if (!is_null($category) && is_string($category) && strlen($category) > 0)
 											{
 												$description = $errorsDictionary[$code][Apidox::DESCRIPTION];
-												
+
 												$errorResource = array();
 												$errorResource[Apidox::CODE] = $code;
 												$errorResource[Apidox::CATEGORY] = $category;
 												$errorResource[Apidox::DESCRIPTION] = $description;
-												
+
 												if (!isset($errorsResources[$category]) || !is_array($errorsResources[$category]))
 												{
 													$errorsResources[$category] = array();
@@ -223,7 +223,7 @@ class XMLParser
 								}
 								$methodResource[Apidox::ERRORS] = $errorsResources;
 							}
-							
+
 							$example = trim((string)$methodFile->example);
 							if (!is_null($example) && is_string($example) && strlen($example) > 0)
 							{
@@ -234,7 +234,34 @@ class XMLParser
 							{
 								$methodResource[Apidox::INFORMATION] = $information;
 							}
-							
+
+							$headerResources = array();
+							foreach ( $methodFile->header as $header )
+							{
+								$headerResource = array();
+								$headerResource[Apidox::NAME] = $header->attributes()[Apidox::NAME];
+								$headerResource[Apidox::TYPE] = $header->attributes()[Apidox::TYPE];
+								$headerResource[Apidox::REQUIRED] = $header->attributes()[Apidox::REQUIRED];
+								$headerResource[Apidox::DESCRIPTION] = $header->attributes()[Apidox::DESCRIPTION];
+								$headerResource[Apidox::VALUE] = $header->attributes()[Apidox::VALUE];
+
+								if (isset($headerResource[Apidox::TYPE]) && strcasecmp($headerResource[Apidox::TYPE], Apidox::TYPE_ENUMERATED) === 0)
+								{
+									$enumeratedResources = array();
+									foreach ( $header->option as $option )
+									{
+										$optionResource = array();
+										$optionResource[Apidox::VALUE] = $option->attributes()[Apidox::VALUE];
+										$optionResource[Apidox::DESCRIPTION] = $option->attributes()[Apidox::DESCRIPTION];
+
+										array_push($enumeratedResources, $optionResource);
+									}
+									$headerResource[Apidox::TYPE_ENUMERATED] = $enumeratedResources;
+								}
+								array_push($headerResources, $headerResource);
+							}
+							$methodResource[Apidox::HEADERS] = $headerResources;
+
 							$paramResources = array();
 							foreach ( $methodFile->param as $param )
 							{
@@ -244,7 +271,7 @@ class XMLParser
 								$paramResource[Apidox::REQUIRED] = $param->attributes()[Apidox::REQUIRED];
 								$paramResource[Apidox::DESCRIPTION] = $param->attributes()[Apidox::DESCRIPTION];
 								$paramResource[Apidox::VALUE] = $param->attributes()[Apidox::VALUE];
-								
+
 								if (isset($paramResource[Apidox::TYPE]) && strcasecmp($paramResource[Apidox::TYPE], Apidox::TYPE_ENUMERATED) === 0)
 								{
 									$enumeratedResources = array();
@@ -253,7 +280,7 @@ class XMLParser
 										$optionResource = array();
 										$optionResource[Apidox::VALUE] = $option->attributes()[Apidox::VALUE];
 										$optionResource[Apidox::DESCRIPTION] = $option->attributes()[Apidox::DESCRIPTION];
-										
+
 										array_push($enumeratedResources, $optionResource);
 									}
 									$paramResource[Apidox::TYPE_ENUMERATED] = $enumeratedResources;
@@ -261,28 +288,28 @@ class XMLParser
 								array_push($paramResources, $paramResource);
 							}
 							$methodResource[Apidox::PARAMS] = $paramResources;
-							
+
 							$resource = trim(pathinfo($filepath, PATHINFO_FILENAME), '/');
 							$methodResources[$resource] = $methodResource;
 						}
 					}
 				}
 			}
-			
+
 			// -------------------------------------------------------
 			if (count($methodOrdering) > 0)
 			{
 				$methodResources = $this->reorderingMethods($methodResources, $methodOrdering);
 			}
 			// -------------------------------------------------------
-			
+
 			$endpointResource[Apidox::METHODS] = $methodResources;
 			$endpointResource[Apidox::COUNTER] = $methodCounter;
 		}
-		
+
 		// =======================================================
 		$apidox->setCounter($apidoxCounter);
-		
+
 		$apidox->setEndpoints($endpointsCollection);
 		$apidox->setErrors($errorsDictionary);
 		// =======================================================
@@ -290,16 +317,16 @@ class XMLParser
 
 	/**
 	 * Proceso para la reorganizacion de endpoints.
-	 * 
-	 * @param unknown $arrayOriginal        
-	 * @param unknown $arrayOrdering        
+	 *
+	 * @param unknown $arrayOriginal
+	 * @param unknown $arrayOrdering
 	 * @return Ambigous <multitype:, multitype:NULL
 	 */
 	private function reorderingEndpoints($arrayOriginal, &$arrayOrdering)
 	{
 		$arrayNew = array();
 		$numOrders = count($arrayOrdering);
-		
+
 		for($currIdx = 0; $currIdx < $numOrders; $currIdx ++)
 		{
 			$numOriginal = count($arrayOriginal);
@@ -316,22 +343,22 @@ class XMLParser
 		{
 			$arrayNew = array_merge($arrayNew, $arrayOriginal);
 		}
-		
+
 		return $arrayNew;
 	}
 
 	/**
 	 * Proceso de reordenacion de los metodos de un endpoint.
-	 * 
-	 * @param unknown $arrayOriginal        
-	 * @param unknown $arrayOrdering        
+	 *
+	 * @param unknown $arrayOriginal
+	 * @param unknown $arrayOrdering
 	 * @return Ambigous <multitype:, multitype:unknown >
 	 */
 	private function reorderingMethods($arrayOriginal, $arrayOrdering)
 	{
 		$arrayNew = array();
 		$numOrders = count($arrayOrdering);
-		
+
 		for($currIdx = 0; $currIdx < $numOrders; $currIdx ++)
 		{
 			if (array_key_exists($arrayOrdering[$currIdx], $arrayOriginal))
@@ -344,7 +371,7 @@ class XMLParser
 		{
 			$arrayNew = array_merge($arrayNew, $arrayOriginal);
 		}
-		
+
 		return $arrayNew;
 	}
 }
