@@ -25,6 +25,8 @@ class Apidox
 	const DESCRIPTION = "description";
 	const DEPRECATED = "deprecated";
 	const HIDDEN = "hidden";
+	const HEADERS = "headers";
+	const HEADER = "header";
 	const PARAMS = "params";
 	const PARAM = "param";
 	const REQUIRED = "required";
@@ -53,9 +55,9 @@ class Apidox
 		$version = "";
 		$uri = "";
 		$scheme = "";
-		
+
 		$counter = 0;
-		
+
 		$endpoints = array();
 		$errors = array();
 	}

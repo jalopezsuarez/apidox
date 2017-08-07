@@ -145,6 +145,77 @@ $apidox = $controller->parse(dirname(__FILE__) . '/api');
 						<div class="apidox-description">
 							<p><?php echo $methodResource[Apidox::DESCRIPTION] ?></p>
 						</div>
+
+						<div class="apidox-reference">HEADERS</div>
+						<div class="apidox-parameters table-responsive">
+							<table>
+								<tbody>
+									<?php foreach ($methodResource[Apidox::HEADERS] as $headerResource) : ?>
+									<!-- Params -->
+									<tr data-name="headers">
+										<?php if (strcasecmp($headerResource[Apidox::TYPE], Apidox::TYPE_ENUMERATED) === 0) : ?>
+										<td data-name="header" class="field"><?php echo $headerResource[Apidox::NAME] ?></td>
+										<td class="value"><select data-name="value">
+												<?php foreach ($headerResource[Apidox::TYPE_ENUMERATED] as $option) : ?>
+													<option value="<?php echo $option[Apidox::VALUE]?>" <?php echo strcasecmp($option[Apidox::VALUE], $headerResource[Apidox::VALUE])==0?'selected':''?>><?php echo $option[Apidox::VALUE]?></option>
+												<?php endforeach ?>
+											</select></td>
+										<td class="type <?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $headerResource[Apidox::TYPE] ?></td>
+										<td class="description">
+											<p><?php echo $headerResource[Apidox::DESCRIPTION] ?></p>
+											<table class="values">
+												<tbody>
+														<?php foreach ($headerResource[Apidox::TYPE_ENUMERATED] as $option) : ?>
+														<tr>
+														<td><?php echo $option[Apidox::VALUE]?></td>
+														<td><?php echo $option[Apidox::DESCRIPTION]?></td>
+													</tr>
+														<?php endforeach ?>
+													</tbody>
+											</table>
+										</td>
+											<?php elseif (strcasecmp($headerResource[Apidox::TYPE], Apidox::TYPE_BOOLEAN) === 0) : ?>
+											<td data-name="header" class="field"><?php echo $headerResource[Apidox::NAME] ?></td>
+										<td class="value"><select data-name="value">
+												<option value="1">TRUE</option>
+												<option value="0">FALSE</option>
+											</select></td>
+										<td class="type <?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $headerResource[Apidox::TYPE] ?></td>
+										<td class="description">
+											<p><?php echo $headerResource[Apidox::DESCRIPTION] ?></p>
+										</td>
+											<?php elseif (strcasecmp($headerResource[Apidox::TYPE], Apidox::TYPE_FILE) === 0) : ?>
+											<td data-name="header" class="field"><?php echo $headerResource[Apidox::NAME] ?></td>
+										<td class="value"><div class="apidox-file">
+												<span>
+													browse&hellip;
+													<input type="file" multiple>
+												</span>
+											</div></td>
+										<td class="type <?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $headerResource[Apidox::TYPE] ?></td>
+										<td class="description">
+											<p><?php echo $headerResource[Apidox::DESCRIPTION] ?></p>
+										</td>
+											<?php elseif (strcasecmp($headerResource[Apidox::TYPE], Apidox::TYPE_ARRAY) === 0) : ?>
+											<td data-name="header" class="field"><?php echo $headerResource[Apidox::NAME] ?></td>
+										<td class="value"><input data-name="value" name="<?php echo $headerResource[Apidox::NAME] . '[]' ?>" value="<?php echo $headerResource[Apidox::VALUE] ?>"
+												placeholder="<?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>" /></td>
+										<td class="type <?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $headerResource[Apidox::TYPE] ?></td>
+										<td class="description"><?php echo $headerResource[Apidox::DESCRIPTION] ?></td>
+											<?php else :?>
+											<td data-name="header" class="field"><?php echo $headerResource[Apidox::NAME] ?></td>
+										<td class="value"><input data-name="value" name="<?php echo $headerResource[Apidox::NAME] ?>" value="<?php echo $headerResource[Apidox::VALUE] ?>" placeholder="<?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>" /></td>
+										<td class="type <?php echo strcasecmp($headerResource[Apidox::REQUIRED],'Y') ===0?'required':'' ?>"><?php echo $headerResource[Apidox::TYPE] ?></td>
+										<td class="description"><?php echo $headerResource[Apidox::DESCRIPTION] ?></td>
+										<?php endif; ?>
+									</tr>
+									<!-- /Params -->
+									<?php endforeach ?>
+
+									</tbody>
+							</table>
+						</div>
+
 						<div class="apidox-reference">PARAMETERS</div>
 						<div class="apidox-parameters table-responsive">
 							<table>
