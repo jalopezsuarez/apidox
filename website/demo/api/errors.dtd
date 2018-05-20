@@ -1,8 +1,0 @@
-<!ELEMENT errors (category*)>
-<!ELEMENT category (error*)>
-<!ATTLIST category
-        name CDATA #REQUIRED>
-<!ELEMENT error (#PCDATA)>
-<!ATTLIST error
-        code CDATA #REQUIRED
-        description CDATA #REQUIRED>
