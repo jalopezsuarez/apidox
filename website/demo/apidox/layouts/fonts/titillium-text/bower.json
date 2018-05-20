@@ -1,0 +1,22 @@
+{
+  "name": "titillium",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Chialab/titillium",
+  "authors": [
+    "Chialab s.r.l. <dev@chialab.it>"
+  ],
+  "description": "Type designed by Accademia di Belle Arti di Urbino.",
+  "main": "titillium-text.css",
+  "keywords": [
+    "font",
+    "titillium"
+  ],
+  "license": "OFL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

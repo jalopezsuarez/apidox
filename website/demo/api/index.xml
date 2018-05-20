@@ -1,0 +1,6 @@
+<!DOCTYPE index SYSTEM "index.dtd">
+<index>
+	<order name="search" />
+	<order name="movie" />
+</index>
+

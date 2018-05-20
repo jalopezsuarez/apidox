@@ -1,0 +1,11 @@
+<!DOCTYPE errors SYSTEM "errors.dtd">
+<errors>
+	<category name="General">
+		<error code="100" description="Something went wrong." />
+		<error code="101" description="Movie not found!" />
+	</category>
+	<category name="Search">
+		<error code="200" description="Series or season not found!" />
+	</category>
+</errors>
+

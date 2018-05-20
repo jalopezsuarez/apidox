@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'TisaPro';
+	src: url('ff-tisa-web-pro.eot');
+	src: url('ff-tisa-web-pro.eot?#iefix') format('embedded-opentype'),
+		url('ff-tisa-web-pro.woff') format('woff'), url('ff-tisa-web-pro.ttf')
+		format('truetype'), url('ff-tisa-web-pro.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,148 @@
+.jjson-container {
+	font-size: 13px;
+	line-height: 1.2;
+	font-family: monospace;
+	padding-left: 0;
+	margin-left: 20px;
+	overflow: auto; 
+} 
+ 
+.jjson-container {
+	background: #292b36;
+	color: #fff;
+	font-weight: normal;
+	width: 100%;
+	height: auto;
+	min-height: 40px;
+	border-radius: 5px;
+	padding: 10px 30px 10px 30px;
+	margin: 0px 0px 0px 0px;
+	overflow: auto;
+	display: inline-block;
+	word-wrap: break-word;
+	word-break: break-all;
+	-ms-word-wrap: break-word;
+	-ms-word-break: break-all;	
+}
+
+.jjson-container * {
+	font-family: "Source Code Pro", Monaco, Lucida Console, Terminal,
+		monospace;
+	font-size: 13px;
+}
+
+.jjson-container, .jjson-container ul {
+	list-style: none !important;
+}
+
+.jjson-container ul {
+	padding: 0px !important;
+	padding-left: 20px !important;
+	margin: 0px !important;
+}
+
+.jjson-container li {
+	position: relative;
+	padding: 1px 0px 1px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+.jjson-container>li>.key, .jjson-container .array .key {
+	display: none;
+}
+
+.jjson-container .array .object .key {
+	display: inline;
+}
+
+.jjson-container li:after {
+	content: ",";
+}
+
+.jjson-container li:last-child:after {
+	content: "";
+}
+
+.jjson-container .null {
+	color: #F7206E;
+	font-weight: normal;
+}
+
+.jjson-container .string {
+	color: #E6DC6D;
+	font-weight: normal;
+}
+
+.jjson-container .number {
+	color: #AE7DFF;
+	font-weight: normal;
+}
+
+.jjson-container .boolean {
+	color: #AE7DFF;
+	font-weight: normal;
+}
+
+.jjson-container .key {
+	color: #5FD9F1;
+}
+
+.jjson-error {
+	font-family: "Source Code Pro", Monaco, Lucida Console, Terminal,
+		monospace;
+	font-size: 13px;	
+	background: #292b36;
+	color: #E6DC6D;	
+	margin: 0px 0px 0px 0px;
+	padding: 10px 30px 5px 30px;
+}
+
+.jjson-container .expanded {
+	cursor: pointer;
+}
+
+.jjson-container .expanded:before {
+	content: "-";
+	font-size: 1.2em;
+	width: 13px;
+	text-align: center;
+	line-height: 13px;
+	font-family: sans-serif;
+	color: #ffffff;
+	position: absolute;
+	left: -15px;
+	top: 3px;
+}
+
+.jjson-container .collapsed:before {
+	content: "+";
+	font-size: 1.1em;
+	color: #ffffff;
+	top: 1px;
+}
+
+.jjson-container li .collapsed ~ .close:before {
+	content: "... ";
+	color: #ffffff;
+}
+
+.jjson-container .hidden ~ ul {
+	display: none;
+}
+
+.jjson-container span {
+	position: static !important;
+	padding: 5px 0px 5px 0px;
+	color: #fff;
+}
+
+.jjson-container li span.close {
+	color: #fff;
+	opacity: 1;
+	float: none;
+}
+
+.jjson-container .close {
+	font-weight: normal!important;
+	text-shadow: none!important;
+}
